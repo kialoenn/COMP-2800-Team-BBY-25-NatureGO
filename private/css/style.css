@@ -16,3 +16,36 @@
     background-color: #04443c;
     
 }
+<<<<<<< HEAD
+=======
+
+/*index layout*/
+h1 {
+    text-align: center;
+  }
+
+  #searchbt {
+    font-size: 25px;
+    color: #04443c
+  }
+
+  #circle {
+    margin-left: 20%;
+    margin-top: 10%;
+  }
+
+  #notif {
+    margin-top: 10%;
+  }
+
+  .btn-circle {
+    width: 200px;
+    height: 200px;
+    padding: 6px 0px;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+    background-color: #04443c;
+  }
+>>>>>>> 4aabc74f220c975d6d54d1f81552d26b21aa4328
