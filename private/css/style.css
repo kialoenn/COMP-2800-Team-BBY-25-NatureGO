@@ -1,0 +1,18 @@
+/*Navbar--- */
+.nav {
+    background-color: #04443c;
+    /* color: white; */
+}
+
+.nav-link:hover {
+    color: #76c893;
+    /* cursor: pointer; */
+}
+
+.nav-link {
+    color: white;
+}
+.navbar {
+    background-color: #04443c;
+    
+}
