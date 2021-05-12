@@ -22,6 +22,7 @@
   "homepage": "https://github.com/kialoenn/COMP-2800-Team-BBY-25-NatureGO#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "firebase": "^8.6.0",
     "serve": "^11.3.2"
   }
 }
