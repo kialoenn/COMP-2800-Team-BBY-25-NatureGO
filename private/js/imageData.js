@@ -19,4 +19,12 @@ function getExif() {
         allMetaDataSpan.innerHTML = JSON.stringify(allMetaData, null, "\t");
         console.log(this.exifdata);
     });
+
+    var img2 = document.getElementById("img3");
+    EXIF.getData(img2, function() {
+        var allMetaData = EXIF.getAllTags(this);
+        var allMetaDataSpan1 = document.getElementById("allMetaDataSpan1");
+        // allMetaDataSpan1.innerHTML = JSON.stringify(allMetaData, null, "\t");
+        console.log(this.exifdata);
+    });
 }
