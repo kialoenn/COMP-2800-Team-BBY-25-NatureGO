@@ -6,6 +6,7 @@ const path = require('path');
 const PORT = process.env.PORT || 5000
 
 var firebase = require('firebase');
+const { Console } = require('console');
 var firebaseConfig = {
     apiKey: "AIzaSyAI2XYfwipMKzMn7accv1VmborqKBg9j_E",
     authDomain: "naturego-e74d6.firebaseapp.com",
@@ -48,15 +49,25 @@ app.get('/', function (req, res) {
 
 });
 
+app.get('/get-customers', function (req, res) {
+
+    db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2")
+    .get()
+    .then(function (doc) {
+        // grabs data from user doc
+        var mail = doc.data().email;
+
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(mail);    
+    })
+});
 
 
-//app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
-// // RUN SERVER
-// let port = 8000;
-// app.listen(port, function () {
-//     console.log('listening on port ' + port + '!');
-// });
+// RUN SERVER
+let port = 8000;
+app.listen(port, function () {
+    console.log('listening on port ' + port + '!');
+});
 
 // Modify server to store user data
 
