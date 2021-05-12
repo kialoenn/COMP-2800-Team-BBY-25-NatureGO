@@ -1,0 +1,24 @@
+{
+  "name": "comp-2800-team-bby-25-naturego",
+  "version": "1.0.0",
+  "description": "* [General info](#general-info) * [Technologies](#technologies) * [Contents](#content)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kialoenn/COMP-2800-Team-BBY-25-NatureGo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kialoenn/COMP-2800-Team-BBY-25-NatureGo/issues"
+  },
+  "homepage": "https://github.com/kialoenn/COMP-2800-Team-BBY-25-NatureGo#readme",
+  "dependencies": {
+    "exifreader": "^2.6.0",
+    "express": "^4.17.1"
+  }
+}
