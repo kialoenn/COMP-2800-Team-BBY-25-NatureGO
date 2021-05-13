@@ -19,7 +19,7 @@ const db = admin.firestore();
 // GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
 const multer = require('multer');
-const upload = multer({storage: Multer.memoryStorage()});
+const upload = multer({storage: multer.memoryStorage()});
 
 
 // STATIC DIRECTORIES
