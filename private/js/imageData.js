@@ -9,22 +9,33 @@ function getExif() {
         makeAndModel.innerHTML = `${make} ${model}`;
         
         console.log(this.exifdata);
-        console.log();
+        getGPSLatitudeLongitude(this);
     });
 
     var img2 = document.getElementById("img2");
     EXIF.getData(img2, function() {
-        var allMetaData = EXIF.getAllTags(this);
-        var allMetaDataSpan = document.getElementById("allMetaDataSpan");
+        let allMetaData = EXIF.getAllTags(this);
+        let allMetaDataSpan = document.getElementById("allMetaDataSpan");
         allMetaDataSpan.innerHTML = JSON.stringify(allMetaData, null, "\t");
         console.log(this.exifdata);
+        getGPSLatitudeLongitude(this);
     });
 
-    var img2 = document.getElementById("img3");
-    EXIF.getData(img2, function() {
-        var allMetaData = EXIF.getAllTags(this);
-        var allMetaDataSpan1 = document.getElementById("allMetaDataSpan1");
-        // allMetaDataSpan1.innerHTML = JSON.stringify(allMetaData, null, "\t");
+    var img3 = document.getElementById("img3");
+    EXIF.getData(img3, function() {
+        let allMetaData1 = EXIF.getAllTags(this);
+        let allMetaDataSpan1 = document.getElementById("allMetaDataSpan1");
+        allMetaDataSpan1.innerHTML = JSON.stringify(allMetaData1, null, "\t");
         console.log(this.exifdata);
+        getGPSLatitudeLongitude(this);
     });
+}
+
+function getGPSLatitudeLongitude(imgABC){
+    if(typeof EXIF.getTag(imgABC, "GPSLatitudeRef") !== "undefined"){
+        console.log("GPS Latitude: " + EXIF.getTag(imgABC, "GPSLatitudeRef") + " " + EXIF.getTag(imgABC, "GPSLatitude"));
+        console.log("GPS Longitude: " + EXIF.getTag(imgABC, "GPSLongitudeRef") + " " + EXIF.getTag(imgABC, "GPSLongitude"));
+    }else{
+        console.log("NO GPS metadata!");
+    } 
 }
