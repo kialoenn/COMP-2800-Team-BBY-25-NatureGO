@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>NatureGO-Collection</title>
+</head>
+<!-- Bootstrap, Firebase AuthUI -->
+<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/collection.css">
+
+<link rel="icon" type="image/jpg" href="/img/NaturegoFavicon.png"/>
+
+
+<body>
+    <!-------------------------------------->
+    <!-- The following is HTML for layout -->
+    <!-------------------------------------->
+
+    <!-------------------------------------->
+    <!-- Image gallery using bootstrap
+    I found this code on startbootstrap.com, and made some modification.
+    This code is only for purpose of demo, I will modify this later when we
+    established a DB for animals collection
+
+    Author: startbootstrap.com
+    Source: https://startbootstrap.com/snippets/thumbnail-gallery -->
+    <!-------------------------------------->
+    <div class="container">
+
+        <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Animal Collections</h1>
+
+        <hr class="mt-2 mb-5">
+
+        <div class="row text-center text-lg-left">
+
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/random/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/random/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/random/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/random/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/random/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/random/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/random/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/random/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/random/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/random/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/random/400x300" alt="">
+                </a>
+            </div>
+            <!--End-->
+
+            <!-- nav-light
+            Author: Michael -->
+            <ul class="nav fixed-bottom nav-expand-lg">
+                <li class="me-auto nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html"><i data-feather="feather"></i>
+                        Nature
+                        Go</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link right-s-nav" title="camera" href="index.html"><i data-feather="camera"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link right-s-nav" title="photoCollection" href="collection.html"><i
+                            data-feather="image"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link right-s-nav" title="map" href="map.html"><i data-feather="map-pin"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link right-s-nav" title="profile" href="profile.html"><i data-feather="user"></i></a>
+                </li>
+            </ul>
+            <!-- Navigation Bar -->
+</body>
+<!----------------------------------------------->
+<!-- JS: Boostrap, JQuery, Firebase, API related    -->
+<!----------------------------------------------->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+    feather.replace();
+</script>
+<!--------------------------------------------------------------------->
+<!---------------------------- Own JS files---------------------------->
+<!--------------------------------------------------------------------->
+
+
+</html>

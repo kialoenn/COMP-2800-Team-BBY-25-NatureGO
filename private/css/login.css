@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.nav {
+    background-color: #04443c;
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: #76c893;
+}
