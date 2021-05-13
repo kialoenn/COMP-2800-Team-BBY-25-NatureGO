@@ -59,7 +59,9 @@ async function quickstart(fileName) {
     
   
     // Creates a client
-    const client = new vision.ImageAnnotatorClient();
+    const client = new vision.ImageAnnotatorClient({
+        keyFilename: 'visionAPI.json'
+    });
   
     // Performs label detection on the image file
     const [result] = await client.labelDetection(fileName);
