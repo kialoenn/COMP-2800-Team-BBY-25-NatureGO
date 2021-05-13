@@ -35,7 +35,18 @@ function getGPSLatitudeLongitude(imgABC){
     if(typeof EXIF.getTag(imgABC, "GPSLatitudeRef") !== "undefined"){
         console.log("GPS Latitude: " + EXIF.getTag(imgABC, "GPSLatitudeRef") + " " + EXIF.getTag(imgABC, "GPSLatitude"));
         console.log("GPS Longitude: " + EXIF.getTag(imgABC, "GPSLongitudeRef") + " " + EXIF.getTag(imgABC, "GPSLongitude"));
+    
+        console.log(convertDMStoLatLong(EXIF.getTag(imgABC, "GPSLatitude")[0], EXIF.getTag(imgABC, "GPSLatitude")[1], EXIF.getTag(imgABC, "GPSLatitude")[2], EXIF.getTag(imgABC, "GPSLatitudeRef")));
+        console.log(convertDMStoLatLong(EXIF.getTag(imgABC, "GPSLongitude")[0], EXIF.getTag(imgABC, "GPSLongitude")[1], EXIF.getTag(imgABC, "GPSLongitude")[2], EXIF.getTag(imgABC, "GPSLongitudeRef")));
     }else{
         console.log("NO GPS metadata!");
     } 
+}
+
+function convertDMStoLatLong(hour, minute, second, position){
+    var GPScoor = hour + ((minute/60) + (second/3600));
+    if(position == "S" || position == "W"){
+        GPScoor *= -1;
+    }
+    return GPScoor;
 }
