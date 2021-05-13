@@ -60,70 +60,87 @@ app.get('/', function (req, res) {
 
 
 app.post('/upload', upload.single('photo'), async (req, res) => {
-    if (req.file) {
-        //let result = await quickstart(req.file.path)
+                if (req.file) {
+                    //let result = await quickstart(req.file.path)
+                    let imageURL ="";
 
-        const blob = bucket.file(req.file.originalname);
-        const blobStream = blob.createWriteStream();
-
-
-        blobStream.on('finish', () => {
-            // The public URL can be used to directly access the file via HTTP.
-            // console.log(blob);
-            // const publicUrl = format(
-            //     `https://storage.googleapis.com/${bucket.name}/${blob.name}`
-            // );
-            url = blob.metadata.mediaLink;
-            db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2")
-                .update({
-                    "collection": url
-                })
-            console.log(blob.metadata.mediaLink);
-            console.log(blob.metadata.selfLink);
-            res.status(200).send(blob.mediaLink);
-        });
-
-        blobStream.end(req.file.buffer);
-    } else throw 'error';
-});
+                    const blob = bucket.file(req.file.originalname);
+                    const blobStream = blob.createWriteStream();
 
 
-// // RUN SERVER
-// let port = 8000;
-// app.listen(port, function () {
-//     console.log('listening on port ' + port + '!');
-// });
-app.get('/get-customers', function (req, res) {
+                    blobStream.on('finish', () => {
+                            // The public URL can be used to directly access the file via HTTP.
+                            // console.log(blob);
+                            // const publicUrl = format(
+                            //     `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+                            // );
+                            const config = {
+                                action: 'read',
 
-    db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2")
-        .get()
-        .then(function (doc) {
-            // grabs data from user doc
-            var mail = doc.data().email;
+                                // A timestamp when this link will expire
+                                expires: '01-01-2026',
+                            };
 
-            res.writeHead(200, {
-                'Content-Type': 'text/html'
-            });
-            res.write(mail);
-        })
-});
+                            blob.getSignedUrl(config, function (err, url) {
+                                if (err) {
+                                    console.error(err);
+                                    return;
+                                }
+                                imageURL= url;
+                                console.log(imageURL);
+                                }).then(function (){
+
+                                    db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2")
+                                    .update({
+                                        "collection": imageURL
+                                    })
+                                res.status(200).send("Uploaded to storage");
+                                });
 
 
-async function quickstart(fileName) {
-    // Imports the Google Cloud client library
+                            });
+
+                            blobStream.end(req.file.buffer);
+                        } else throw 'error';
+                    });
 
 
-    // Creates a client
-    const client = new vision.ImageAnnotatorClient({
-        keyFilename: 'visionAPI.json'
-    });
+                // // RUN SERVER
+                // let port = 8000;
+                // app.listen(port, function () {
+                //     console.log('listening on port ' + port + '!');
+                // });
+                app.get('/get-customers', function (req, res) {
 
-    // Performs label detection on the image file
-    const [result] = await client.labelDetection(fileName);
-    const labels = result.labelAnnotations;
-    // console.log('Labels:');
-    // labels.forEach(label => console.log(label.description));
-    return labels;
-}
+                    db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2")
+                        .get()
+                        .then(function (doc) {
+                            // grabs data from user doc
+                            var mail = doc.data().email;
 
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+                            res.writeHead(200, {
+                                'Content-Type': 'text/html'
+                            });
+                            res.write(mail);
+                        })
+                });
+
+
+                async function quickstart(fileName) {
+                    // Imports the Google Cloud client library
+
+
+                    // Creates a client
+                    const client = new vision.ImageAnnotatorClient({
+                        keyFilename: 'visionAPI.json'
+                    });
+
+                    // Performs label detection on the image file
+                    const [result] = await client.labelDetection(fileName);
+                    const labels = result.labelAnnotations;
+                    // console.log('Labels:');
+                    // labels.forEach(label => console.log(label.description));
+                    return labels;
+                }
+
+                app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
