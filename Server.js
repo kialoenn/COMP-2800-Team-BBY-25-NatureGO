@@ -4,6 +4,17 @@ const fs = require("fs");
 const app = express();
 const path = require('path')
 const PORT = process.env.PORT || 8000
+
+
+var admin = require("firebase-admin");
+var serviceAccount = require("./firebase_auth.json");
+
+admin.initializeApp({
+credential: admin.credential.cert(serviceAccount),
+storageBucket:"naturego-e74d6.appspot.com"
+});
+var bucket = admin.storage().bucket();
+const db = admin.firestore();
 // GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
 
@@ -34,10 +45,24 @@ app.get('/', function (req, res) {
 
 });
 
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
 
 // // RUN SERVER
 // let port = 8000;
 // app.listen(port, function () {
 //     console.log('listening on port ' + port + '!');
 // });
+app.get('/get-customers', function (req, res) {
+
+    db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2")
+    .get()
+    .then(function (doc) {
+        // grabs data from user doc
+        var mail = doc.data().email;
+
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(mail);    
+    })
+});
+
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
