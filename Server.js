@@ -11,15 +11,20 @@ var admin = require("firebase-admin");
 var serviceAccount = require("./firebase_auth.json");
 
 admin.initializeApp({
-credential: admin.credential.cert(serviceAccount),
-storageBucket:"naturego-e74d6.appspot.com"
+    credential: admin.credential.cert(serviceAccount),
+    storageBucket: "naturego-e74d6.appspot.com"
 });
 var bucket = admin.storage().bucket();
 const db = admin.firestore();
 // GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
 const multer = require('multer');
-const upload = multer({storage: multer.memoryStorage()});
+const {
+    BlockList
+} = require('net');
+const upload = multer({
+    storage: multer.memoryStorage()
+});
 
 
 // STATIC DIRECTORIES
@@ -39,7 +44,9 @@ app.get('/', function (req, res) {
             res.writeHead(404);
             res.write(msg404);
         } else {
-            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.writeHead(200, {
+                'Content-Type': 'text/html'
+            });
             res.write(pgRes);
         }
 
@@ -50,11 +57,23 @@ app.get('/', function (req, res) {
 
 
 app.post('/upload', upload.single('photo'), async (req, res) => {
-    if(req.file) {
-        let result = await quickstart(req.file.path)
-        res.send(result);
-    }
-    else throw 'error';
+    if (req.file) {
+        //let result = await quickstart(req.file.path)
+
+        const blob = bucket.file(req.file.originalname);
+        const blobStream = blob.createWriteStream();
+
+
+        blobStream.on('finish', () => {
+            // The public URL can be used to directly access the file via HTTP.
+            const publicUrl = format(
+                `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+            );
+            res.status(200).send(publicUrl);
+        });
+
+        blobStream.end(req.file.buffer);
+    } else throw 'error';
 });
 
 
@@ -66,26 +85,28 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
 app.get('/get-customers', function (req, res) {
 
     db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2")
-    .get()
-    .then(function (doc) {
-        // grabs data from user doc
-        var mail = doc.data().email;
+        .get()
+        .then(function (doc) {
+            // grabs data from user doc
+            var mail = doc.data().email;
 
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(mail);    
-    })
+            res.writeHead(200, {
+                'Content-Type': 'text/html'
+            });
+            res.write(mail);
+        })
 });
 
 
 async function quickstart(fileName) {
     // Imports the Google Cloud client library
-    
-  
+
+
     // Creates a client
     const client = new vision.ImageAnnotatorClient({
         keyFilename: 'visionAPI.json'
     });
-  
+
     // Performs label detection on the image file
     const [result] = await client.labelDetection(fileName);
     const labels = result.labelAnnotations;
