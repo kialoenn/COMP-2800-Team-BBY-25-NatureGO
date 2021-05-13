@@ -72,7 +72,9 @@ app.get('/get-customers', function (req, res) {
         var mail = doc.data().email;
 
         res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(mail);    
+        res.write(mail);
+        res.send(email);  
+        
     })
 });
 
