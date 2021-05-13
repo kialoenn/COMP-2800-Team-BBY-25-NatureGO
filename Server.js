@@ -1,5 +1,6 @@
 // REQUIRES
 const express = require('express');
+const vision = require('@google-cloud/vision');
 const fs = require("fs");
 const app = express();
 const path = require('path')
@@ -17,6 +18,8 @@ var bucket = admin.storage().bucket();
 const db = admin.firestore();
 // GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
+const multer = require('multer');
+const upload = multer({dest: __dirname + '/upload/images'});
 
 
 // STATIC DIRECTORIES
@@ -46,6 +49,14 @@ app.get('/', function (req, res) {
 });
 
 
+app.post('/upload', upload.single('photo'), async (req, res) => {
+    if(req.file) {
+        let result = await quickstart(req.file.path)
+        res.send(result);
+    }
+    else throw 'error';
+});
+
 
 // // RUN SERVER
 // let port = 8000;
@@ -64,5 +75,23 @@ app.get('/get-customers', function (req, res) {
         res.write(mail);    
     })
 });
+
+
+async function quickstart(fileName) {
+    // Imports the Google Cloud client library
+    
+  
+    // Creates a client
+    const client = new vision.ImageAnnotatorClient({
+        keyFilename: 'visionAPI.json'
+    });
+  
+    // Performs label detection on the image file
+    const [result] = await client.labelDetection(fileName);
+    const labels = result.labelAnnotations;
+    // console.log('Labels:');
+    // labels.forEach(label => console.log(label.description));
+    return labels;
+}
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
