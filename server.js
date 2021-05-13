@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const fs = require("fs");
-const ExifReader = require('exifreader');
+// const ExifReader = require('exifreader');
 
 // GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
