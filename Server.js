@@ -4,7 +4,7 @@ const vision = require('@google-cloud/vision');
 const fs = require("fs");
 const app = express();
 const path = require('path')
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8000
 // GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
 const multer = require('multer');
@@ -37,10 +37,10 @@ app.get('/', function (req, res) {
 
 });
 
-app.post('/upload', upload.single('photo'), (req, res) => {
+app.post('/upload', upload.single('photo'), async (req, res) => {
     if(req.file) {
-        quickstart(req.file.path);
-        res.send(req.file);
+        let result = await quickstart(req.file.path)
+        res.send(result);
     }
     else throw 'error';
 });
@@ -64,6 +64,7 @@ async function quickstart(fileName) {
     // Performs label detection on the image file
     const [result] = await client.labelDetection(fileName);
     const labels = result.labelAnnotations;
-    console.log('Labels:');
-    labels.forEach(label => console.log(label.description));
+    // console.log('Labels:');
+    // labels.forEach(label => console.log(label.description));
+    return labels;
 }
