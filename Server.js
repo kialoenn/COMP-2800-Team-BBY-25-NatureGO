@@ -1,4 +1,7 @@
 // REQUIRES
+const {
+    format
+} = require('util');
 const express = require('express');
 const vision = require('@google-cloud/vision');
 const fs = require("fs");
@@ -66,10 +69,18 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
 
         blobStream.on('finish', () => {
             // The public URL can be used to directly access the file via HTTP.
-            const publicUrl = format(
-                `https://storage.googleapis.com/${bucket.name}/${blob.name}`
-            );
-            res.status(200).send(publicUrl);
+            // console.log(blob);
+            // const publicUrl = format(
+            //     `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+            // );
+            url = blob.metadata.mediaLink;
+            db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2")
+                .update({
+                    "collection": url
+                })
+            console.log(blob.metadata.mediaLink);
+            console.log(blob.metadata.selfLink);
+            res.status(200).send(blob.mediaLink);
         });
 
         blobStream.end(req.file.buffer);
