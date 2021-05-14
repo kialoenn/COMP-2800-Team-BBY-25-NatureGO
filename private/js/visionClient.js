@@ -13,7 +13,8 @@ $(document).ready(function() {
             success: function(r){
                 console.log("result",r);
                 localStorage.setItem('animalinfo', r.type);
-                 window.location.href = "/html/info.html";
+                localStorage.setItem('url', r.url);
+                //  window.location.href = "/html/info.html";
 
             },
             error: function (e) {

@@ -2,6 +2,12 @@ $(document).ready(function() {
 
     var info = localStorage.getItem("animalinfo");
 
+    var imageURL = localStorage.getItem("url");
+
+    console.log(imageURL);
+
+    $("#image").attr("src", imageURL);
+    
     $('#info_table').prepend('<tr><th>Animal Type</th><td>'+info+'</td></tr>');
 
     var points = 0;
