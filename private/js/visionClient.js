@@ -12,6 +12,7 @@ $(document).ready(function() {
             contentType: false,
             success: function(r){
                 console.log("result",r)
+                
             },
             error: function (e) {
                 console.log("some error", e);

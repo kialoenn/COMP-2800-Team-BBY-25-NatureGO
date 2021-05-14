@@ -104,12 +104,12 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
 
             assignURL().then(function (url) {
                 imageURL = url;
-                db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2")
-                .update({
-                    collection: {
+                var dbref =db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2").collection("animals");
+                
+                dbref.doc().set({
                         url: imageURL,
                         type: result[0].description
-                    }
+                    
                 })
             });
             
