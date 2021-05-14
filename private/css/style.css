@@ -9,7 +9,7 @@
     /* cursor: pointer; */
 }
 
-.nav-link {
+.nav-link,a {
     color: white;
 }
 .navbar {
