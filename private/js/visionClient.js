@@ -12,7 +12,7 @@ $(document).ready(function() {
             contentType: false,
             success: function(r){
                 console.log("result",r);
-                localStorage.setItem('animalinfo', r[0].description);
+                localStorage.setItem('animalinfo', r.type);
                  window.location.href = "/html/info.html";
 
             },
