@@ -63,17 +63,29 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
 // app.listen(port, function () {
 //     console.log('listening on port ' + port + '!');
 // });
-app.get('/get-customers', function (req, res) {
+app.get('/get-email', function (req, res) {
 
-    db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2")
+    db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43")
     .get()
     .then(function (doc) {
         // grabs data from user doc
         var mail = doc.data().email;
-
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(mail);
+        res.setHeader('Content-Type', 'application/HTML');
         res.send(mail);  
+        
+    })
+});
+
+
+app.get('/get-name', function (req, res) {
+
+    db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43")
+    .get()
+    .then(function (doc) {
+        // grabs data from user doc
+        var user = doc.data().name;
+        res.setHeader('Content-Type', 'application/HTML');
+        res.send(user);  
         
     })
 });
