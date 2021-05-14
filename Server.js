@@ -1,12 +1,5 @@
 // REQUIRES
-<<<<<<< HEAD
-const express = require('express');
-const app = express();
-const fs = require("fs");
-
-// GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
-=======
 const {
     format
 } = require('util');
@@ -36,7 +29,6 @@ const {
 const upload = multer({
     storage: multer.memoryStorage()
 });
->>>>>>> CloudStorage_Feature
 
 
 // STATIC DIRECTORIES
@@ -44,10 +36,6 @@ app.use('/css', express.static('private/css'));
 app.use('/img', express.static('private/img'));
 app.use('/js', express.static('private/js'));
 app.use('/html', express.static('private/html'));
-<<<<<<< HEAD
-app.use('/pic', express.static('private/pic'));
-=======
->>>>>>> CloudStorage_Feature
 
 // APP GETS
 app.get('/', function (req, res) {
@@ -60,13 +48,9 @@ app.get('/', function (req, res) {
             res.writeHead(404);
             res.write(msg404);
         } else {
-<<<<<<< HEAD
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-=======
             res.writeHead(200, {
                 'Content-Type': 'text/html'
             });
->>>>>>> CloudStorage_Feature
             res.write(pgRes);
         }
 
@@ -76,13 +60,6 @@ app.get('/', function (req, res) {
 });
 
 
-<<<<<<< HEAD
-// RUN SERVER
-let port = 8000;
-app.listen(port, function () {
-    console.log('listening on port ' + port + '!');
-});
-=======
 app.post('/upload', upload.single('photo'), async (req, res) => {
     if (req.file) {
         //let result = await quickstart(req.file.path)
@@ -187,4 +164,3 @@ async function quickstart(fileName) {
 }
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
->>>>>>> CloudStorage_Feature
