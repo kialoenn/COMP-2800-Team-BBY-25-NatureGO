@@ -29,7 +29,7 @@ function getGPSLatitudeLongitude(imgABC){
 
 function convertDMStoLatLong(hour, minute, second, position){
     let sixty = 60;
-    var GPScoor = hour + ((minute/sixty) + (second/sixty*sixty));
+    var GPScoor = hour + ((minute/sixty) + (second/(sixty*sixty)));
     if(position == "S" || position == "W"){
         GPScoor *= -1;
     }
