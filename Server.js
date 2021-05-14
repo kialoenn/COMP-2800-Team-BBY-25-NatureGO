@@ -127,12 +127,13 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                         url: imageURL,
                         type: animalType
                     })
+                    res.send({
+                        status: 'success',
+                        type: animalType,
+                        url: imageURL,
+                    });
                 });
-                res.send({
-                    status: 'success',
-                    type: animalType,
-                    url: imageURL,
-                });
+                
             }
         });
 
