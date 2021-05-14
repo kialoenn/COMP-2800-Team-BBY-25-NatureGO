@@ -1,5 +1,3 @@
-//window.onload=getExif;
-
 function getExif() {
     let imgNum = document.getElementsByTagName("img").length;
 
@@ -35,7 +33,9 @@ function convertDMStoLatLong(hour, minute, second, position){
     }
     return GPScoor;
 }
+
 getExif();
+
 // Note: SKU: Basic Data Using the fields parameter in your Place Details or
 //  Find Place request, you can limit the response to only those fields specified. 
 //  Fields in the Basic category are included in the base cost of the Places request 
