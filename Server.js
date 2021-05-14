@@ -1,10 +1,42 @@
 // REQUIRES
+<<<<<<< HEAD
 const express = require('express');
 const app = express();
 const fs = require("fs");
 
 // GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
+=======
+const {
+    format
+} = require('util');
+const express = require('express');
+const vision = require('@google-cloud/vision');
+const fs = require("fs");
+const app = express();
+const path = require('path')
+const PORT = process.env.PORT || 8000
+
+
+var admin = require("firebase-admin");
+var serviceAccount = require("./firebase_auth.json");
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    storageBucket: "naturego-e74d6.appspot.com"
+});
+var bucket = admin.storage().bucket();
+const db = admin.firestore();
+// GENERAL CONSTANTS
+const msg404 = 'These are not the codes that you are looking for.';
+const multer = require('multer');
+const {
+    BlockList
+} = require('net');
+const upload = multer({
+    storage: multer.memoryStorage()
+});
+>>>>>>> CloudStorage_Feature
 
 
 // STATIC DIRECTORIES
@@ -12,7 +44,10 @@ app.use('/css', express.static('private/css'));
 app.use('/img', express.static('private/img'));
 app.use('/js', express.static('private/js'));
 app.use('/html', express.static('private/html'));
+<<<<<<< HEAD
 app.use('/pic', express.static('private/pic'));
+=======
+>>>>>>> CloudStorage_Feature
 
 // APP GETS
 app.get('/', function (req, res) {
@@ -25,7 +60,13 @@ app.get('/', function (req, res) {
             res.writeHead(404);
             res.write(msg404);
         } else {
+<<<<<<< HEAD
             res.writeHead(200, { 'Content-Type': 'text/html' });
+=======
+            res.writeHead(200, {
+                'Content-Type': 'text/html'
+            });
+>>>>>>> CloudStorage_Feature
             res.write(pgRes);
         }
 
@@ -35,8 +76,115 @@ app.get('/', function (req, res) {
 });
 
 
+<<<<<<< HEAD
 // RUN SERVER
 let port = 8000;
 app.listen(port, function () {
     console.log('listening on port ' + port + '!');
 });
+=======
+app.post('/upload', upload.single('photo'), async (req, res) => {
+    if (req.file) {
+        //let result = await quickstart(req.file.path)
+        let imageURL = "";
+
+        const blob = bucket.file(req.file.originalname);
+        blob.name = 'uU8tulEzehbRnnbR9hoNgmXhyUI2_Tiger.jpeg';
+        const blobStream = blob.createWriteStream();
+
+        let result = await quickstart(`gs://naturego-e74d6.appspot.com/${blob.name}`);
+        res.send(result);
+        blobStream.on('finish', () => {
+            // The public URL can be used to directly access the file via HTTP.
+            // console.log(blob);
+            // const publicUrl = format(
+            //     `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+            // );
+            const config = {
+                action: 'read',
+
+                // A timestamp when this link will expire
+                expires: '01-01-2026',
+            };
+
+            function getURL(blob) {
+                return new Promise((resolve, reject) => {
+                    blob.getSignedUrl(config, function (err, url) {
+                        if (err) {
+                            console.error(err);
+                            reject(err);
+                        }
+                        console.log(url);
+                        resolve(url);
+                    })
+                })
+            }
+
+            async function assignURL() {
+                let temp = await getURL(blob);
+                return temp;
+            }
+
+
+            assignURL().then(function (url) {
+                imageURL = url;
+                var dbref =db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2").collection("animals");
+                
+                dbref.doc().set({
+                        url: imageURL,
+                        type: result[0].description
+                    
+                })
+            });
+            
+           
+        });
+
+        blobStream.end(req.file.buffer);
+
+        console.log("my url is " + imageURL);
+
+    } else throw 'error';
+});
+
+
+// // RUN SERVER
+// let port = 8000;
+// app.listen(port, function () {
+//     console.log('listening on port ' + port + '!');
+// });
+app.get('/get-customers', function (req, res) {
+
+    db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2")
+        .get()
+        .then(function (doc) {
+            // grabs data from user doc
+            var mail = doc.data().email;
+
+            res.writeHead(200, {
+                'Content-Type': 'text/html'
+            });
+            res.write(mail);
+        })
+});
+
+
+async function quickstart(fileName) {
+    // Imports the Google Cloud client library
+
+
+    // Creates a client
+    const client = new vision.ImageAnnotatorClient({
+        keyFilename: 'visionAPI.json'
+    });
+
+    // Performs label detection on the image file
+    const [result] = await client.labelDetection(fileName);
+    const labels = result.labelAnnotations;
+    // console.log('Labels:');
+    // labels.forEach(label => console.log(label.description));
+    return labels;
+}
+
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+>>>>>>> CloudStorage_Feature

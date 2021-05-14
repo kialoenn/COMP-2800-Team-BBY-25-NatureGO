@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "naturego-e74d6",
+  "private_key_id": "b3636c8bb046358e40158f9d35a6dc6620dfc40b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDUqr7NvoYhqH/I\n2xIPr/bHfM5LeGnb3TbKzuMV1j+t1igXRO7LyNkSuNkKNVgKN4qlVidQ3q2Wx3P/\nW2bfOHjCESgXQFVIcrVHDHW8e8K/n3XzFuhDhimOxhzur1d6cEuufSdCtND0FsJg\n7v7Tc4oYuleMNMvZ6V8yZ8WG8gNDkVQJcj8wcUr6oJCFflL0rGX+Lr+aR76uFzhA\n45cDPPXZ4/O5SNETY+V/VkcabxxJd1W9fqTfGbdWfjFpaZE10H1vO2zYcn5vNAas\nU+CYwmkxcGsRNbgUPzzhn0zYvPzNqehE8sjIKKDM90L//B+4VNvvtMYCPDVOXHer\nL255hxrtAgMBAAECggEAPNtHkpTMyWDwgEfAWWDfW6KpXgttL4+UGGEvtpYCzvoT\nquT8+K/W/naLFVLCiNnwAPQweAHg5t7YoOBFBeehFtfWAyFTxlGc8mHsZy17Q16c\nYB3UBU6lIcgri1n9zHnKDnqd+4bGrLK+mQKLRXMwt3bLisGo/Ai+RyxO6BjlOjYc\nNwDUS843tPuMSy8vCJ10J5m2Shn6d0DkRa1HU2LInm1QR+CTecSKdm50WDB6nNv+\nRi2V1/FzrCUFuq81+SSLrqqxApgVA0OmYKxYbMIVc+L6u6lTJHRHjCLVDQzzTayW\ncmtf94smV5v+hMAKLvB6e0pcp/niat0B3xSJiKqMOQKBgQD9nApSiT5awojr/hN+\nNFxrO/xiIH/6p4sFeeN+ZKyXYPrzHRyoEBeqrlvyGm+ZUlUAhkC4wZ3IF4SLcob6\n4qlqRwgy913TuKGpqAGVOkXCk4hpuoQoH3JxWiHjCHUJrZIg+p/OS2nkaXXjfIei\n8tZID1UvIi/Lpbd/rq5wpTQ4TwKBgQDWq+kfH6urWZnEtOhbe87WBklvlCY4CY88\nNzaFNovWR3ghi8DEfIpkAAEzhTcH0f8nZxMrPbxspO8xnLmShnGfRpSxy1WX92b1\nu772zaYlLxYUobAvsk2SteVp0LDHtWAYxQQ80Nf9oJmdT/w94l6kwGSBFaH2HIRc\niL4jFB/uAwKBgQDITOK2N2FBK54azYw1xEMuCq2WDtclcAhT5eXwYLETymvJcbe9\nYSBgFN/Xwltb+/PYuzAI/BqS+0gbHvRO2JA3uSxXnJnFa3B7X48IfoK0X/OAlehl\nDBlGP4q+FmLhpu3gEDIBK/zRgx2x8xvpbeQh+8IqvNSFAjiApsVtgH1S7wKBgDvP\n4kA9vsMbT/CyxxrWQCb50XQ5PvzWDQamC5bKP+QQPbR7D9avLI/4QF1ufIq9Q+5i\nlcCyjtFmkw6rsDjXJMlQDRYMpWiWEiXdjbOOUQCDQg+1jTV85IhADg+Rie/a5U+B\ndVDMj6GnIaXnJ0zGyb/1qwscT+gWwfpWT0PO06apAoGAHkwFtyQIsn6+VzYMKkO/\n1BNeb7z/FJgMa0ybwBaEfeACYFCYyuOUiVU3pA6BOxlGphQHvxOf5pNDMJKMaWtJ\n/dsj7ZIlz382FU4CWDNjipNpTmUSDMRXg9LArm8SuR6v6g3cXZcm+r8V9WqPDVAB\ndh06eZdCj3yhLb7nqQzm+Es=\n-----END PRIVATE KEY-----\n",
+  "client_email": "naguregovision@naturego-e74d6.iam.gserviceaccount.com",
+  "client_id": "101341573939647222201",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/naguregovision%40naturego-e74d6.iam.gserviceaccount.com"
+}
