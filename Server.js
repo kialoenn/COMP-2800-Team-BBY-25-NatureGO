@@ -152,7 +152,6 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
 // });
 app.get('/get-email', function (req, res) {
 
-<<<<<<< HEAD
     db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43")
     .get()
     .then(function (doc) {
@@ -176,19 +175,6 @@ app.get('/get-name', function (req, res) {
         res.send(user);  
         
     })
-=======
-    db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2")
-        .get()
-        .then(function (doc) {
-            // grabs data from user doc
-            var mail = doc.data().email;
-
-            res.writeHead(200, {
-                'Content-Type': 'text/html'
-            });
-            res.write(mail);
-        })
->>>>>>> CloudStorage_Feature
 });
 
 
