@@ -18,7 +18,7 @@ $(document).ready(function() {
         case "Cat":
         points = 100;
         break;
-        case "Bear":
+        case "Brown bear":
         points = 1000;
         break;
     }

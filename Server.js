@@ -18,7 +18,7 @@ var bucket = admin.storage().bucket();
 const db = admin.firestore();
 // GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
-const animalDB = ['Duck', 'Cat', 'Bear'];
+const animalDB = ['Duck', 'Cat', 'Bear', 'Brown bear'];
 const multer = require('multer');
 const {
     BlockList
