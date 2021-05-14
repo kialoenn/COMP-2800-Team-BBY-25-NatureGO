@@ -11,8 +11,10 @@ $(document).ready(function() {
             processData: false,
             contentType: false,
             success: function(r){
-                console.log("result",r)
-                
+                console.log("result",r);
+                localStorage.setItem('animalinfo', r[0].description);
+                 window.location.href = "/html/info.html";
+
             },
             error: function (e) {
                 console.log("some error", e);
