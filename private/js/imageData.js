@@ -4,6 +4,7 @@ function getExif() {
     for(let i = 1; i <= imgNum; i++){
         let img = document.getElementById("img" + i);
         EXIF.getData(img, function() {
+            console.log(img);
             let latLongCoord = getGPSLatitudeLongitude(this);
             if(latLongCoord !== undefined){
                 document.getElementById("GPScoor" + i).textContent = JSON.stringify(latLongCoord);     

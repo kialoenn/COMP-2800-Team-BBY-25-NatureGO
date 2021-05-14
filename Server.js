@@ -70,7 +70,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
         const blobStream = blob.createWriteStream();
 
         let result = await quickstart(`gs://naturego-e74d6.appspot.com/${blob.name}`);
-        
+        console.log('${blob.name}');
         res.send(result);
         blobStream.on('finish', () => {
             // The public URL can be used to directly access the file via HTTP.
