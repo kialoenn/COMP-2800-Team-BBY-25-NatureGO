@@ -1,7 +1,4 @@
 // REQUIRES
-const {
-    format
-} = require('util');
 const express = require('express');
 const vision = require('@google-cloud/vision');
 const fs = require("fs");
@@ -21,6 +18,7 @@ var bucket = admin.storage().bucket();
 const db = admin.firestore();
 // GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
+const animalDB = ['Duck', 'Cat', 'Bear'];
 const multer = require('multer');
 const {
     BlockList
@@ -65,12 +63,11 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
         let imageURL = "";
 
         const blob = bucket.file(req.file.originalname);
-        blob.name = 'uU8tulEzehbRnnbR9hoNgmXhyUI2_Tiger.jpeg';
+        blob.name = 'uU8tulEzehbRnnbR9hoNgmXhyUI2' + new Date().valueOf() + '.jpeg';
         const blobStream = blob.createWriteStream();
 
-        let result = await quickstart(`gs://naturego-e74d6.appspot.com/${blob.name}`);
-        res.send(result);
-        blobStream.on('finish', () => {
+
+        blobStream.on('finish', async () => {
             // The public URL can be used to directly access the file via HTTP.
             // console.log(blob);
             // const publicUrl = format(
@@ -102,18 +99,41 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             }
 
 
-            assignURL().then(function (url) {
-                imageURL = url;
-                var dbref =db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2").collection("animals");
+            let result = await quickstart(`gs://naturego-e74d6.appspot.com/${blob.name}`);
+            let labels = [];
+            result.forEach(label => {
+                labels.push(label.description);
+            })
+            console.log(labels);
+            let animalType;
+            animalDB.forEach(animal => {
+                if (labels.find(a => a.includes(animal))){
+                    animalType = animal;
+                };
                 
-                dbref.doc().set({
-                        url: imageURL,
-                        type: result[0].description
-                    
+            })
+
+            console.log(animalType);
+            if (animalType == undefined) {
+                res.send({
+                    status: 'error',
                 })
-            });
-            
-           
+            } else {
+                assignURL().then(function (url) {
+                    imageURL = url;
+                    var dbref = db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43").collection("animals");
+    
+                    dbref.doc().set({
+                        url: imageURL,
+                        type: animalType
+                    })
+                });
+                res.send({
+                    status: 'success',
+                    type: animalType,
+    
+                });
+            }
         });
 
         blobStream.end(req.file.buffer);
