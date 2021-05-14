@@ -65,9 +65,11 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
         let imageURL = "";
 
         const blob = bucket.file(req.file.originalname);
+        blob.name = 'uU8tulEzehbRnnbR9hoNgmXhyUI2_Tiger.jpeg';
         const blobStream = blob.createWriteStream();
 
-
+        let result = await quickstart(`gs://naturego-e74d6.appspot.com/${blob.name}`);
+        res.send(result);
         blobStream.on('finish', () => {
             // The public URL can be used to directly access the file via HTTP.
             // console.log(blob);
@@ -99,11 +101,15 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                 return temp;
             }
 
+
             assignURL().then(function (url) {
                 imageURL = url;
                 db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2")
                 .update({
-                    "collection": imageURL
+                    collection: {
+                        url: imageURL,
+                        type: result[0].description
+                    }
                 })
             });
             
@@ -113,8 +119,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
         blobStream.end(req.file.buffer);
 
         console.log("my url is " + imageURL);
-        let result = await quickstart('https://storage.googleapis.com/naturego-e74d6.appspot.com/test.png?GoogleAccessId=firebase-adminsdk-lax59%40naturego-e74d6.iam.gserviceaccount.com&Expires=1767254400&Signature=EMPCE%2FuhdAARWTtwQszlwAwP3uHTTvmpvscy1aLVX%2B%2FaIVhylPq4Z7JN8szsZkAA0MRDgpkZG1jUVEZqbWL%2Fp64yuWCRMSL%2F8RDSZSx2FjAhwM3is2H6nYw73kb8%2BqQKlB7k6FCkRbZTtNdnkH4vL%2FwELRHjVXydXlIRrMyz0Akk7G50tl9jRumiJ92GlMuSxDbz1wOSbLSyGvwO6boXkO8ojS1p%2BWaPxF%2Fbu7qiJt97pBLBbmh4OU6sUM8Kw0eKS1zbswVCz3UE8%2FZH2cnF3%2FtMw7wALhX1zRrysw9u0WOApBKXXaD8iGYm4U659avFn5S00Op04HLuRsXb7MUcfw%3D%3D');
-        res.send(result);
+
     } else throw 'error';
 });
 
