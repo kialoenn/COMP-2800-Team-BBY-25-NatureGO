@@ -61,7 +61,7 @@ app.get('/', function (req, res) {
 
 app.post('/upload', upload.single('photo'), async (req, res) => {
     if (req.file) {
-        //let result = await quickstart(req.file.path)
+        let result = await quickstart(req.file.path)
         let imageURL = "";
 
         const blob = bucket.file(req.file.originalname);

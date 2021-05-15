@@ -44,7 +44,7 @@ function convertDMStoLatLong(hour, minute, second, position) {
   return GPScoor;
 }
 
-
+// {"lat":43.46844166666666,"lng":11.881515}
 
 // Note: SKU: Basic Data Using the fields parameter in your Place Details or
 //  Find Place request, you can limit the response to only those fields specified. 
