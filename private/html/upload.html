@@ -33,10 +33,13 @@
         <h1>Upload Image</h1>
 
         <form id="imageForm" enctype="multipart/form-data">
-            <input type="file" accept="image/*" name="photo">
+            <img id="previewImag" class="card-img-top" src="" alt="profile picture">
+            <input id="file-input" type="file" accept="image/*" name="photo">
             <input type="submit" value="upload">
         </form>
-
+        <div class="imageDataTest">
+            <pre>GPS: <span id="GPScoor">a1</span></pre>
+        </div>
 
         <!-- nav-light
         Author: Michael -->

@@ -7,7 +7,6 @@ const express = require('express');
 const vision = require('@google-cloud/vision');
 const fs = require("fs");
 const app = express();
-const EXIF = require("exif-js");
 const path = require('path');
 const PORT = process.env.PORT || 8000
 
@@ -69,8 +68,6 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
         blob.name = 'uU8tulEzehbRnnbR9hoNgmXhyUI2_Tiger.jpeg';
         const blobStream = blob.createWriteStream();
 
-        let result = await quickstart(`gs://naturego-e74d6.appspot.com/${blob.name}`);
-        console.log('${blob.name}');
         res.send(result);
         blobStream.on('finish', () => {
             // The public URL can be used to directly access the file via HTTP.
@@ -103,38 +100,12 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                 return temp;
             }
 
-            
             assignURL().then(function (url) {
                 imageURL = url;
-                let imgGPS = imageGPS(imageURL);
-                console.log(imgGPS);
-                var dbref =db.collection("users").doc("uU8tulEzehbRnnbR9hoNgmXhyUI2").collection("Photos");
-                
-                function imageGPS(imgABC){
-                    if(typeof EXIF.getTag(imgABC, "GPSLatitudeRef") !== "undefined"){
-                       const pos = {
-                            lat: convertDMStoLatLong(EXIF.getTag(imgABC, "GPSLatitude")[0], EXIF.getTag(imgABC, "GPSLatitude")[1], EXIF.getTag(imgABC, "GPSLatitude")[2], EXIF.getTag(imgABC, "GPSLatitudeRef")),
-                            lng: convertDMStoLatLong(EXIF.getTag(imgABC, "GPSLongitude")[0], EXIF.getTag(imgABC, "GPSLongitude")[1], EXIF.getTag(imgABC, "GPSLongitude")[2], EXIF.getTag(imgABC, "GPSLongitudeRef")),
-                        };
-                        return pos;
-                    }else{
-                
-                    }
-                }
-                
-                function convertDMStoLatLong(hour, minute, second, position){
-                    let sixty = 60;
-                    var GPScoor = hour + ((minute/sixty) + (second/(sixty*sixty)));
-                    if(position == "S" || position == "W"){
-                        GPScoor *= -1;
-                    }
-                    return GPScoor;
-                }
-
+            
                 dbref.doc().set({
                         url: imageURL,
                         type: result[0].description,
-                        GPS: imgGPS
                 })
             }).catch(e => {console.log(e)});
             
