@@ -52,7 +52,6 @@ app.get('/', function (req, res) {
             });
             res.write(pgRes);
         }
-
         res.end();
     });
 
@@ -60,6 +59,8 @@ app.get('/', function (req, res) {
 
 
 app.post('/upload', upload.single('photo'), async (req, res) => {
+    console.log(req.body);
+    console.log("request path: "+req.file.path);
     if (req.file) {
         // let result = await quickstart(req.file.path)
         let result = await quickstart(req)
@@ -108,6 +109,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                 dbref.doc().set({
                         url: imageURL,
                         type: result[0].description,
+                        GPS: req.body
                 })
             }).catch(e => {console.log(e)});
             

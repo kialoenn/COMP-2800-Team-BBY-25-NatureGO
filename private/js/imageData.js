@@ -1,10 +1,10 @@
 document.getElementById("file-input").setAttribute("onchange", "previewFile()");
 
 //preview replace image
-function previewFile() {
+window.previewFile = function previewFile() {
   let fileImg = document.getElementById("previewImag");
-  var file = document.querySelector("input[type=file]").files[0];
-  var reader = new FileReader();
+  let file = document.querySelector("input[type=file]").files[0];
+  let reader = new FileReader();
 
   reader.addEventListener("load", () => {
     fileImg.src = reader.result;
@@ -17,7 +17,6 @@ function previewFile() {
       let latLongCoord = getGPSLatitudeLongitude(this);
       if (latLongCoord !== undefined) {
         document.getElementById("GPScoor").textContent = JSON.stringify(latLongCoord);
-        // console.log(this.exifdata);
       } else {
         document.getElementById("GPScoor").textContent = "No GPS Found!";
       }
@@ -26,14 +25,20 @@ function previewFile() {
 }
 
 function getGPSLatitudeLongitude(imgABC) {
+  let pos;
   if (typeof EXIF.getTag(imgABC, "GPSLatitudeRef") !== "undefined") {
-    const pos = {
+    pos = {
       lat: convertDMStoLatLong(EXIF.getTag(imgABC, "GPSLatitude")[0], EXIF.getTag(imgABC, "GPSLatitude")[1], EXIF.getTag(imgABC, "GPSLatitude")[2], EXIF.getTag(imgABC, "GPSLatitudeRef")),
       lng: convertDMStoLatLong(EXIF.getTag(imgABC, "GPSLongitude")[0], EXIF.getTag(imgABC, "GPSLongitude")[1], EXIF.getTag(imgABC, "GPSLongitude")[2], EXIF.getTag(imgABC, "GPSLongitudeRef")),
-    };
+    } 
+  }else {
+    pos = {
+      lat: "",
+      lng: ""
+    }
+  }
     return pos;
   }
-}
 
 function convertDMStoLatLong(hour, minute, second, position) {
   let sixty = 60;
@@ -43,6 +48,8 @@ function convertDMStoLatLong(hour, minute, second, position) {
   }
   return GPScoor;
 }
+
+export {getGPSLatitudeLongitude};
 
 // {"lat":43.46844166666666,"lng":11.881515}
 
