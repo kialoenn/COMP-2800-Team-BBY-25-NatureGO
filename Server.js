@@ -61,7 +61,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
     console.log("request path: "+req.file.path);
     if (req.file) {
         // let result = await quickstart(req.file.path)
-        let result = await quickstart(req)
+        //let result = await quickstart(req)
         let imageURL = "";
 
         const blob = bucket.file(req.file.originalname);
@@ -181,7 +181,7 @@ app.get('/get-name', function (req, res) {
 });
 
 
-async function quickstart(req) {
+async function quickstart(fileName) {
     // Imports the Google Cloud client library
 
 
@@ -191,12 +191,12 @@ async function quickstart(req) {
     });
 
     // Performs label detection on the image file
-    // const [result] = await client.labelDetection(fileName);
-    const [result] = await client.labelDetection({
-        image: {
-            content: req.file.buffer
-        }
-    });
+    const [result] = await client.labelDetection(fileName);
+    // const [result] = await client.labelDetection({
+    //     image: {
+    //         content: req.file.buffer
+    //     }
+    // });
     const labels = result.labelAnnotations;
     // console.log('Labels:');
     // labels.forEach(label => console.log(label.description));
