@@ -151,43 +151,32 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
 //     console.log('listening on port ' + port + '!');
 // });
 
-// app.get('/get-email', function (req, res) {
 
-//     db.collection("users").doc(users.uid)
-//     .get()
-//     .then(function (doc) {
-//         // grabs data from user doc
-//         var mail = doc.data().email;
-//         res.setHeader('Content-Type', 'application/HTML');
-//         res.send(mail);  
-        
-//     })
-// });
-
-
-
-
-// app.get('/get-name', function (req, res) {
-
-//     db.collection("users").doc(users.uid)
-//     .get()
-//     .then(function (doc) {
-//         // grabs data from user doc
-//         var user = doc.data().name;
-//         res.setHeader('Content-Type', 'application/HTML');
-//         res.send(user);  
-        
-//     })
-// });
-
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}));
 
 app.post('/get-name', function (req, res) {
-    console.log(req.u);
-    db.collection("users").doc(req.u)
+    console.log(req.body.id);
+    db.collection("users").doc(req.body.id)
     .get()
     .then(function (doc) {
         // grabs data from user doc
         var user = doc.data().name;
+        res.setHeader('Content-Type', 'application/HTML');
+        res.send(user);  
+    })
+    
+});
+
+app.post('/get-email', function (req, res) {
+    console.log(req.body.id);
+    db.collection("users").doc(req.body.id)
+    .get()
+    .then(function (doc) {
+        // grabs data from user doc
+        var user = doc.data().email;
         res.setHeader('Content-Type', 'application/HTML');
         res.send(user);  
     })

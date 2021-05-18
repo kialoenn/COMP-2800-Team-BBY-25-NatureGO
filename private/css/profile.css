@@ -53,7 +53,7 @@ nav{
 #userinfo p {
     font-size: 40px;
     color:white;
-    position:fixed;
+    position:relative;
     left: 170px;
     top:90px;
    
