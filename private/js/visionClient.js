@@ -26,6 +26,9 @@ $(document).ready(function() {
             contentType: false,
             success: function(r){
                 console.log("result",r);
+                localStorage.setItem('animalinfo', r.type);
+                localStorage.setItem('url', r.url);
+                window.location.href = "/html/info.html";
             },
             error: function (e) {
                 console.log("some error", e);
