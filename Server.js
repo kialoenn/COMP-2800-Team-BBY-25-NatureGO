@@ -4,9 +4,6 @@ const vision = require('@google-cloud/vision');
 const fs = require("fs");
 const app = express();
 const path = require('path');
-<<<<<<< HEAD
-const PORT = process.env.PORT || 5000
-=======
 const PORT = process.env.PORT || 8000
 
 
@@ -19,7 +16,6 @@ admin.initializeApp({
 });
 var bucket = admin.storage().bucket();
 const db = admin.firestore();
->>>>>>> imageDate_Feature
 // GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
 const animalDB = ['Duck', 'Cat', 'Bear', 'Brown bear'];
@@ -59,15 +55,6 @@ app.get('/', function (req, res) {
 
 });
 
-<<<<<<< HEAD
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
-// RUN SERVER
-let port = 8000;
-app.listen(port, function () {
-    console.log('listening on port ' + port + '!');
-});
-=======
 
 app.post('/upload', upload.single('photo'), async (req, res) => {
     console.log(req.body);
@@ -217,4 +204,3 @@ async function quickstart(fileName) {
 }
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
->>>>>>> imageDate_Feature
