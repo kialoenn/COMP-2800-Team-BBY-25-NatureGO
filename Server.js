@@ -114,30 +114,30 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                 
             })
 
-            console.log(animalType);
-            if (animalType == undefined) {
-                res.send({
-                    status: 'error',
-                })
-            } else {
+            // console.log(animalType);
+            // if (animalType == undefined) {
+            //     res.send({
+            //         status: 'error',
+            //     })
+            // } else {
                 assignURL().then(function (url) {
                     imageURL = url;
                     var dbref = db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43").collection("animals");
     
                     dbref.doc().set({
                         url: imageURL,
-                        type: animalType,
+                        type: "animalType",
                         GPS: req.body
                     }).catch(e => {console.log(e)});
                     res.send({
                         status: 'success',
-                        type: animalType,
+                        type: "animalType",
                         url: imageURL,
                         GPS: req.body,
                     });
                 });
                 
-            }
+            //}
         });
 
         blobStream.end(req.file.buffer);
