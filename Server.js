@@ -56,10 +56,7 @@ app.get('/', function (req, res) {
 });
 
 storeanimalDB();
-<<<<<<< HEAD
 console.log(animalDB);
-=======
->>>>>>> 36a0a61bf8d17df539057b00e8bae6a5fcefecdd
 
 app.post('/upload', upload.single('photo'), async (req, res) => {
     console.log(req.body);
@@ -113,12 +110,8 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             })
             console.log(labels);
             let animalType;
-<<<<<<< HEAD
-
-=======
-            storeanimalDB();
+            
             console.log('db: ' + animalDB);
->>>>>>> 36a0a61bf8d17df539057b00e8bae6a5fcefecdd
             animalDB.forEach(animal => {
                 if (labels.find(a => a.includes(animal)|| a.equalsIgnoreCase(animal))) {
                     animalType = animal;
