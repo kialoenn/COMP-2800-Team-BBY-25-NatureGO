@@ -117,6 +117,11 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
 
             // console.log(animalType);
              if (animalType == undefined) {
+                 async function deleteFile() {
+                     await bucket.file(blob.name).delete();
+                     console.log('deleted');
+                 }
+                 deleteFile().catch(console.error);
                  res.send({
                      status: 'error',
                  })
@@ -127,7 +132,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
     
                     dbref.doc().set({
                         url: imageURL,
-                        type: "animalType",
+                        type: animalType,
                         GPS: {
                             lat: req.body.lat,
                             lng: req.body.lng,
@@ -135,7 +140,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                     }).catch(e => {console.log(e)});
                     res.send({
                         status: 'success',
-                        type: "animalType",
+                        type: animalType,
                         url: imageURL,
                         GPS: {
                             lat: req.body.lat,
@@ -211,3 +216,4 @@ async function quickstart(fileName) {
 }
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
