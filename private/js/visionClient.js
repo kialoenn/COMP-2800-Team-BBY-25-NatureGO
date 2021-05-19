@@ -1,18 +1,17 @@
-import {getGPSLatitudeLongitude} from "./imageData.js";
+import {pos} from "./imageData.js";
 
 $(document).ready(function() {
 
     $('#imageForm').submit(function(e) {
         e.preventDefault();
 
-      let file = document.querySelector("input[type=file]").files[0];
-      let gpsPOS = getGPSLatitudeLongitude(file);
       let fd = new FormData(this);
-      console.log(gpsPOS);
+      console.log(pos);
+
         for (var [key, value] of fd.entries()) { 
           console.log(key, value);
         }
-        $.each(gpsPOS, function(key, value) {
+        $.each(pos, function(key, value) {
           fd.append(key, value);
         });
         for (var [key, value] of fd.entries()) { 

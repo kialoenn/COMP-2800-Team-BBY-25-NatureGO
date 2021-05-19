@@ -23,9 +23,8 @@ window.previewFile = function previewFile() {
     });
   }
 }
-
+let pos;
 function getGPSLatitudeLongitude(imgABC) {
-  let pos;
   if (typeof EXIF.getTag(imgABC, "GPSLatitudeRef") !== "undefined") {
     pos = {
       lat: convertDMStoLatLong(EXIF.getTag(imgABC, "GPSLatitude")[0], EXIF.getTag(imgABC, "GPSLatitude")[1], EXIF.getTag(imgABC, "GPSLatitude")[2], EXIF.getTag(imgABC, "GPSLatitudeRef")),
@@ -49,9 +48,7 @@ function convertDMStoLatLong(hour, minute, second, position) {
   return GPScoor;
 }
 
-export {getGPSLatitudeLongitude};
-
-// {"lat":43.46844166666666,"lng":11.881515}
+export {pos};
 
 // Note: SKU: Basic Data Using the fields parameter in your Place Details or
 //  Find Place request, you can limit the response to only those fields specified. 

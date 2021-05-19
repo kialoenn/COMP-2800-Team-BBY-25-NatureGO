@@ -18,13 +18,18 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 </head>
 <style>
-    #imageform{
-        margin-left:10%;
-        margin-top:20px;
-    }
+#imageform{
+    margin-left:10%;
+    margin-top:20px;
+}
  input{
   border: #04443c;
   border-radius: 4px;
+}
+#previewImag {
+    width:200px;
+    height: 200px;
+    margin-top:20px;
 }
 
 </style>
@@ -39,17 +44,20 @@
     </head>
 
     <body>
-
         <h1>Upload Image</h1>
 
         <form id="imageForm" enctype="multipart/form-data">
-            <img id="previewImag" class="card-img-top" src="" alt="profile picture">
+            <div class="text-center">
+                <img id="previewImag" class="card-img-top rounded" src="https://dummyimage.com/200x200/000/fff" alt="animal">
+            </div>
             <input id="file-input" type="file" accept="image/*" name="photo">
             <input type="submit" value="upload">
         </form>
         <div class="imageDataTest">
             <pre>GPS: <span id="GPScoor">a1</span></pre>
         </div>
+
+        <div id="selectImgLocation"></div>
 
         <!-- nav-light
         Author: Michael -->
