@@ -18,7 +18,7 @@ var bucket = admin.storage().bucket();
 const db = admin.firestore();
 // GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
-const animalDB = ['Duck', 'Cat', 'Bear', 'Brown bear'];
+var animalDB = [];
 const multer = require('multer');
 const {
     BlockList
@@ -106,20 +106,12 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             })
             console.log(labels);
             let animalType;
-            db.collection("animals_info").doc()
-            .get()
-            .then(function (doc) {
-                doc.forEach(function (animal){
-
-                    console.log(animal.data().name);
-                })
-                
-            });
+            storeanimalDB();
             animalDB.forEach(animal => {
-                if (labels.find(a => a.includes(animal))){
+                if (labels.find(a => a.includes(animal))) {
                     animalType = animal;
                 };
-                
+
             })
 
             console.log(animalType);
@@ -131,7 +123,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                 assignURL().then(function (url) {
                     imageURL = url;
                     var dbref = db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43").collection("animals");
-    
+
                     dbref.doc().set({
                         url: imageURL,
                         type: animalType
@@ -142,7 +134,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                         url: imageURL,
                     });
                 });
-                
+
             }
         });
 
@@ -162,35 +154,33 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
 app.get('/get-email', function (req, res) {
 
     db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43")
-    .get()
-    .then(function (doc) {
-        // grabs data from user doc
-        var mail = doc.data().email;
-        res.setHeader('Content-Type', 'application/HTML');
-        res.send(mail);  
-        
-    })
+        .get()
+        .then(function (doc) {
+            // grabs data from user doc
+            var mail = doc.data().email;
+            res.setHeader('Content-Type', 'application/HTML');
+            res.send(mail);
+
+        })
 });
 
 
 app.get('/get-name', function (req, res) {
 
     db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43")
-    .get()
-    .then(function (doc) {
-        // grabs data from user doc
-        var user = doc.data().name;
-        res.setHeader('Content-Type', 'application/HTML');
-        res.send(user);  
-        
-    })
+        .get()
+        .then(function (doc) {
+            // grabs data from user doc
+            var user = doc.data().name;
+            res.setHeader('Content-Type', 'application/HTML');
+            res.send(user);
+
+        })
 });
 
 
 async function quickstart(fileName) {
     // Imports the Google Cloud client library
-
-
     // Creates a client
     const client = new vision.ImageAnnotatorClient({
         keyFilename: 'visionAPI.json'
@@ -203,5 +193,26 @@ async function quickstart(fileName) {
     // labels.forEach(label => console.log(label.description));
     return labels;
 }
+
+ function  getanimalnames() {
+    return new Promise(function(res,rej) {
+    db.collection("animals_info")
+        .get()
+        .then(function (querySnapshot) {
+            let data=[];
+             querySnapshot.forEach(function (doc){
+                data.push(doc.data().name);
+             });
+             res(data);
+        })
+    })
+}
+
+async function storeanimalDB(){
+    let animalDB = await getanimalnames();
+    console.log("results-------------");
+    console.log(animalDB);
+}
+
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));

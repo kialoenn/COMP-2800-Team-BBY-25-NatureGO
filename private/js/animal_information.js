@@ -18,7 +18,7 @@ let animal_info = [
 	funfact: "Bear skulls have unique adaptations to help eat a wide range of food.",
 	rarity:"rare"},
 
-    {name: "Sockeye salmon ",
+    {name: "Sockeye salmon",
 	family:"Salmonidae", 
 	population : "Declined by 50% over last 10 years", 
 	habitat: "remain in freshwater until they are ready to migrate to the ocean", 
@@ -35,7 +35,7 @@ let animal_info = [
 	rarity:"common"},
 
 	
-	{name: "Coyote ",
+	{name: "Coyote",
 	family:"Canidae", 
 	population : "Increased by 40% since 1950's.", 
 	habitat: "urban and suburban areas", 
@@ -44,7 +44,7 @@ let animal_info = [
 	rarity:"common"},
     
 		
-	{name: "Cougar  ",
+	{name: "Cougar",
 	family:"Felidae", 
 	population : "4000 cougars in B.C", 
 	habitat: "all forest types,lowland and mountainous deserts", 
