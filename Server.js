@@ -106,6 +106,15 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             })
             console.log(labels);
             let animalType;
+            db.collection("animals_info").doc()
+            .get()
+            .then(function (doc) {
+                doc.forEach(function (animal){
+
+                    console.log(animal.data().name);
+                })
+                
+            });
             animalDB.forEach(animal => {
                 if (labels.find(a => a.includes(animal))){
                     animalType = animal;
