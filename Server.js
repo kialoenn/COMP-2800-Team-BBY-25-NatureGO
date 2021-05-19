@@ -113,7 +113,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             
             console.log('db: ' + animalDB);
             animalDB.forEach(animal => {
-                if (labels.find(a => a.includes(animal)|| a.equalsIgnoreCase(animal))) {
+                if (labels.find(a => a.includes(animal))) {
                     animalType = animal;
                 };
 
