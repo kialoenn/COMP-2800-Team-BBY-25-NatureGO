@@ -43,6 +43,7 @@ function getGPSLatitudeLongitude(imgABC) {
         lng: position.coords.longitude,
         };
       console.log("Current Location: " + pos);
+      document.getElementById("GPScoor").textContent = JSON.stringify(pos);
     },
       //geoError()
       initMap()
@@ -88,7 +89,7 @@ function initMap() {
     lng: -123.0017895306895
   };
   const map = new google.maps.Map(document.getElementById("selectImgLocation"), {
-    zoom: 8,
+    zoom: 10,
     center: posTemp,
   });
   // Create the initial InfoWindow.
@@ -110,6 +111,20 @@ function initMap() {
       JSON.stringify(posTemp.toJSON(), null, 2)
     );
     infoWindow.open(map);
+    console.log(JSON.stringify(posTemp));
+  });
+  
+  infoWindow = new google.maps.InfoWindow();
+  const locationButton = document.createElement("button");
+  locationButton.textContent = "Set GPS";
+  locationButton.classList.add("custom-map-control-button");
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+  locationButton.addEventListener("click", () => {
+    // Try HTML5 geolocation.
+    console.log("testing1234: " + JSON.stringify(posTemp));
+    
+    pos = posTemp.toJSON();
+    document.getElementById("GPScoor").textContent = JSON.stringify(pos);
   });
 
 }
