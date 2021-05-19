@@ -138,6 +138,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                             lng: req.body.lng,
                         }
                     }).catch(e => {console.log(e)});
+                    console.log("success");
                     res.send({
                         status: 'success',
                         type: animalType,

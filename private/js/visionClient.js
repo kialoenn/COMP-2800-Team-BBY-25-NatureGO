@@ -33,13 +33,31 @@ $(document).ready(function () {
                     processData: false,
                     contentType: false,
                     success: function (r) {
-                        console.log("result", r);
-                        localStorage.setItem('animalinfo', r.type);
-                        localStorage.setItem('url', r.url);
-                        window.location.href = "/html/info.html";
+                        console.log(r);
+                        if (r.status == 'success') {
+                            console.log("result", r);
+                            localStorage.setItem('animalinfo', r.type);
+                            localStorage.setItem('url', r.url);
+                            window.location.href = "/html/info.html";
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'We cannot identify animal in the picture, please upload another one',
+                            }).then(function () {
+                                window.location.href = "/html/index.html";
+                            })
+                        }
+
                     },
                     error: function (e) {
-                        console.log("some error", e);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'We cannot identify animal in the picture, please upload another one',
+                        }).then(function () {
+                            window.location.href = "/html/index.html";
+                        })
                     }
                 });
             }
