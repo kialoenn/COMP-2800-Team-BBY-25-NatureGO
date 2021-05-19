@@ -55,6 +55,7 @@ app.get('/', function (req, res) {
 
 });
 
+storeanimalDB();
 
 app.post('/upload', upload.single('photo'), async (req, res) => {
     console.log(req.body);
@@ -109,6 +110,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             console.log(labels);
             let animalType;
             storeanimalDB();
+            console.log('db: ' + animalDB);
             animalDB.forEach(animal => {
                 if (labels.find(a => a.includes(animal))) {
                     animalType = animal;
@@ -230,7 +232,7 @@ async function quickstart(fileName) {
 }
 
 async function storeanimalDB(){
-    let animalDB = await getanimalnames();
+    animalDB = await getanimalnames();
     console.log("results-------------");
     console.log(animalDB);
 }
