@@ -3,7 +3,7 @@ const express = require('express');
 const vision = require('@google-cloud/vision');
 const fs = require("fs");
 const app = express();
-const path = require('path')
+const path = require('path');
 const PORT = process.env.PORT || 8000
 
 
@@ -50,7 +50,6 @@ app.get('/', function (req, res) {
             });
             res.write(pgRes);
         }
-
         res.end();
     });
 
@@ -58,12 +57,16 @@ app.get('/', function (req, res) {
 
 
 app.post('/upload', upload.single('photo'), async (req, res) => {
+    console.log(req.body);
+    console.log('id ' + req.body.id);
+    console.log("request path: "+req.file.path);
     if (req.file) {
-        //let result = await quickstart(req.file.path)
+        // let result = await quickstart(req.file.path)
+        //let result = await quickstart(req)
         let imageURL = "";
 
         const blob = bucket.file(req.file.originalname);
-        blob.name = 'uU8tulEzehbRnnbR9hoNgmXhyUI2' + new Date().valueOf() + '.jpeg';
+        blob.name = req.body.id + '|' + new Date().valueOf() + '.jpeg';
         const blobStream = blob.createWriteStream();
 
 
@@ -96,8 +99,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             async function assignURL() {
                 let temp = await getURL(blob);
                 return temp;
-            }
-
+            }          
 
             let result = await quickstart(`gs://naturego-e74d6.appspot.com/${blob.name}`);
             let labels = [];
@@ -114,24 +116,38 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
 
             })
 
-            console.log(animalType);
-            if (animalType == undefined) {
-                res.send({
-                    status: 'error',
-                })
-            } else {
+            // console.log(animalType);
+             if (animalType == undefined) {
+                 async function deleteFile() {
+                     await bucket.file(blob.name).delete();
+                     console.log('deleted');
+                 }
+                 deleteFile().catch(console.error);
+                 res.send({
+                     status: 'error',
+                 })
+             } else {
                 assignURL().then(function (url) {
                     imageURL = url;
-                    var dbref = db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43").collection("animals");
-
+                    var dbref = db.collection("users").doc(req.body.id).collection("animals");
+    
                     dbref.doc().set({
                         url: imageURL,
-                        type: animalType
-                    })
+                        type: animalType,
+                        GPS: {
+                            lat: req.body.lat,
+                            lng: req.body.lng,
+                        }
+                    }).catch(e => {console.log(e)});
+                    console.log("success");
                     res.send({
                         status: 'success',
                         type: animalType,
                         url: imageURL,
+                        GPS: {
+                            lat: req.body.lat,
+                            lng: req.body.lng,
+                        },
                     });
                 });
 
@@ -188,6 +204,11 @@ async function quickstart(fileName) {
 
     // Performs label detection on the image file
     const [result] = await client.labelDetection(fileName);
+    // const [result] = await client.labelDetection({
+    //     image: {
+    //         content: req.file.buffer
+    //     }
+    // });
     const labels = result.labelAnnotations;
     // console.log('Labels:');
     // labels.forEach(label => console.log(label.description));

@@ -1,7 +1,9 @@
 /*Navbar--- */
 .nav {
     background-color: #04443c;
-    /* color: white; */
+    color: white;
+    padding: 0;
+    margin: 0;
 }
 
 .nav-link:hover {
