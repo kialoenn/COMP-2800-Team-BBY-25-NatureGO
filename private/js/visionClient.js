@@ -3,11 +3,19 @@ $(document).ready(function() {
         e.preventDefault();
 
         let fd = new FormData(this);
-        console.log(fd)
+        let uid;
+        firebase.auth().onAuthStateChanged(function(user) {
+            uid = user.uid;
+        })
+
+        let formData = {
+            pic: fd,
+            id: uid
+        }
         $.ajax({
             type: "POST",
             url: "/upload",
-            data: fd,
+            data: formData,
             processData: false,
             contentType: false,
             success: function(r){
