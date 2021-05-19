@@ -58,93 +58,100 @@ app.get('/', function (req, res) {
 
 app.post('/upload', upload.single('photo'), async (req, res) => {
     console.log(req.body);
+    console.log('id ' + req.body.id);
     console.log("request path: "+req.file.path);
-    // if (req.file) {
-    //     // let result = await quickstart(req.file.path)
-    //     //let result = await quickstart(req)
-    //     let imageURL = "";
+    if (req.file) {
+        // let result = await quickstart(req.file.path)
+        //let result = await quickstart(req)
+        let imageURL = "";
 
-    //     const blob = bucket.file(req.file.originalname);
-    //     blob.name = 'uU8tulEzehbRnnbR9hoNgmXhyUI2' + new Date().valueOf() + '.jpeg';
-    //     const blobStream = blob.createWriteStream();
+        const blob = bucket.file(req.file.originalname);
+        blob.name = req.body.id + '|' + new Date().valueOf() + '.jpeg';
+        const blobStream = blob.createWriteStream();
 
 
-    //     blobStream.on('finish', async () => {
-    //         // The public URL can be used to directly access the file via HTTP.
-    //         // console.log(blob);
-    //         // const publicUrl = format(
-    //         //     `https://storage.googleapis.com/${bucket.name}/${blob.name}`
-    //         // );
-    //         const config = {
-    //             action: 'read',
+        blobStream.on('finish', async () => {
+            // The public URL can be used to directly access the file via HTTP.
+            // console.log(blob);
+            // const publicUrl = format(
+            //     `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+            // );
+            const config = {
+                action: 'read',
 
-    //             // A timestamp when this link will expire
-    //             expires: '01-01-2026',
-    //         };
+                // A timestamp when this link will expire
+                expires: '01-01-2026',
+            };
 
-    //         function getURL(blob) {
-    //             return new Promise((resolve, reject) => {
-    //                 blob.getSignedUrl(config, function (err, url) {
-    //                     if (err) {
-    //                         console.error(err);
-    //                         reject(err);
-    //                     }
-    //                     console.log(url);
-    //                     resolve(url);
-    //                 })
-    //             })
-    //         }
+            function getURL(blob) {
+                return new Promise((resolve, reject) => {
+                    blob.getSignedUrl(config, function (err, url) {
+                        if (err) {
+                            console.error(err);
+                            reject(err);
+                        }
+                        console.log(url);
+                        resolve(url);
+                    })
+                })
+            }
 
-    //         async function assignURL() {
-    //             let temp = await getURL(blob);
-    //             return temp;
-    //         }          
+            async function assignURL() {
+                let temp = await getURL(blob);
+                return temp;
+            }          
 
-    //         let result = await quickstart(`gs://naturego-e74d6.appspot.com/${blob.name}`);
-    //         let labels = [];
-    //         result.forEach(label => {
-    //             labels.push(label.description);
-    //         })
-    //         console.log(labels);
-    //         let animalType;
-    //         animalDB.forEach(animal => {
-    //             if (labels.find(a => a.includes(animal))){
-    //                 animalType = animal;
-    //             };
+            let result = await quickstart(`gs://naturego-e74d6.appspot.com/${blob.name}`);
+            let labels = [];
+            result.forEach(label => {
+                labels.push(label.description);
+            })
+            console.log(labels);
+            let animalType;
+            animalDB.forEach(animal => {
+                if (labels.find(a => a.includes(animal))){
+                    animalType = animal;
+                };
                 
-    //         })
+            })
 
-    //         // console.log(animalType);
-    //         // if (animalType == undefined) {
-    //         //     res.send({
-    //         //         status: 'error',
-    //         //     })
-    //         // } else {
-    //             assignURL().then(function (url) {
-    //                 imageURL = url;
-    //                 var dbref = db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43").collection("animals");
+            // console.log(animalType);
+             if (animalType == undefined) {
+                 res.send({
+                     status: 'error',
+                 })
+             } else {
+                assignURL().then(function (url) {
+                    imageURL = url;
+                    var dbref = db.collection("users").doc(req.body.id).collection("animals");
     
-    //                 dbref.doc().set({
-    //                     url: imageURL,
-    //                     type: "animalType",
-    //                     GPS: req.body
-    //                 }).catch(e => {console.log(e)});
-    //                 res.send({
-    //                     status: 'success',
-    //                     type: "animalType",
-    //                     url: imageURL,
-    //                     GPS: req.body,
-    //                 });
-    //             });
+                    dbref.doc().set({
+                        url: imageURL,
+                        type: "animalType",
+                        GPS: {
+                            lat: req.body.lat,
+                            lng: req.body.lng,
+                        }
+                    }).catch(e => {console.log(e)});
+                    res.send({
+                        status: 'success',
+                        type: "animalType",
+                        url: imageURL,
+                        GPS: {
+                            lat: req.body.lat,
+                            lng: req.body.lng,
+                        },
+                    });
+                });
                 
-    //         //}
-    //     });
+            }
+        });
 
-    //     blobStream.end(req.file.buffer);
+        blobStream.end(req.file.buffer);
 
-    //     console.log("my url is " + imageURL);
+        console.log("my url is " + imageURL);
 
-    // } else throw 'error';
+    } else throw 'error';
 });
 
 
