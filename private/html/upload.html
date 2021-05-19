@@ -56,6 +56,18 @@
 
 
     <!-- nav-light
+        <h1>Upload Image</h1>
+
+        <form id="imageForm" enctype="multipart/form-data">
+            <img id="previewImag" class="card-img-top" src="" alt="profile picture">
+            <input id="file-input" type="file" accept="image/*" name="photo">
+            <input type="submit" value="upload">
+        </form>
+        <div class="imageDataTest">
+            <pre>GPS: <span id="GPScoor">a1</span></pre>
+        </div>
+
+         nav-light
         Author: Michael -->
     <!-- Navigation Bar-->
     <ul class="navbar nav fixed-bottom  justify-content-around nav-expand-lg mt-5">
@@ -92,8 +104,10 @@
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+    <script type="module" src="/js/imageData.js"></script>
 
-    <script src="/js/visionClient.js"></script>
+    <script type="module" src="/js/visionClient.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script>
         feather.replace();
