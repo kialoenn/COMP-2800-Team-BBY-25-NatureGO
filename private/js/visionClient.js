@@ -15,7 +15,6 @@ $(document).ready(function () {
 
         let file = document.querySelector("input[type=file]").files[0];
         let gpsPOS = getGPSLatitudeLongitude(file);
-        let fd = new FormData(this);
         console.log(gpsPOS);
         for (var [key, value] of fd.entries()) {
             console.log(key, value);
@@ -26,6 +25,9 @@ $(document).ready(function () {
         for (var [key, value] of fd.entries()) {
             console.log(key, value);
         }
+        console.log(uid);
+        fd.append('id', uid);
+
         $.ajax({
             type: "POST",
             url: "/upload",

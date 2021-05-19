@@ -1,4 +1,4 @@
-document.getElementById("file-input").setAttribute("onchange", "previewFile()");
+//document.getElementById("file-input").setAttribute("onchange", "previewFile()");
 
 //preview replace image
 window.previewFile = function previewFile() {
