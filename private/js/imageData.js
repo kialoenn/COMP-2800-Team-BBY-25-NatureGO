@@ -37,7 +37,14 @@ window.previewFile = function previewFile() {
               };
 
               if (map !== null) {
-                map.setCenter(pos);
+                let infoWindow = new google.maps.InfoWindow({
+                  position: pos,
+                });
+                infoWindow.setContent(
+                  JSON.stringify(pos)
+                  );
+                  map.setCenter(pos);
+                infoWindow.open(map);
               }
               document.getElementById("GPScoor").textContent = JSON.stringify(pos);
             },
@@ -90,7 +97,7 @@ function initMap() {
   };
 
   map = new google.maps.Map(document.getElementById("selectImgLocation"), {
-    zoom: 10,
+    zoom: 11,
     center: posTemp,
   });
   // Create the initial InfoWindow.
