@@ -2,7 +2,7 @@
 document.getElementById("selectImgLocation").style.visibility = "hidden";
 document.getElementById("file-input").setAttribute("onchange", "previewFile()");
 window.initMap = initMap;
-let pos;
+let pos, map;
 
 //preview replace image
 window.previewFile = function previewFile() {
@@ -36,6 +36,9 @@ window.previewFile = function previewFile() {
                 lng: position.coords.longitude,
               };
 
+              if (map !== null) {
+                map.setCenter(pos);
+              }
               document.getElementById("GPScoor").textContent = JSON.stringify(pos);
             },
             //user has geolocation but unable to get GPS
@@ -85,7 +88,8 @@ function initMap() {
     lat: 49.25076313248947,
     lng: -123.0017895306895
   };
-  const map = new google.maps.Map(document.getElementById("selectImgLocation"), {
+
+  map = new google.maps.Map(document.getElementById("selectImgLocation"), {
     zoom: 10,
     center: posTemp,
   });
