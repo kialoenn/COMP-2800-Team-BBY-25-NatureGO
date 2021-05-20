@@ -20,6 +20,14 @@ $(document).ready(function(){
                 // })
                 // $('#pictureContent').html(info);
             })
+            db.collection('users').doc(user.uid).collection('animals')
+            .where('type', '==', 'Socsye salmon')
+            .get()
+            .then(function(snap) {
+                if(snap.docs.length == 0) {
+                    console.log('not find')
+                }
+            })
         }
     })
 })

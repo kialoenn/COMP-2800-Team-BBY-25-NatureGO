@@ -132,25 +132,41 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                 assignURL().then(function (url) {
                     imageURL = url;
                     var dbref = db.collection("users").doc(req.body.id).collection("animals");
-    
-                    dbref.doc().set({
-                        url: imageURL,
-                        type: animalType,
-                        GPS: {
-                            lat: req.body.lat,
-                            lng: req.body.lng,
+
+                    dbref.where('type', '==', 'Sockeye salmon')
+                    .get()
+                    .then(function(snap) {
+                        if (snap.docs.length == 0) {
+                            dbref.doc().set({
+                                url: imageURL,
+                                type: animalType,
+                                GPS: {
+                                    lat: req.body.lat,
+                                    lng: req.body.lng,
+                                }
+                            }).catch(e => {console.log(e)});
+                            console.log("success");
+                            res.send({
+                                status: 'success',
+                                type: animalType,
+                                url: imageURL,
+                                GPS: {
+                                    lat: req.body.lat,
+                                    lng: req.body.lng,
+                                },
+                            });
+                        } else {
+                            async function deleteFile() {
+                                await bucket.file(blob.name).delete();
+                                console.log('deleted');
+                            }
+                            deleteFile().catch(console.error);
+                            res.send({
+                                status: 'existed',
+                            })
                         }
-                    }).catch(e => {console.log(e)});
-                    console.log("success");
-                    res.send({
-                        status: 'success',
-                        type: animalType,
-                        url: imageURL,
-                        GPS: {
-                            lat: req.body.lat,
-                            lng: req.body.lng,
-                        },
-                    });
+                    })
+                    
                 });
 
             }
