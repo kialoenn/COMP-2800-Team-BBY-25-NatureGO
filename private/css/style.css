@@ -45,6 +45,11 @@ h1 {
     border-radius: 100px;
     text-align: center;
     font-size: 12px;
-    line-height: 1.42857;
+    line-height:190px;
     background-color: #04443c;
+    color: white;
+  }
+
+  #snap:hover{
+    color: #76c893;
   }
