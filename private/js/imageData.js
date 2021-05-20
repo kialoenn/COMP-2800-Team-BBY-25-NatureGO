@@ -16,13 +16,35 @@ window.previewFile = function previewFile() {
 
   if (file) {
     reader.readAsDataURL(file);
+    pos = null;
+
     //exif-js API
     EXIF.getData(file, function () {
       let latLongCoord = getGPSLatitudeLongitude(this);
-      if (latLongCoord !== undefined) {
+      if (pos !== null) {
         document.getElementById("GPScoor").textContent = JSON.stringify(latLongCoord);
       } else {
         document.getElementById("GPScoor").textContent = "No GPS from Image!";
+
+        //from google map API sample
+        //check for device geolocation
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+
+              document.getElementById("GPScoor").textContent = JSON.stringify(pos);
+            },
+            //user has geolocation but unable to get GPS
+            initMap()
+          );
+        } else {
+          //user don't have geolocation
+          initMap();
+        }
       }
     });
   }
@@ -36,30 +58,10 @@ function getGPSLatitudeLongitude(imgABC) {
       //set lat & lng using exif-js API
       lat: convertDMStoLatLong(EXIF.getTag(imgABC, "GPSLatitude")[0], EXIF.getTag(imgABC, "GPSLatitude")[1], EXIF.getTag(imgABC, "GPSLatitude")[2], EXIF.getTag(imgABC, "GPSLatitudeRef")),
       lng: convertDMStoLatLong(EXIF.getTag(imgABC, "GPSLongitude")[0], EXIF.getTag(imgABC, "GPSLongitude")[1], EXIF.getTag(imgABC, "GPSLongitude")[2], EXIF.getTag(imgABC, "GPSLongitudeRef")),
-    } 
-  }else {
-    //from google map API
-    //check for device geolocation
-    if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-        };
-
-      document.getElementById("GPScoor").textContent = JSON.stringify(pos);
-    },
-      //user has geolocation but unable to get GPS
-      initMap()
-    );
-  } else {
-    //user don't have geolocation
-    initMap();
+    }
   }
+  return pos;
 }
-    return pos;
-  }
 
 //calculate latitude and longitude from DMS
 //https://flyandwire.com/2020/08/10/back-to-basics-latitude-and-longitude-dms-dd-ddm/
@@ -107,21 +109,10 @@ function initMap() {
     );
     infoWindow.open(map);
     console.log(JSON.stringify(posTemp));
-  });
-  
-  infoWindow = new google.maps.InfoWindow();
-  const locationButton = document.createElement("button");
-  locationButton.textContent = "Set GPS";
-  locationButton.classList.add("custom-map-control-button");
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-  locationButton.addEventListener("click", () => {
-    // Try HTML5 geolocation.
-    console.log("testing1234: " + JSON.stringify(posTemp));
-    
+
     pos = posTemp.toJSON();
     document.getElementById("GPScoor").textContent = JSON.stringify(pos);
   });
-
 }
 
-export {pos};
+export { pos };
