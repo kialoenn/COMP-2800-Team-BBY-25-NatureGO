@@ -2,7 +2,7 @@
 document.getElementById("selectImgLocation").style.visibility = "hidden";
 document.getElementById("file-input").setAttribute("onchange", "previewFile()");
 window.initMap = initMap;
-let pos, map;
+let pos, map, infoWindow;
 
 //preview replace image
 window.previewFile = function previewFile() {
@@ -36,8 +36,9 @@ window.previewFile = function previewFile() {
                 lng: position.coords.longitude,
               };
 
-              if (map !== null) {
-                let infoWindow = new google.maps.InfoWindow({
+              if (map !== null && infoWindow !== null) {
+                infoWindow.close();
+                infoWindow = new google.maps.InfoWindow({
                   position: pos,
                 });
                 infoWindow.setContent(
@@ -101,7 +102,7 @@ function initMap() {
     center: posTemp,
   });
   // Create the initial InfoWindow.
-  let infoWindow = new google.maps.InfoWindow({
+  infoWindow = new google.maps.InfoWindow({
     content: "Click the map to get Lat/Lng!",
     position: posTemp,
   });
