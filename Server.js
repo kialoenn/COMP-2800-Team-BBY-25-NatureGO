@@ -112,9 +112,15 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             storeanimalDB();
             console.log('db: ' + animalDB);
             animalDB.forEach(animal => {
-                if (labels.find(a => a.includes(animal))) {
-                    animalType = animal;
-                };
+                if (labels.find(function(a) {
+                    if (a.length >= animal.length) {
+                        return a.toUpperCase().includes(animal.toUpperCase())
+                    } else {
+                        return animal.toUpperCase().includes(a.toUpperCase())
+                    }
+                })){
+                   animalType = animal; 
+                }
 
             })
 
@@ -133,7 +139,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                     imageURL = url;
                     var dbref = db.collection("users").doc(req.body.id).collection("animals");
 
-                    dbref.where('type', '==', 'Sockeye salmon')
+                    dbref.where('type', '==', animalType)
                     .get()
                     .then(function(snap) {
                         if (snap.docs.length == 0) {
