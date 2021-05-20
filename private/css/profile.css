@@ -91,6 +91,15 @@ nav{
 
 }
 
+#input-button{
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    bottom:150px;
+    width: 145px;
+    height: 150px;
+}
+
 #customizeinfo{
     width: 80%;
     height:80%;
@@ -99,6 +108,10 @@ nav{
     position: relative;
     left: 100px;
 
+}
+
+input[type="file"] {
+    display: none;
 }
 
 
