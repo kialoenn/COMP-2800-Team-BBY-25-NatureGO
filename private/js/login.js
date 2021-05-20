@@ -16,12 +16,13 @@
                     //------------------------------------------------------------------------------------------
                     var user = authResult.user;
                     if (authResult.additionalUserInfo.isNewUser) {         //if new user
+                        let userName = user.displayName !== null ?user.displayName : user.email;
                         db.collection("users").doc(user.uid).set({         //write to firestore
-                                name: user.displayName,                    //"users" collection
+                                name: userName,                    //"users" collection
                                 email: user.email,                      //with authenticated user's ID (user.uid)
                             }).then(function () {
                                 console.log("New user added to firestore");
-                                window.location.assign("main.html");       //re-direct to main.html after signup
+                                window.location.assign("/html/index.html");       //re-direct to main.html after signup
                             })
                             .catch(function (error) {
                                 console.log("Error adding new user: " + error);
@@ -39,13 +40,13 @@
             },
             // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
             signInFlow: 'popup',
-            signInSuccessUrl: './index.html',
+            signInSuccessUrl: '/html/index.html',
             signInOptions: [
                 // Leave the lines as is for the providers you want to offer your users.
-                //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
                 //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
                 //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-                //firebase.auth.GithubAuthProvider.PROVIDER_ID,
+                firebase.auth.GithubAuthProvider.PROVIDER_ID,
                 firebase.auth.EmailAuthProvider.PROVIDER_ID,
                 //firebase.auth.PhoneAuthProvider.PROVIDER_ID
             ],

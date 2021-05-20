@@ -12,10 +12,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel="stylesheet">
-    <link rel="icon" type="image/jpg" href="/img/NaturegoFavicon.png"/>
 
-
-    <!-- Optional styles and scripts of your own bfdbf7 1f7a8c 022b3a e1e5f2-->
+    <!-- Optional styles and scripts of your own-->
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="icon" type="image/jpg" href="/img/NaturegoFavicon.png" />
 
     <style>
         /* body {
@@ -48,10 +48,11 @@
             color: #76c893;
             cursor: pointer;
         }
-        #image{
-            width:200px;
+
+        #image {
+            width: 200px;
             height: 200px;
-            margin-top:20px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -62,17 +63,29 @@
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
     <!-- Header Navigation Bar -->
-    <nav>
-
-    </nav>
+    <ul class="nav fixed-top nav-expand-lg">
+        <li class="me-auto nav-item">
+            <a class="nav-link active" aria-current="page" href="/html/index.html"><i data-feather="feather"></i>
+                NatureGo</a>
+        </li>
+        <li class="nav-item" id="authentication">
+            <a class="nav-link right-s-nav" title="camera" href="/html/login.html">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link right-s-nav" title="photoCollection" href="/html/AboutUs.html">About us</a>
+        </li>
+    </ul>
+    <br>
+    <br>
+    <br>
 
     <div class="container">
 
         <div class="text-center">
-            <img id = "image" src="https://dummyimage.com/200x200/000/fff" class="rounded" alt="animal">
+            <img id="image" src="https://dummyimage.com/200x200/000/fff" class="rounded" alt="animal">
         </div>
         <div id="info_tab">
-            <table id= "info_table" class="table table-bordered">
+            <table id="info_table" class="table table-bordered">
                 <thead>
                 </thead>
                 <tbody>
@@ -95,7 +108,7 @@
                     <tr>
                         <th scope="row">Recent Stats</th>
                         <td>Declined by 20% over last 5 years</td>
-                    </tr> 
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -107,7 +120,7 @@
         <!-- nav-light -->
         <ul class="navbar nav fixed-bottom  nav-expand-lg mt-5">
             <li class="me-auto nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html"><i data-feather="feather"></i>
+                <a class="nav-link active" aria-current="page" href="upload.html"><i data-feather="feather"></i>
                     About us</a>
             </li>
             <li class="nav-item">
@@ -129,9 +142,16 @@
 
 
     <!----------------------------------------------->
-    <!-- JS: Boostrap, Firebase, API related    -->
+    <!-- JS: Boostrap, JQuery, Firebase, API related    -->
     <!----------------------------------------------->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+    <script src="/js/firebaseAPI.js"></script>
+    <script src="/js/authentication.js"></script>
 
     <script src="/js/info.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
