@@ -122,6 +122,7 @@ FixedQueue.unshift = FixedQueue.wrapMethod(
 $(document).ready(function() {
     let trigger = FixedQueue(2);
     $('#easterEgg').on('click', function(e) {
+        e.preventDefault();
         if (e.detail === 1) {
             trigger.push(1);
             console.log(trigger);
