@@ -63,7 +63,7 @@ $(document).ready(function () {
     });
 });
 
-var storage = firebase.storage();
+
 
 function uploadUserProfilePic() {
     // Let's assume my storage is only enabled for authenticated users 
