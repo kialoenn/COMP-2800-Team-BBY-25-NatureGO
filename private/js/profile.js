@@ -58,8 +58,6 @@ $(document).ready(function () {
     });
 });
 
-var storage = firebase.storage();
-
 function uploadUserProfilePic() {
     // Let's assume my storage is only enabled for authenticated users 
     // This is set in your firebase console storage "rules" tab
@@ -133,6 +131,7 @@ function getUserInfo() {
                     var numb = doc.data().number;
                     var add = doc.data().address;
                     var nick = doc.data().nickname;
+                    var points = doc.data().totalpoints;
                     
                     // displays grabbed data onto page
                     $("#username").val(name).text(name);
@@ -141,6 +140,7 @@ function getUserInfo() {
                     $("#number").val(numb).text(numb);
                     $("#address").val(add).text(add);
                     $("#nickname").val(nick).text(nick);
+                    $("#points").val(points).text(points);
                 })
         } else {
             
@@ -149,3 +149,4 @@ function getUserInfo() {
     });
 }
 getUserInfo();
+

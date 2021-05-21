@@ -122,6 +122,7 @@ FixedQueue.unshift = FixedQueue.wrapMethod(
 $(document).ready(function() {
     let trigger = FixedQueue(2);
     $('#easterEgg').on('click', function(e) {
+        e.preventDefault();
         if (e.detail === 1) {
             trigger.push(1);
             console.log(trigger);
@@ -134,11 +135,10 @@ $(document).ready(function() {
         // This image is downloaded from https://dribbble.com/shots/5771570-Bird/attachments/5771570-Bird?mode=media
         if (trigger[0] === 1 && trigger[1] === 3) {
             Swal.fire({
-                width: 1000,
-                imageHeight: 500,
-                imageUrl: '/img/bird-dribbble.gif',
-                imageAlt: 'birdSquirrel',
-                title: 'You find our Easter Egg!!!'
+                html:"<p>You find our Easter Egg!!!</p>",
+                background: 'url(/img/bird-dribbble.gif)',
+                confirmButtonText: 'Nooice!',
+                confirmButtonColor: '#04443c',
               })
         }
     })
