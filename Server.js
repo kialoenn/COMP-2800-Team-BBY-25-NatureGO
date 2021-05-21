@@ -186,19 +186,16 @@ app.post('/get-email', function (req, res) {
     
 });
 
-app.post('/get-gps', function (req, res) {
-    console.log(req.body.id);
-    db.collection("users").doc(req.body.id).collection("animals").where("lat", "!=", "").where("lng","!=","")
-    .get()
-    .then((photos) => {
-        // photosList(photos);
-        // grabs data from user doc
-        var gpsCoordinates = photos.data();
-        console.log({gpsCoordinates});
-        res.setHeader('Content-Type', 'application/HTML');
-        res.send(gpsCoordinates);  
-    });
-});
+// app.post('/get-gps', function (req, res) {
+//     console.log(req.body.id);
+//     // db.collection("users").doc(req.body.id).collection("animals").where("lat", "!=", "")
+//         db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43").collection("animals").where("GPS.lat", "!=", "")
+//     .get()
+//     .then((photos) => {
+
+//         res.send(photos);  
+//     });
+// });
 
 
 

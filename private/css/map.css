@@ -1,7 +1,7 @@
 /* Always set the map height explicitly to define the size of the div
 * element that contains the map. */
 #mapAPI {
-    height: 85%;
+    height: 100%;
 }
 
 /* Optional: Makes the sample page fill the window. */
@@ -10,4 +10,26 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+#container {
+    height: 85%;
+    width: 100%;
+}
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+#map {
+  position: relative;
+}
+
+#overview {
+  position: absolute;
+  left: 5px;
+  height: 175px;
+  width: 175px;
+  bottom: 60px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
