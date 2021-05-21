@@ -65,7 +65,7 @@ function strGeoCoorToFloatPt(geoStr) {
 function getGPScurrentUserPhotoLoc() {
   firebase.auth().onAuthStateChanged(function (user) {
     db.collection("users").doc(user.id).collection("animals").where("GPS.lat", "!=", "")
-      .get().then(displayMarker(gpsPosit));
+      .get().then(gpsPosit => {displayMarker(gpsPosit)});
   });
 }
 
