@@ -139,8 +139,6 @@ $(document).ready(function() {
                 height: 500,
                 imageHeight: 500,
                 background: 'url(/img/bird-dribbble.gif)',
-                //imageUrl: '/img/bird-dribbble.gif',
-                //imageAlt: 'birdSquirrel',
                 title: 'You find our Easter Egg!!!'
               })
         }

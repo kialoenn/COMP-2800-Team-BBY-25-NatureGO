@@ -55,11 +55,11 @@ h1 {
   min-height: 600px;
 }
 
-.swal2-checkbox {
-  flex-flow: row-reverse;
+.swal2-popup {
+  justify-content:flex-end;
 }
 
-.swal2-content {
-  flex-direction: column-reverse;
-  display: flex;
+.swal2-header {
+  font-size: 20px;
+  color: #76c893;
 }
