@@ -11,9 +11,9 @@
             $('#logout').on('click', function(e) {
                 e.preventDefault();
                 logOut();
-            })
+            });
         }
-    })
+    });
 }
 checkUserStatus();
 

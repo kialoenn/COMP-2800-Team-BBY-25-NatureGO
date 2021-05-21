@@ -63,8 +63,10 @@ function strGeoCoorToFloatPt(geoStr) {
 
 //get current user's photos in DB with none empty GPS coordinates
 function getGPScurrentUserPhotoLoc() {
-  db.collection("users").doc("AO0atTPpmVeidSh70b6FJacYY3C2").collection("animals").where("GPS.lat", "!=", "")
-    .get().then(displayMarker(gpsPosit));
+  firebase.auth().onAuthStateChanged(function (user) {
+    db.collection("users").doc(user.id).collection("animals").where("GPS.lat", "!=", "")
+      .get().then(displayMarker(gpsPosit));
+  });
 }
 
 function displayMarker(gpsPosit) {
