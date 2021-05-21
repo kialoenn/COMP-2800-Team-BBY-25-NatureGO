@@ -186,6 +186,22 @@ app.post('/get-email', function (req, res) {
     
 });
 
+app.post('/get-gps', function (req, res) {
+    console.log(req.body.id);
+    db.collection("users").doc(req.body.id).collection("animals").where("lat", "!=", "")
+    .get()
+    .then((photos) => {
+        // photosList(photos);
+        // grabs data from user doc
+        var gpsCoordinates = photos.data();
+        console.log({gpsCoordinates});
+        res.setHeader('Content-Type', 'application/HTML');
+        res.send(gpsCoordinates);  
+    });
+});
+
+
+
 async function quickstart(fileName) {
     // Imports the Google Cloud client library
 
