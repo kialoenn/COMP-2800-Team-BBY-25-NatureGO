@@ -5,7 +5,6 @@ document.getElementById("file-input").setAttribute("onchange", "previewFile()");
 window.initMap = initMap;
 let pos, map, infoWindow;
 
-
 //preview replace image
 window.previewFile = function previewFile() {
   let fileImg = document.getElementById("previewImag");
@@ -45,8 +44,8 @@ window.previewFile = function previewFile() {
                 });
                 infoWindow.setContent(
                   JSON.stringify(pos)
-                  );
-                  map.setCenter(pos);
+                );
+                map.setCenter(pos);
                 infoWindow.open(map);
               }
               document.getElementById("GPScoor").textContent = JSON.stringify(pos);
@@ -86,10 +85,6 @@ function convertDMStoLatLong(hour, minute, second, position) {
   }
   return GPScoor;
 }
-
-
-export { pos };
-
 
 //from google map API examples
 //https://developers.google.com/maps/documentation/javascript/examples/event-click-latlng
@@ -132,3 +127,5 @@ function initMap() {
     document.getElementById("GPScoor").textContent = JSON.stringify(pos);
   });
 }
+
+export { pos };
