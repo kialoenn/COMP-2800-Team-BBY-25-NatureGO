@@ -1,8 +1,8 @@
 //https://developers.google.com/maps/documentation/javascript/examples/inset-map#maps_inset_map-javascript
 let map, overview;
-const OVERVIEW_DIFFERENCE = 5;
-const OVERVIEW_MIN_ZOOM = 3;
-const OVERVIEW_MAX_ZOOM = 10;
+// const OVERVIEW_DIFFERENCE = 5;
+// const OVERVIEW_MIN_ZOOM = 3;
+// const OVERVIEW_MAX_ZOOM = 10;
 
 
 function initMap() {
@@ -32,27 +32,27 @@ function initMap() {
     ...mapOptionsSetting,
   });
 
-  // instantiate the overview map without controls
-  overview = new google.maps.Map(document.getElementById("overview"), {
-    ...mapOptionsSetting,
-    disableDefaultUI: true,
-    gestureHandling: "none",
-    zoomControl: false,
-  });
+  // // instantiate the overview map without controls
+  // overview = new google.maps.Map(document.getElementById("overview"), {
+  //   ...mapOptionsSetting,
+  //   disableDefaultUI: true,
+  //   gestureHandling: "none",
+  //   zoomControl: false,
+  // });
 
-  function clamp(num, min, max) {
-    return Math.min(Math.max(num, min), max);
-  }
-  map.addListener("bounds_changed", () => {
-    overview.setCenter(map.getCenter());
-    overview.setZoom(
-      clamp(
-        map.getZoom() - OVERVIEW_DIFFERENCE,
-        OVERVIEW_MIN_ZOOM,
-        OVERVIEW_MAX_ZOOM
-      )
-    );
-  });
+  // function clamp(num, min, max) {
+  //   return Math.min(Math.max(num, min), max);
+  // }
+  // map.addListener("bounds_changed", () => {
+  //   overview.setCenter(map.getCenter());
+  //   overview.setZoom(
+  //     clamp(
+  //       map.getZoom() - OVERVIEW_DIFFERENCE,
+  //       OVERVIEW_MIN_ZOOM,
+  //       OVERVIEW_MAX_ZOOM
+  //     )
+  //   );
+  // });
 }
 
 //get current user's photos in DB with none empty GPS coordinates
