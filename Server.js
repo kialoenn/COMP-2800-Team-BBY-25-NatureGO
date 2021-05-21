@@ -107,7 +107,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             })
             console.log(labels);
             let animalType;
-            storeanimalDB();
+            animalDB = await getanimalnames();
             console.log('db: ' + animalDB);
             animalDB.forEach(animal => {
                 if (labels.find(function (a) {
@@ -221,6 +221,19 @@ app.post('/get-email', function (req, res) {
         })
 
 });
+
+// app.post('/get-gps', function (req, res) {
+//     console.log(req.body.id);
+//     // db.collection("users").doc(req.body.id).collection("animals").where("lat", "!=", "")
+//         db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43").collection("animals").where("GPS.lat", "!=", "")
+//     .get()
+//     .then((photos) => {
+
+//         res.send(photos);  
+//     });
+// });
+
+
 
 async function quickstart(fileName) {
     // Imports the Google Cloud client library

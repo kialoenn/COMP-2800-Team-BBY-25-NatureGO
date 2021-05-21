@@ -24,10 +24,7 @@ $(document).ready(function () {
             });
         } else {
             window.location.href = "/html/login.html";
-
         }
-
-
     });
 });
 
@@ -59,22 +56,7 @@ $(document).ready(function () {
 
         }
     });
-
-    document.getElementById("leaderboard").addEventListener('click', function(e) {
-
-        e.preventDefault();
-    
-        // let atm = '<div class="modal fade" id="exampleModalTask" tabindex="-1" aria-labelledby="exModalTask" aria-hidden="true"><div class="modal-dialog"><div class="modal-content">';
-        // atm = atm + '<form id="form-task" action="#"><div class="modal-header"><h5 class="modal-title" id="exampleModalLabel">Task</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>';
-        // atm = atm + '<div class="modal-body"><input id="task" type="text" placeholder="new task" maxlength="26" required="required"></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>';
-        // atm = atm + '<button type="submit" class="btn btn-primary">Save</button></div></form></div></div></div>';
-
-        // $("#showlrdbrd").append(atm);
-        $("#exampleModal").modal("show");
-    })
 });
-
-
 
 function uploadUserProfilePic() {
     // Let's assume my storage is only enabled for authenticated users 
