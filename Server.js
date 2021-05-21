@@ -188,7 +188,7 @@ app.post('/get-email', function (req, res) {
 
 app.post('/get-gps', function (req, res) {
     console.log(req.body.id);
-    db.collection("users").doc(req.body.id).collection("animals").where("lat", "!=", "")
+    db.collection("users").doc(req.body.id).collection("animals").where("lat", "!=", "").where("lng","!=","")
     .get()
     .then((photos) => {
         // photosList(photos);

@@ -37,7 +37,7 @@ $(document).ready(function () {
               data: u,
               success: function (data) {;
                   t2 = data;
-                  console.log("data: " + data);
+                  console.log("data: " + {data});
               },
               error: function (jqXHR, textStatus, errorThrown) {
                   console.log("ERROR:", jqXHR, textStatus, errorThrown);
