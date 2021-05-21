@@ -1,8 +1,10 @@
 //author: Michael W
 document.getElementById("selectImgLocation").style.visibility = "hidden";
 document.getElementById("file-input").setAttribute("onchange", "previewFile()");
+
 window.initMap = initMap;
 let pos, map, infoWindow;
+
 
 //preview replace image
 window.previewFile = function previewFile() {
@@ -85,6 +87,10 @@ function convertDMStoLatLong(hour, minute, second, position) {
   return GPScoor;
 }
 
+
+export { pos };
+
+
 //from google map API examples
 //https://developers.google.com/maps/documentation/javascript/examples/event-click-latlng
 //https://developers.google.com/maps/documentation/javascript/examples/map-geolocation#maps_map_geolocation-javascript
@@ -126,5 +132,3 @@ function initMap() {
     document.getElementById("GPScoor").textContent = JSON.stringify(pos);
   });
 }
-
-export { pos };
