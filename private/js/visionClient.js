@@ -35,7 +35,7 @@ $(document).ready(function () {
                     success: function (r) {
                         console.log(r);
                         if (r.status == 'success') {
-                            calcpoints(user.uid);
+                            calcpoints(user.uid,r.type);
                             console.log("result", r);
                             localStorage.setItem('animalinfo', r.type);
                             localStorage.setItem('url', r.url);
@@ -70,13 +70,16 @@ $(document).ready(function () {
 
 });
 
-async function calcpoints(user){
+   /**
+     * Function to calulcate points and update userpoints.
+     */
+
+async function calcpoints(user,animaltype){
     let points = 0;
-    let userdata = await getpoints();
+    let userpoints = await getpoints();
+    let rarity = await getrarity(animaltype);
 
-    console.log(userdata);
-
-    switch (userdata.rarity) {
+    switch (rarity) {
         case "epic":
             points = 1000;
             break;
@@ -88,16 +91,20 @@ async function calcpoints(user){
             break;
     }
 
-    let total_points = userdata.points + points ;
+    console.log(points);
+    localStorage.setItem('points', points);
 
-    db.collection('users').doc(user.uid).update({
+    let total_points = userpoints + points ;
+
+    db.collection('users').doc(user).update({
         totalpoints:total_points
     });
 
-    localStorage.setItem('points', points);
-
 }
 
+   /**
+     * Function to get current user .
+     */
 function getpoints() {
     return new Promise(function (res, rej) {
         firebase.auth().onAuthStateChanged(function (user) {
@@ -105,14 +112,29 @@ function getpoints() {
                 db.collection("users").
                 doc(user.uid).get()
                     .then(function (doc) {
-                       let data ={
-                           "rarity":doc.data().rarity,
-                           "points":doc.data().totalpoints
-                      };
-                      res(data);
+                      res(doc.data().totalpoints);
                     });
             }
         })
     })
 
+}
+
+   /**
+     * Function to get rarity of animal.
+     */
+
+function getrarity(animaltype) {
+    return new Promise(function (res, rej) {
+        db.collection("animals_info").where("name", "==", animaltype)
+                .get()
+                .then((querySnapshot) => {
+
+                    querySnapshot.forEach((doc) => {
+                        res(doc.data().rarity)
+                    });
+                })
+
+    })
+   
 }
