@@ -37,6 +37,7 @@ nav{
     margin:10px;
     border:solid white;
 }
+
 #profilepic p {
     font-size: 40px;
     text-align: center;
@@ -56,7 +57,6 @@ nav{
     position:relative;
     left: 170px;
     top:90px;
-   
 }
 
 .row2 span {
@@ -69,8 +69,12 @@ nav{
 
 .information{
     font-weight: bold;
-
 }
+
+#points{
+    font-weight: bold;
+}
+
 
 
 #edit{
@@ -96,7 +100,7 @@ nav{
     cursor: pointer;
     position: relative;
     bottom:150px;
-    width: 145px;
+    width:145px;
     height: 150px;
 }
 
@@ -111,7 +115,7 @@ nav{
 }
 
 input[type="file"] {
-    display: none;
+    display:none;
 }
 
 
@@ -127,6 +131,16 @@ button{
     background-color: #04443c;
     font-size: 30px;
 }
+
+#leaderboard{
+    color: white;
+    background-color: #04443c;
+    font-size: 30px;
+    position: relative;
+    left: 200px;
+    
+}
+
 
 .in-col{
     height:50%;
