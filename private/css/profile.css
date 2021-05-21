@@ -53,7 +53,7 @@ nav{
 #userinfo p {
     font-size: 40px;
     color:white;
-    position:fixed;
+    position:relative;
     left: 170px;
     top:90px;
    
@@ -73,13 +73,13 @@ nav{
 }
 
 
-
 #edit{
     border-radius:25px;
     width: 150px;
     height: 40px;
     position: relative;
-    left: 10px;
+    left: 5px;
+    top: 15px;
 
 }
 
@@ -133,9 +133,10 @@ button{
     color: #76c893;
 }
 
-#content{
-    font-size:25px;
-    color: #04443c;;
+.userinfo div{
+    font-size:20px;
+    color: #04443c;
+    overflow: hidden;
 }
 
 

@@ -153,33 +153,38 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
 // app.listen(port, function () {
 //     console.log('listening on port ' + port + '!');
 // });
-app.get('/get-email', function (req, res) {
-
-    db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43")
-    .get()
-    .then(function (doc) {
-        // grabs data from user doc
-        var mail = doc.data().email;
-        res.setHeader('Content-Type', 'application/HTML');
-        res.send(mail);  
-        
-    })
-});
 
 
-app.get('/get-name', function (req, res) {
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}));
 
-    db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43")
+app.post('/get-name', function (req, res) {
+    console.log(req.body.id);
+    db.collection("users").doc(req.body.id)
     .get()
     .then(function (doc) {
         // grabs data from user doc
         var user = doc.data().name;
         res.setHeader('Content-Type', 'application/HTML');
         res.send(user);  
-        
     })
+    
 });
 
+app.post('/get-email', function (req, res) {
+    console.log(req.body.id);
+    db.collection("users").doc(req.body.id)
+    .get()
+    .then(function (doc) {
+        // grabs data from user doc
+        var user = doc.data().email;
+        res.setHeader('Content-Type', 'application/HTML');
+        res.send(user);  
+    })
+    
+});
 
 async function quickstart(fileName) {
     // Imports the Google Cloud client library
