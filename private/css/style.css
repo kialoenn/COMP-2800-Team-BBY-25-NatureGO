@@ -50,3 +50,16 @@ h1 {
   line-height: 1.42857;
   background-color: #04443c;
 }
+
+.swal2-modal {
+  min-height: 600px;
+}
+
+.swal2-checkbox {
+  flex-flow: row-reverse;
+}
+
+.swal2-content {
+  flex-direction: column-reverse;
+  display: flex;
+}
