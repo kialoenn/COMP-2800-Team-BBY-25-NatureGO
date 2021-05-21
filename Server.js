@@ -107,7 +107,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             })
             console.log(labels);
             let animalType;
-            storeanimalDB();
+            animalDB = await getanimalnames();
             console.log('db: ' + animalDB);
             animalDB.forEach(animal => {
                 if (labels.find(function (a) {
