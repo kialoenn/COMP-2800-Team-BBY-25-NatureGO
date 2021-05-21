@@ -83,6 +83,7 @@ async function calcpoints(user, animaltype) {
   let points = 0;
   let userpoints = await getpoints();
   let rarity = await getrarity(animaltype);
+ 
 
   switch (rarity) {
     case "epic":
@@ -100,11 +101,7 @@ async function calcpoints(user, animaltype) {
   localStorage.setItem('points', points);
 
   let total_points = userpoints + points;
-
-  db.collection('users').doc(user).update({
-    totalpoints: total_points
-  });
-
+  await updatepoints(user,total_points);
 }
 
 /**
@@ -140,6 +137,22 @@ function getrarity(animaltype) {
         });
       })
 
+  })
+
+}
+
+/**
+ * Function to Update userpoints.
+ */
+
+ function updatepoints(user,points) {
+  return new Promise(function (res, rej) {
+    db.collection('users').doc(user).update({
+      totalpoints: points
+    });
+    res("Sucess");
+
+    console.log(points);
   })
 
 }
