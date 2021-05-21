@@ -1,0 +1,36 @@
+/* body {
+    background-color: Beige;
+} */
+
+#info_tab {
+    font-size: 20px;
+    color: #04443c;
+    margin-top: 10px;
+}
+
+#donate {
+    background-color: #04443c;
+    text-align: center;
+    width: 40vw;
+    margin-bottom: 20px;
+}
+
+.navbar {
+    background-color: #04443c;
+    color: white
+}
+
+.navbar a {
+    color: white;
+}
+
+.nav-link:hover {
+    color: #76c893;
+    cursor: pointer;
+}
+
+#image {
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+}
