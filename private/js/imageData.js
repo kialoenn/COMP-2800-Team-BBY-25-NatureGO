@@ -127,8 +127,4 @@ function initMap() {
   });
 }
 
-<<<<<<< HEAD
 export { pos };
-=======
-export { pos };
->>>>>>> imageDate_Feature
