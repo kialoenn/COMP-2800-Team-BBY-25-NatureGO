@@ -51,7 +51,16 @@ h1 {
   background-color: #04443c;
 }
 
-#easterEgg {
-  height: 30vh;
-  color: #04443c;
+.swal2-modal {
+  min-height: 600px;
+}
+
+.swal2-popup {
+  justify-content:flex-end;
+}
+
+.swal2-content {
+  font-weight: bolder;
+  font-size: 40px;
+  color: rgb(197, 81, 81);
 }
