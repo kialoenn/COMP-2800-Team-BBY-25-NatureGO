@@ -33,7 +33,7 @@ $(document).ready(function () {
               localStorage.setItem('animalinfo', r.type);
               localStorage.setItem('url', r.url);
               window.location.href = "/html/info.html";
-            } else {
+            } else if (r.status == 'error') {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -41,7 +41,16 @@ $(document).ready(function () {
               }).then(function () {
                 window.location.href = "/html/index.html";
               })
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'This animal is already in your collection.',
+              }).then(function () {
+                window.location.href = "/html/index.html";
+              })
             }
+
           },
           error: function (e) {
             Swal.fire({
@@ -54,6 +63,9 @@ $(document).ready(function () {
           }
         });
       }
-    });
+    })
+
+
   });
+
 });

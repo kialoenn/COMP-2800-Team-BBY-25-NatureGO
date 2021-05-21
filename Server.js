@@ -88,51 +88,85 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
               console.error(err);
               reject(err);
             }
-            console.log(url);
-            resolve(url);
-          })
-        })
-      }
-      async function assignURL() {
-        let temp = await getURL(blob);
-        return temp;
-      }
 
-      let result = await quickstart(`gs://naturego-e74d6.appspot.com/${blob.name}`);
-      let labels = [];
-      result.forEach(label => {
-        labels.push(label.description);
-      })
-      console.log(labels);
-      let animalType;
-      storeanimalDB();
-      console.log('db: ' + animalDB);
-      animalDB.forEach(animal => {
-        if (labels.find(a => a.includes(animal))) {
-          animalType = animal;
-        };
-      })
-      // console.log(animalType);
-      if (animalType == undefined) {
-        async function deleteFile() {
-          await bucket.file(blob.name).delete();
-          console.log('deleted');
-        }
-        deleteFile().catch(console.error);
-        res.send({
-          status: 'error',
-        })
-      } else {
-        assignURL().then(function (url) {
-          imageURL = url;
-          var dbref = db.collection("users").doc(req.body.id).collection("animals");
+            async function assignURL() {
+                let temp = await getURL(blob);
+                return temp;
+            }          
 
-          dbref.doc().set({
-            url: imageURL,
-            type: animalType,
-            GPS: {
-              lat: req.body.lat,
-              lng: req.body.lng,
+            let result = await quickstart(`gs://naturego-e74d6.appspot.com/${blob.name}`);
+            let labels = [];
+            result.forEach(label => {
+                labels.push(label.description);
+            })
+            console.log(labels);
+            let animalType;
+            storeanimalDB();
+            console.log('db: ' + animalDB);
+            animalDB.forEach(animal => {
+                if (labels.find(function(a) {
+                    if (a.length >= animal.length) {
+                        return a.toUpperCase().includes(animal.toUpperCase())
+                    } else {
+                        return animal.toUpperCase().includes(a.toUpperCase())
+                    }
+                })){
+                   animalType = animal; 
+                }
+
+            })
+
+            // console.log(animalType);
+             if (animalType == undefined) {
+                 async function deleteFile() {
+                     await bucket.file(blob.name).delete();
+                     console.log('deleted');
+                 }
+                 deleteFile().catch(console.error);
+                 res.send({
+                     status: 'error',
+                 })
+             } else {
+                assignURL().then(function (url) {
+                    imageURL = url;
+                    var dbref = db.collection("users").doc(req.body.id).collection("animals");
+
+                    dbref.where('type', '==', animalType)
+                    .get()
+                    .then(function(snap) {
+                        if (snap.docs.length == 0) {
+                            dbref.doc().set({
+                                url: imageURL,
+                                type: animalType,
+                                GPS: {
+                                    lat: req.body.lat,
+                                    lng: req.body.lng,
+                                }
+                            }).catch(e => {console.log(e)});
+                            console.log("success");
+                            res.send({
+                                status: 'success',
+                                type: animalType,
+                                url: imageURL,
+                                GPS: {
+                                    lat: req.body.lat,
+                                    lng: req.body.lng,
+                                },
+                            });
+                        } else {
+                            async function deleteFile() {
+                                await bucket.file(blob.name).delete();
+                                console.log('deleted');
+                            }
+                            deleteFile().catch(console.error);
+                            res.send({
+                                status: 'existed',
+                            })
+                        }
+                    })
+                    
+                });
+
             }
           }).catch(e => { console.log(e) });
           console.log("success");
