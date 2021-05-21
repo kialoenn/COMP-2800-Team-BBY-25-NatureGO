@@ -35,10 +35,12 @@ $(document).ready(function () {
                     success: function (r) {
                         console.log(r);
                         if (r.status == 'success') {
+                            calcpoints(user.uid);
                             console.log("result", r);
                             localStorage.setItem('animalinfo', r.type);
                             localStorage.setItem('url', r.url);
                             window.location.href = "/html/info.html";
+                          
                         } else {
                             Swal.fire({
                                 icon: 'error',
@@ -67,3 +69,50 @@ $(document).ready(function () {
     });
 
 });
+
+async function calcpoints(user){
+    let points = 0;
+    let userdata = await getpoints();
+
+    console.log(userdata);
+
+    switch (userdata.rarity) {
+        case "epic":
+            points = 1000;
+            break;
+        case "rare":
+            points = 500;
+            break;
+        case "common":
+            points = 200;
+            break;
+    }
+
+    let total_points = userdata.points + points ;
+
+    db.collection('users').doc(user.uid).update({
+        totalpoints:total_points
+    });
+
+    localStorage.setItem('points', points);
+
+}
+
+function getpoints() {
+    return new Promise(function (res, rej) {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                db.collection("users").
+                doc(user.uid).get()
+                    .then(function (doc) {
+                       let data ={
+                           "rarity":doc.data().rarity,
+                           "points":doc.data().totalpoints
+                      };
+                      res(data);
+                    });
+            }
+        })
+    })
+
+}
