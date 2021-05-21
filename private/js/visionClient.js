@@ -147,12 +147,13 @@ function getrarity(animaltype) {
 
  function updatepoints(user,points) {
   return new Promise(function (res, rej) {
-    db.collection('users').doc(user).update({
-      totalpoints: points
-    });
-    res("Sucess");
+    var dbref = db.collection('users').doc(user);
+    dbref.update({
+      totalpoints:points
+    }).then(function (){
+      res("Success");
+    })
 
-    console.log(points);
   })
 
 }
