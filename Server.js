@@ -56,6 +56,7 @@ app.get('/', function (req, res) {
 });
 
 storeanimalDB();
+console.log(animalDB);
 
 app.post('/upload', upload.single('photo'), async (req, res) => {
   console.log(req.body);
