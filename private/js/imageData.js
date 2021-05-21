@@ -1,7 +1,6 @@
 //author: Michael W
 document.getElementById("selectImgLocation").style.visibility = "hidden";
 document.getElementById("file-input").setAttribute("onchange", "previewFile()");
-
 window.initMap = initMap;
 let pos, map, infoWindow;
 
