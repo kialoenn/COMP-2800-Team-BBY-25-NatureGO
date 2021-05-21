@@ -43,8 +43,8 @@ window.previewFile = function previewFile() {
                 });
                 infoWindow.setContent(
                   JSON.stringify(pos)
-                  );
-                  map.setCenter(pos);
+                );
+                map.setCenter(pos);
                 infoWindow.open(map);
               }
               document.getElementById("GPScoor").textContent = JSON.stringify(pos);
@@ -127,4 +127,8 @@ function initMap() {
   });
 }
 
+<<<<<<< HEAD
 export { pos };
+=======
+export { pos };
+>>>>>>> imageDate_Feature
