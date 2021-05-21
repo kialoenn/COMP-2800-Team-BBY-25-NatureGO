@@ -59,7 +59,8 @@ h1 {
   justify-content:flex-end;
 }
 
-.swal2-header {
-  font-size: 20px;
-  color: #76c893;
+.swal2-content {
+  font-weight: bolder;
+  font-size: 40px;
+  color: rgb(197, 81, 81);
 }

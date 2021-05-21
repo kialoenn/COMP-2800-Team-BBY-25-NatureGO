@@ -135,11 +135,10 @@ $(document).ready(function() {
         // This image is downloaded from https://dribbble.com/shots/5771570-Bird/attachments/5771570-Bird?mode=media
         if (trigger[0] === 1 && trigger[1] === 3) {
             Swal.fire({
-                //width: 50%,
-                height: 500,
-                imageHeight: 500,
+                html:"<p>You find our Easter Egg!!!</p>",
                 background: 'url(/img/bird-dribbble.gif)',
-                title: 'You find our Easter Egg!!!'
+                confirmButtonText: 'Nooice!',
+                confirmButtonColor: '#04443c',
               })
         }
     })
