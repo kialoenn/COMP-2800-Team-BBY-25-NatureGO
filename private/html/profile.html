@@ -17,10 +17,10 @@
 <body>
   <ul class="nav fixed-top nav-expand-lg">
     <li class="me-auto nav-item">
-      <a class="nav-link active" aria-current="page" href="index.html"><i data-feather="feather"></i>
+      <a class="nav-link active" aria-current="page" href="/html/index.html"><i data-feather="feather"></i>
         NatureGo</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" id="authentication">
       <a class="nav-link right-s-nav" title="camera" href="/html/login.html">Login</a>
     </li>
     <li class="nav-item">
@@ -87,7 +87,7 @@
   <!-- Navigation Bar-->
   <ul class="navbar nav fixed-bottom  justify-content-around nav-expand-lg mt-5">
     <li class="nav-item">
-      <a class="nav-link right-s-nav" title="camera" href="/html/index.html"><i data-feather="camera"></i></a>
+      <a class="nav-link right-s-nav" title="camera" href="/html/upload.html"><i data-feather="camera"></i></a>
     </li>
     <li class="nav-item">
       <a class="nav-link right-s-nav" title="photoCollection" href="/html/collection.html"><i
@@ -102,11 +102,17 @@
   </ul>
   <!-- Navigation Bar -->
 
+  <!----------------------------------------------->
+  <!-- JS: Boostrap, JQuery, Firebase, API related-->
+  <!----------------------------------------------->
 
-
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+  <script src="/js/firebaseAPI.js"></script>
+  <script src="/js/authentication.js"></script>
   <script>
     $.noConflict(true);
   </script>
