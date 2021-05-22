@@ -37,6 +37,7 @@ app.use('/html', express.static('private/html'));
 // APP GETS
 app.get('/', function (req, res) {
 
+<<<<<<< HEAD
     res.set('Server', 'NatureGO');
     res.set('Server', 'BBY');
 
@@ -52,6 +53,23 @@ app.get('/', function (req, res) {
         }
         res.end();
     });
+=======
+  res.set('Server', 'NatureGO');
+  res.set('Server', 'BBY');
+
+  fs.readFile("./private/html/main.html", function (error, pgRes) {
+    if (error) {
+      res.writeHead(404);
+      res.write(msg404);
+    } else {
+      res.writeHead(200, {
+        'Content-Type': 'text/html'
+      });
+      res.write(pgRes);
+    }
+    res.end();
+  });
+>>>>>>> Map_Feature
 
 });
 
