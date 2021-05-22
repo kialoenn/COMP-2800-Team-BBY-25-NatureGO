@@ -4,7 +4,7 @@
  function checkUserStatus() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (!user) {
-            window.location.href = "/html/login.html";
+            window.location.href = "/html/index.html";
         } else {
             $('#authentication').html('<a class="nav-link right-s-nav" title="camera" id = "logout">logout</a>');
             $('#logout').css({'cursor': 'pointer'});

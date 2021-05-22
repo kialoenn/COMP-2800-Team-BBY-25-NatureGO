@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    firebase.auth().onAuthStateChanged(function (user) {
+        calcpoints();
+    });
     var points = 0;
     var rarity;
 
@@ -63,7 +66,7 @@ $(document).ready(function () {
             totalpoints:total_points
         });
     }
-    calcpoints();
+    
 
     /**
      * Function to get existing user points.
@@ -86,4 +89,5 @@ $(document).ready(function () {
         })
 
     }
+
 });

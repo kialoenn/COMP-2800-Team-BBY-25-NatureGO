@@ -1,11 +1,11 @@
 import { pos } from "./imageData.js";
 
 $(document).ready(function () {
+  firebase.auth().onAuthStateChanged(function (user) {
   $('#imageForm').submit(function (e) {
     e.preventDefault();
 
     let fd = new FormData(this);
-    firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         console.log(user.uid);
         console.log(pos);
@@ -39,7 +39,7 @@ $(document).ready(function () {
                 title: 'Oops...',
                 text: 'We cannot identify animal in the picture, please upload another one',
               }).then(function () {
-                window.location.href = "/html/index.html";
+                window.location.href = "/html/main.html";
               })
             }
           },
@@ -49,7 +49,7 @@ $(document).ready(function () {
               title: 'Oops...',
               text: 'We cannot identify animal in the picture, please upload another one',
             }).then(function () {
-              window.location.href = "/html/index.html";
+              window.location.href = "/html/main.html";
             })
           }
         });

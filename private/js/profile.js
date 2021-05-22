@@ -24,7 +24,10 @@ $(document).ready(function () {
             });
         } else {
             window.location.href = "/html/login.html";
+
         }
+
+
     });
 });
 
@@ -55,6 +58,8 @@ $(document).ready(function () {
             window.location.href = "/html/login.html";
 
         }
+
+
     });
 });
 
