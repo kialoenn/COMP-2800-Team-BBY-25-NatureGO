@@ -1,3 +1,4 @@
+
 //https://developers.google.com/maps/documentation/javascript/examples/inset-map#maps_inset_map-javascript
 let map, overview;
 const OVERVIEW_DIFFERENCE = 5;
@@ -5,8 +6,7 @@ const OVERVIEW_MIN_ZOOM = 3;
 const OVERVIEW_MAX_ZOOM = 10;
 
 
-function initMap(user) {
-  firebase.auth().onAuthStateChanged(function (user) {
+function initMap() {
   let defaultGPS = {
     lat: 49.25076313248947,
     lng: -123.0017895306895,
@@ -54,8 +54,6 @@ function initMap(user) {
       )
     );
   });
-  getGPScurrentUserPhotoLoc(user);
-});
 }
 
 function strGeoCoorToFloatPt(geoStr) {
@@ -64,20 +62,19 @@ function strGeoCoorToFloatPt(geoStr) {
 }
 
 //get current user's photos in DB with none empty GPS coordinates
-function getGPScurrentUserPhotoLoc(user) {
-  db.collection("users").doc(user.uid).collection("animals").where("GPS.lat", "!=", "")
-    .get().then(disM => {displayMarker(disM)});
+function getGPScurrentUserPhotoLoc() {
+  firebase.auth().onAuthStateChanged(function (user) {
+    db.collection("users").doc(user.id).collection("animals").where("GPS.lat", "!=", "")
+      .get().then(gpsPosit => {displayMarker(gpsPosit)});
+  });
 }
 
 function displayMarker(gpsPosit) {
   gpsPosit.forEach((t) => {
-    var marker;
-    var markerOverview;
-    var infow;
-
     //animal type: "animal"
     console.log("animal: " + JSON.stringify(t.data().type));
     name = JSON.stringify(t.data().type);
+    var marker;
     // var infoContentName = '<div class="infoContent">' + '<h5 class="firstHeading">' + name + '</h5>' + "</div>";
     //{"lng":"string","lat":"string"}
     console.log("gps: " + JSON.stringify(t.data().GPS));
@@ -93,21 +90,14 @@ function displayMarker(gpsPosit) {
       lat: lat,
       lng: lng,
     }
-
-    if (map !== null && overview !== null) {
-      infow = new google.maps.InfoWindow({
+    if (map !== null) {
+      const infow = new google.maps.InfoWindow({
         content: name,
         maxWidth: 200,
       });
       marker = new google.maps.Marker({
         position: gpsCoord,
         map: map,
-        // icon: greenIcon,
-        title: name,
-      });
-      markerOverview = new google.maps.Marker({
-        position: gpsCoord,
-        map: overview,
         // icon: greenIcon,
         title: name,
       });
@@ -118,6 +108,7 @@ function displayMarker(gpsPosit) {
   });
 }
 
+getGPScurrentUserPhotoLoc();
 // $(document).ready(function () {
 //   firebase.auth().onAuthStateChanged(function (users) {
 //       if (users) {
@@ -151,7 +142,7 @@ function displayMarker(gpsPosit) {
 //               }
 //           });
 //       } else {
-//           window.location.href = "/html/index.html";
+//           window.location.href = "/html/login.html";
 //       }
 
 //   });

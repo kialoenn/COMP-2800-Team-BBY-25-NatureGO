@@ -1,11 +1,8 @@
-let pos, map, infoWindow;
-
-firebase.auth().onAuthStateChanged(function (user) {
 //author: Michael W
 document.getElementById("selectImgLocation").style.visibility = "hidden";
 document.getElementById("file-input").setAttribute("onchange", "previewFile()");
 window.initMap = initMap;
-
+let pos, map, infoWindow;
 
 //preview replace image
 window.previewFile = function previewFile() {
@@ -129,5 +126,5 @@ function initMap() {
     document.getElementById("GPScoor").textContent = JSON.stringify(pos);
   });
 }
-});
+
 export { pos };

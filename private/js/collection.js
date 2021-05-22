@@ -1,7 +1,7 @@
 $(document).ready(function () {
     firebase.auth().onAuthStateChanged(function (user) {
         if (!user) {
-            window.location.href = "/html/index.html";
+            window.location.href = "/html/login.html";
         } else {
             db.collection('users').doc(user.uid).collection('animals')
                 .get()
