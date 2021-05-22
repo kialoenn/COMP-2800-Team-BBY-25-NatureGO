@@ -40,7 +40,7 @@ app.get('/', function (req, res) {
   res.set('Server', 'NatureGO');
   res.set('Server', 'BBY');
 
-  fs.readFile("./private/html/main.html", function (error, pgRes) {
+  fs.readFile("./private/html/index.html", function (error, pgRes) {
     if (error) {
       res.writeHead(404);
       res.write(msg404);

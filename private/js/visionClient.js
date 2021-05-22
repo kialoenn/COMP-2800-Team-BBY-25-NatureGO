@@ -39,7 +39,7 @@ $(document).ready(function () {
                 title: 'Oops...',
                 text: 'We cannot identify animal in the picture, please upload another one',
               }).then(function () {
-                window.location.href = "/html/main.html";
+                window.location.href = "/html/index.html";
               })
             }
           },
@@ -49,7 +49,7 @@ $(document).ready(function () {
               title: 'Oops...',
               text: 'We cannot identify animal in the picture, please upload another one',
             }).then(function () {
-              window.location.href = "/html/main.html";
+              window.location.href = "/html/index.html";
             })
           }
         });
