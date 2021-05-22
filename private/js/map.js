@@ -5,7 +5,7 @@ const OVERVIEW_MIN_ZOOM = 3;
 const OVERVIEW_MAX_ZOOM = 10;
 
 
-function initMap(user) {
+function initMap() {
   firebase.auth().onAuthStateChanged(function (user) {
   let defaultGPS = {
     lat: 49.25076313248947,
