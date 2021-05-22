@@ -1,5 +1,8 @@
 $(document).ready(function () {
+<<<<<<< HEAD
     var points = 0;
+=======
+>>>>>>> dev
     var rarity;
 
     //Getting the animal name from local storage..
@@ -7,7 +10,10 @@ $(document).ready(function () {
     //Getting the Image URL from local storage..
     var imageURL = localStorage.getItem("url");
 
-    console.log(animaltype);
+    var points = localStorage.getItem("points");
+
+    console.log(points);
+
 
     $("#image").attr("src", imageURL);
 
@@ -34,6 +40,7 @@ $(document).ready(function () {
         })
     }
 
+<<<<<<< HEAD
     /**
      * Function to caluclate points and display them .
      */
@@ -86,5 +93,9 @@ $(document).ready(function () {
         })
 
     }
+=======
+    getanimalinfo();
+    $("#info_tab").prepend("<h2>Congrats!! You got <b>" + points + " </b>Points</h2>");
+>>>>>>> dev
 
 });

@@ -17,6 +17,10 @@
 
 
   <!-- Optional styles and scripts of your own-->
+<<<<<<< HEAD
+=======
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+>>>>>>> dev
   <link rel="stylesheet" type="text/css" href="/css/style.css" />
   <link rel="icon" type="image/jpg" href="/img/NaturegoFavicon.png" />
 </head>
@@ -28,7 +32,11 @@
   <!-------------------------------------->
   <ul class="nav fixed-top nav-expand-lg">
     <li class="me-auto nav-item">
+<<<<<<< HEAD
       <a class="nav-link active" aria-current="page" href="/html/index.html"><i data-feather="feather"></i>
+=======
+      <a class="nav-link active" id="easterEgg" aria-current="page" href="/html/index.html"><i data-feather="feather"></i>
+>>>>>>> dev
         NatureGo</a>
     </li>
     <li class="nav-item" id="authentication">
@@ -45,16 +53,13 @@
     <div class="container row d-flex justify-content-center ">
       <h1>Welcome to NatureGo<br></h1>
 
-
+      <h3>Let's find some animal info</h3>
     <div id="circle" class="row">
-      <button id="snap" type="button" class="btn btn-circle"><a href="/html/upload.html">Snap</a></button>
+      <!-- <button id="snap" type="button" class="btn btn-circle"> -->
+        <a id="snap" class="btn btn-circle" href="/html/upload.html"><p>Snap</p></a></button>
     </div>
 
-    <div class="row" id="notif">
-      <div class="alert alert-success" role="alert">
-        Richard found a wild Squirrel..
-      </div>
-    </div>
+
 
   </div>
 
@@ -94,6 +99,7 @@
   <script>
     $.noConflict(true);
   </script>
+  <script src="/js/easterEgg.js"></script>
   <script src="https://unpkg.com/feather-icons"></script>
   <script>
     feather.replace();

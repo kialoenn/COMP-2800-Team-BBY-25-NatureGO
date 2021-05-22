@@ -31,30 +31,28 @@
   <br>
   <br>
   <div class="row row1">
-    <input type="file" id="mypic-input" accept="image/*"/>
     <div class="col-2 my-col">
       <div id=profilepic>
-        <img id="mypic-goes-here" src=" " width=150 height=150
-        class="rounded-circle" />
+        <img id="mypic-goes-here" src=" " width=145 height=145 class="rounded-circle" />
+        <label id ="input-button"><input type="file" id="mypic-input" accept="image/*"/></label>
       </div>
     </div>
     <div class="col-10 my-col">
       <div id="userinfo">
-        <p>Richard Mac</p>
+        <p></p>
       </div>
     </div>
   </div>
 
   <div class="row row2">
     <div class="col-12 in-col stats">
-      <span class=information>4000</span>
-      <span class=information>10</span>
+      <span id = "points">0</span>
 
 
     </div>
     <div class="col-12 in-col label">
       <span>Score</span>
-      <span>Level</span>
+  
     </div>
   </div>
 
@@ -67,7 +65,7 @@
     <div class="col-12 my-col">
       <div id="customizeinfo">
         <p>About Me</p>
-        <div class = "userinfo">
+        <div class="userinfo">
           <div id=username></div>
           <div id=description></div>
           <div id=email></div>
@@ -79,10 +77,29 @@
   </div>
 
   <div class="row justify-content-center row5">
-    <div class="col-6 my-col"><button id="customize">Leaderboards</button></div>
+    <div class="col-6 my-col"><button id ="leaderboard" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalTask">
+      Leaderboard
+    </button></div>
   </div>
 
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Navigation Bar-->
   <ul class="navbar nav fixed-bottom  justify-content-around nav-expand-lg mt-5">
@@ -107,16 +124,16 @@
   <!----------------------------------------------->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+  <script src="/js/firebaseAPI.js"></script>
   <script src="/js/authentication.js"></script>
   <script>
     $.noConflict(true);
   </script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-storage.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
-  <script src="/js/firebaseAPI.js"></script>
   <script src="/js/profile.js"></script>
   <script src="https://unpkg.com/feather-icons"></script>
   <script>
