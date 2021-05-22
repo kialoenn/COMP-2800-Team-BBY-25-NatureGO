@@ -3,7 +3,7 @@ const express = require('express');
 const vision = require('@google-cloud/vision');
 const fs = require("fs");
 const app = express();
-const path = require('path')
+const path = require('path');
 const PORT = process.env.PORT || 8000
 
 
@@ -18,7 +18,7 @@ var bucket = admin.storage().bucket();
 const db = admin.firestore();
 // GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
-const animalDB = ['Duck', 'Cat', 'Bear', 'Brown bear'];
+var animalDB = [];
 const multer = require('multer');
 const {
     BlockList
@@ -50,20 +50,22 @@ app.get('/', function (req, res) {
             });
             res.write(pgRes);
         }
-
         res.end();
     });
 
 });
 
-
 app.post('/upload', upload.single('photo'), async (req, res) => {
+    console.log(req.body);
+    console.log('id ' + req.body.id);
+    console.log("request path: " + req.file.path);
     if (req.file) {
-        //let result = await quickstart(req.file.path)
+        // let result = await quickstart(req.file.path)
+        //let result = await quickstart(req)
         let imageURL = "";
 
         const blob = bucket.file(req.file.originalname);
-        blob.name = 'uU8tulEzehbRnnbR9hoNgmXhyUI2' + new Date().valueOf() + '.jpeg';
+        blob.name = req.body.id + '|' + new Date().valueOf() + '.jpeg';
         const blobStream = blob.createWriteStream();
 
 
@@ -98,7 +100,6 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                 return temp;
             }
 
-
             let result = await quickstart(`gs://naturego-e74d6.appspot.com/${blob.name}`);
             let labels = [];
             result.forEach(label => {
@@ -106,34 +107,74 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             })
             console.log(labels);
             let animalType;
+            animalDB = await getanimalnames();
+            console.log('db: ' + animalDB);
             animalDB.forEach(animal => {
-                if (labels.find(a => a.includes(animal))){
+                if (labels.find(function (a) {
+                        if (a.length >= animal.length) {
+                            return a.toUpperCase().includes(animal.toUpperCase())
+                        } else {
+                            return animal.toUpperCase().includes(a.toUpperCase())
+                        }
+                    })) {
                     animalType = animal;
-                };
-                
+                }
+
             })
 
-            console.log(animalType);
+            // console.log(animalType);
             if (animalType == undefined) {
+                async function deleteFile() {
+                    await bucket.file(blob.name).delete();
+                    console.log('deleted');
+                }
+                deleteFile().catch(console.error);
                 res.send({
                     status: 'error',
                 })
             } else {
                 assignURL().then(function (url) {
                     imageURL = url;
-                    var dbref = db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43").collection("animals");
-    
-                    dbref.doc().set({
-                        url: imageURL,
-                        type: animalType
-                    })
-                    res.send({
-                        status: 'success',
-                        type: animalType,
-                        url: imageURL,
-                    });
+                    var dbref = db.collection("users").doc(req.body.id).collection("animals");
+
+                    dbref.where('type', '==', animalType)
+                        .get()
+                        .then(function (snap) {
+                            if (snap.docs.length == 0) {
+                                dbref.doc().set({
+                                    url: imageURL,
+                                    type: animalType,
+                                    GPS: {
+                                        lat: req.body.lat,
+                                        lng: req.body.lng,
+                                    }
+                                }).catch(e => {
+                                    console.log(e)
+                                });
+                                console.log("success");
+                                res.send({
+                                    status: 'success',
+                                    type: animalType,
+                                    url: imageURL,
+                                    GPS: {
+                                        lat: req.body.lat,
+                                        lng: req.body.lng,
+                                    },
+                                });
+                            } else {
+                                async function deleteFile() {
+                                    await bucket.file(blob.name).delete();
+                                    console.log('deleted');
+                                }
+                                deleteFile().catch(console.error);
+                                res.send({
+                                    status: 'existed',
+                                })
+                            }
+                        })
+
                 });
-                
+
             }
         });
 
@@ -144,44 +185,58 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
     } else throw 'error';
 });
 
-
 // // RUN SERVER
 // let port = 8000;
 // app.listen(port, function () {
 //     console.log('listening on port ' + port + '!');
 // });
-app.get('/get-email', function (req, res) {
 
-    db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43")
-    .get()
-    .then(function (doc) {
-        // grabs data from user doc
-        var mail = doc.data().email;
-        res.setHeader('Content-Type', 'application/HTML');
-        res.send(mail);  
-        
-    })
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}));
+
+app.post('/get-name', function (req, res) {
+    console.log(req.body.id);
+    db.collection("users").doc(req.body.id)
+        .get()
+        .then(function (doc) {
+            // grabs data from user doc
+            var user = doc.data().name;
+            res.setHeader('Content-Type', 'application/HTML');
+            res.send(user);
+        })
+
 });
 
+app.post('/get-email', function (req, res) {
+    console.log(req.body.id);
+    db.collection("users").doc(req.body.id)
+        .get()
+        .then(function (doc) {
+            // grabs data from user doc
+            var user = doc.data().email;
+            res.setHeader('Content-Type', 'application/HTML');
+            res.send(user);
+        })
 
-app.get('/get-name', function (req, res) {
-
-    db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43")
-    .get()
-    .then(function (doc) {
-        // grabs data from user doc
-        var user = doc.data().name;
-        res.setHeader('Content-Type', 'application/HTML');
-        res.send(user);  
-        
-    })
 });
+
+// app.post('/get-gps', function (req, res) {
+//     console.log(req.body.id);
+//     // db.collection("users").doc(req.body.id).collection("animals").where("lat", "!=", "")
+//         db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43").collection("animals").where("GPS.lat", "!=", "")
+//     .get()
+//     .then((photos) => {
+
+//         res.send(photos);  
+//     });
+// });
+
 
 
 async function quickstart(fileName) {
     // Imports the Google Cloud client library
-
-
     // Creates a client
     const client = new vision.ImageAnnotatorClient({
         keyFilename: 'visionAPI.json'
@@ -189,10 +244,35 @@ async function quickstart(fileName) {
 
     // Performs label detection on the image file
     const [result] = await client.labelDetection(fileName);
+    // const [result] = await client.labelDetection({
+    //     image: {
+    //         content: req.file.buffer
+    //     }
+    // });
     const labels = result.labelAnnotations;
     // console.log('Labels:');
     // labels.forEach(label => console.log(label.description));
     return labels;
 }
 
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+function getanimalnames() {
+    return new Promise(function (res, rej) {
+        db.collection("animals_info")
+            .get()
+            .then(function (querySnapshot) {
+                let data = [];
+                querySnapshot.forEach(function (doc) {
+                    data.push(doc.data().name);
+                });
+                res(data);
+            })
+    })
+}
+
+async function storeanimalDB() {
+    animalDB = await getanimalnames();
+    console.log("results-------------");
+    console.log(animalDB);
+}
+
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));

@@ -37,6 +37,7 @@ nav{
     margin:10px;
     border:solid white;
 }
+
 #profilepic p {
     font-size: 40px;
     text-align: center;
@@ -53,10 +54,9 @@ nav{
 #userinfo p {
     font-size: 40px;
     color:white;
-    position:fixed;
+    position:relative;
     left: 170px;
     top:90px;
-   
 }
 
 .row2 span {
@@ -69,7 +69,10 @@ nav{
 
 .information{
     font-weight: bold;
+}
 
+#points{
+    font-weight: bold;
 }
 
 
@@ -79,7 +82,8 @@ nav{
     width: 150px;
     height: 40px;
     position: relative;
-    left: 10px;
+    left: 5px;
+    top: 15px;
 
 }
 
@@ -91,6 +95,15 @@ nav{
 
 }
 
+#input-button{
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    bottom:150px;
+    width:145px;
+    height: 150px;
+}
+
 #customizeinfo{
     width: 80%;
     height:80%;
@@ -99,6 +112,10 @@ nav{
     position: relative;
     left: 100px;
 
+}
+
+input[type="file"] {
+    display:none;
 }
 
 
@@ -114,6 +131,16 @@ button{
     background-color: #04443c;
     font-size: 30px;
 }
+
+#leaderboard{
+    color: white;
+    background-color: #04443c;
+    font-size: 30px;
+    position: relative;
+    left: 200px;
+    
+}
+
 
 .in-col{
     height:50%;
@@ -133,9 +160,10 @@ button{
     color: #76c893;
 }
 
-#content{
-    font-size:25px;
-    color: #04443c;;
+.userinfo div{
+    font-size:20px;
+    color: #04443c;
+    overflow: hidden;
 }
 
 

@@ -1,24 +1,70 @@
 /*Navbar--- */
 .nav {
-    background-color: #04443c;
-    /* color: white; */
+  background-color: #04443c;
+  color: white;
+  padding: 0;
+  margin: 0;
 }
 
 .nav-link:hover {
-    color: #76c893;
-    /* cursor: pointer; */
+  color: #76c893;
+  /* cursor: pointer; */
 }
 
-.nav-link,a {
-    color: white;
+.nav-link,
+a {
+  color: white;
 }
+
 .navbar {
-    background-color: #04443c;
-    
+  background-color: #04443c;
+
 }
 
 /*index layout*/
 h1 {
+  text-align: center;
+}
+
+#searchbt {
+  font-size: 25px;
+  color: #04443c
+}
+
+#circle {
+  margin-left: 20%;
+  margin-top: 10%;
+}
+
+#notif {
+  margin-top: 10%;
+}
+
+.btn-circle {
+  width: 200px;
+  height: 200px;
+  padding: 6px 0px;
+  border-radius: 100px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
+  background-color: #04443c;
+}
+
+.swal2-modal {
+  min-height: 600px;
+}
+
+.swal2-popup {
+  justify-content:flex-end;
+}
+
+.swal2-content {
+  font-weight: bolder;
+  font-size: 40px;
+  color: rgb(197, 81, 81);
+}
+h1,h3 {
     text-align: center;
   }
 
@@ -28,7 +74,7 @@ h1 {
   }
 
   #circle {
-    margin-left: 20%;
+    margin-left: 25%;
     margin-top: 10%;
   }
 
@@ -43,6 +89,11 @@ h1 {
     border-radius: 100px;
     text-align: center;
     font-size: 12px;
-    line-height: 1.42857;
+    line-height:190px;
     background-color: #04443c;
+    color: white;
+  }
+
+  #snap:hover{
+    color: #76c893;
   }
