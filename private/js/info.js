@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    var points = 0;
     var rarity;
 
     //Getting the animal name from local storage..
