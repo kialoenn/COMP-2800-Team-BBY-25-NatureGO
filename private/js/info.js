@@ -37,58 +37,6 @@ $(document).ready(function () {
         })
     }
 
-    /**
-     * Function to caluclate points and display them .
-     */
-    async function calcpoints() {
-
-        let rarity = await getanimalinfo();
-        let userdata = await getpoints();
-
-        console.log(userdata);
-        switch (rarity) {
-            case "epic":
-                points = 1000;
-                break;
-            case "rare":
-                points = 500;
-                break;
-            case "common":
-                points = 200;
-                break;
-        }
-        $("#info_tab").prepend("<h2>Congrats!! You got <b>" + points + " </b>Points</h2>");
-
-        let total_points = userdata.points + points ;
-        console.log(total_points);
-
-        db.collection('users').doc(userdata.id).update({
-            totalpoints:total_points
-        });
-    }
-    calcpoints();
-
-    /**
-     * Function to get existing user points.
-     */
-    function getpoints() {
-        return new Promise(function (res, rej) {
-            firebase.auth().onAuthStateChanged(function (user) {
-                if (user) {
-                    db.collection("users").
-                    doc(user.uid).get()
-                        .then(function (doc) {
-                           let data ={
-                               "id":user.uid,
-                               "points":doc.data().totalpoints
-                          };
-                          res(data);
-                        });
-                }
-            })
-        })
-
-    }
     getanimalinfo();
     $("#info_tab").prepend("<h2>Congrats!! You got <b>" + points + " </b>Points</h2>");
 
