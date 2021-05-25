@@ -77,7 +77,7 @@ function getGPScurrentUserPhotoLoc(user) {
 }
 
 function getGPSallUserPhotLoc(user){
-  db.collection("users/*/animals").where("GPS.lat", "!=", "")
+  db.collection("users").doc(user.uid).collection("animals").where("GPS.lat", "!=", "")
   .get().then(gpsPosit => {displayMarker(gpsPosit)});
 }
 
