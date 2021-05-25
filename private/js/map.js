@@ -1,6 +1,7 @@
 
 //https://developers.google.com/maps/documentation/javascript/examples/inset-map#maps_inset_map-javascript
 let map, overview;
+let showAllUserPic = true;
 const OVERVIEW_DIFFERENCE = 5;
 const OVERVIEW_MIN_ZOOM = 3;
 const OVERVIEW_MAX_ZOOM = 10;
@@ -55,7 +56,12 @@ function initMap() {
         )
         );
       });
-      getGPScurrentUserPhotoLoc(user);
+      if(showAllUserPic){
+        getGPSallUserPhotLoc(user);
+      }else{
+        getGPScurrentUserPhotoLoc(user);
+      }
+      
     });
 }
 
@@ -70,11 +76,19 @@ function getGPScurrentUserPhotoLoc(user) {
       .get().then(gpsPosit => {displayMarker(gpsPosit)});
 }
 
+function getGPSallUserPhotLoc(user){
+  db.collection("users/*/animals").where("GPS.lat", "!=", "")
+  .get().then(gpsPosit => {displayMarker(gpsPosit)});
+}
+
+
 function displayMarker(gpsPosit) {
   gpsPosit.forEach((t) => {
     //animal type: "animal"
+    console.log(t.data().url);
     console.log("animal: " + JSON.stringify(t.data().type));
     name = JSON.stringify(t.data().type);
+    name = name.substring(1, name.length -1);
     var marker, markerOverview, infow;
     // var infoContentName = '<div class="infoContent">' + '<h5 class="firstHeading">' + name + '</h5>' + "</div>";
     //{"lng":"string","lat":"string"}
@@ -92,9 +106,10 @@ function displayMarker(gpsPosit) {
       lng: lng,
     }
     if (map !== null && overview !== null) {
+      imageSizeConst = 250;
       infow = new google.maps.InfoWindow({
-        content: name,
-        maxWidth: 200,
+        content: "<b>" + name + "</b><br/><img src="+ t.data().url +" style='width: 200px; height: 200px;'><br/>",
+        // maxWidth: 250,
       });
       marker = new google.maps.Marker({
         position: gpsCoord,
