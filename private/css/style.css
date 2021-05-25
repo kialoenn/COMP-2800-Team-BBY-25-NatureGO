@@ -1,3 +1,15 @@
+@font-face {
+  font-family: natureFont;
+  src: url('/fonts/berkshireswash-regular.ttf');
+}
+
+@font-face {
+  font-family: natureFont2;
+  src: url('/fonts/Amadeus.ttf');
+}
+body {
+  font-family: natureFont;
+}
 /*Navbar--- */
 .nav {
   background-color: #04443c;
@@ -56,7 +68,7 @@ h1 {
 }
 
 .swal2-popup {
-  justify-content:flex-end;
+  justify-content: flex-end;
 }
 
 .swal2-content {
@@ -64,36 +76,38 @@ h1 {
   font-size: 40px;
   color: rgb(197, 81, 81);
 }
-h1,h3 {
-    text-align: center;
-  }
 
-  #searchbt {
-    font-size: 25px;
-    color: #04443c
-  }
+h1,
+h3 {
+  text-align: center;
+}
 
-  #circle {
-    margin-left: 25%;
-    margin-top: 10%;
-  }
+#searchbt {
+  font-size: 25px;
+  color: #04443c
+}
 
-  #notif {
-    margin-top: 10%;
-  }
+#circle {
+  margin-left: 25%;
+  margin-top: 10%;
+}
 
-  .btn-circle {
-    width: 200px;
-    height: 200px;
-    padding: 6px 0px;
-    border-radius: 100px;
-    text-align: center;
-    font-size: 12px;
-    line-height:190px;
-    background-color: #04443c;
-    color: white;
-  }
+#notif {
+  margin-top: 10%;
+}
 
-  #snap:hover{
-    color: #76c893;
-  }
+.btn-circle {
+  width: 200px;
+  height: 200px;
+  padding: 6px 0px;
+  border-radius: 100px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 190px;
+  background-color: #04443c;
+  color: white;
+}
+
+#snap:hover {
+  color: #76c893;
+}

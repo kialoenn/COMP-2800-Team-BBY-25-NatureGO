@@ -33,6 +33,7 @@ app.use('/css', express.static('private/css'));
 app.use('/img', express.static('private/img'));
 app.use('/js', express.static('private/js'));
 app.use('/html', express.static('private/html'));
+app.use('/fonts', express.static('private/fonts'));
 
 // APP GETS
 app.get('/', function (req, res) {
