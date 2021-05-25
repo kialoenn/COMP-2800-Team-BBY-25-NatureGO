@@ -77,8 +77,26 @@ function getGPScurrentUserPhotoLoc(user) {
 }
 
 function getGPSallUserPhotLoc(user){
-  db.collection("users").doc(user.uid).collection("animals").where("GPS.lat", "!=", "")
-  .get().then(gpsPosit => {displayMarker(gpsPosit)});
+
+ db.collectionGroup("animals").where("GPS.lat", "!=", "")
+ .get().then(gpsPosit => {
+  console.log(gpsPosit); 
+  displayMarker(gpsPosit)});
+       // Do something with these reviews!
+
+//   db.collection("users")
+//   .get().then(snap => {
+//     snap.forEach(thing => {
+//       thing.collection("animal").where("GPS.lat", "!=", "")
+//       .get().then(gpsPosit => {
+//         console.log(gpsPosit);
+//         console.log({gpsPosit});
+//         // displayMarker(gpsPosit)});
+//     });
+//   });
+// });
+  // doc(user.uid).collection("animals").where("GPS.lat", "!=", "")
+  // .get().then(gpsPosit => {displayMarker(gpsPosit)});
 }
 
 
