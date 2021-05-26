@@ -19,7 +19,8 @@
                         let userName = user.displayName !== null ?user.displayName : user.email;
                         db.collection("users").doc(user.uid).set({         //write to firestore
                                 name: userName,                    //"users" collection
-                                email: user.email,                      //with authenticated user's ID (user.uid)
+                                email: user.email,      //with authenticated user's ID (user.uid)
+                                totalpoints:0                  //points intilization
                             }).then(function () {
                                 console.log("New user added to firestore");
                                 window.location.assign("/html/index.html");       //re-direct to main.html after signup
