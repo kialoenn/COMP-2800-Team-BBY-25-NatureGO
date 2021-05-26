@@ -6,15 +6,8 @@
 input {
     border: #04443c;
     border-radius: 4px;
-   
 }
 
-input[type="file"] {
-    display:none;
-}
-input[type="submit"] {
-    display:none;
-}
 #fileinput{
     border: solid black;
     width: 100px;
@@ -25,7 +18,6 @@ input[type="submit"] {
 }
 
 #upload-input{
-    border: solid black;
     width: 100px;
     height: 50px;
     display: inline-block;
@@ -40,7 +32,6 @@ input[type="submit"] {
 #file-input {
     display: none;
 }
-
 
 #previewImag {
     width: 200px;
@@ -64,7 +55,7 @@ input[type="submit"] {
     background-color: #04443c;
 
 }
-#upload-photo{
+/* #upload-photo{
     position:relative;
     right:103px;
     bottom: 19px;
@@ -73,4 +64,8 @@ input[type="submit"] {
     color: white;
     background-color: #04443c;
 
+} */
+
+#uploadImgBtn, #selectImgLocation {
+    visibility: hidden;
 }

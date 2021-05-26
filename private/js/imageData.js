@@ -94,7 +94,6 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("selectImgLocation"), {
     zoom: 13,
     center: posTemp,
-    mapTypeId: "terrain",
     mapTypeControl: false,
     streetViewControl: false,
   });
