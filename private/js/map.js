@@ -6,7 +6,6 @@ const OVERVIEW_DIFFERENCE = 5;
 const OVERVIEW_MIN_ZOOM = 3;
 const OVERVIEW_MAX_ZOOM = 10;
 
-
 function initMap() {
   firebase.auth().onAuthStateChanged(function (user) {
   let defaultGPS = {
@@ -56,12 +55,17 @@ function initMap() {
         )
         );
       });
+
+      //button || tab is clicked
       if(showAllUserPic){
         getGPSallUserPhotLoc(user);
+        showAllUserPic = false;
+        //reload google map API
       }else{
         getGPScurrentUserPhotoLoc(user);
+        showAllUserPic = true;
+        //reload google map API
       }
-      
     });
 }
 
@@ -70,35 +74,17 @@ function strGeoCoorToFloatPt(geoStr) {
   return geoFloatPoint;
 }
 
-//get current user's photos in DB with none empty GPS coordinates
+//get current user's photos in DB with GPS coordinates
 function getGPScurrentUserPhotoLoc(user) {
     db.collection("users").doc(user.uid).collection("animals").where("GPS.lat", "!=", "")
-      .get().then(gpsPosit => {displayMarker(gpsPosit)});
+      .get().then(gpsPosit => displayMarker(gpsPosit));
 }
 
+//get all users' photo in DB with GPS coordinates
 function getGPSallUserPhotLoc(user){
-
  db.collectionGroup("animals").where("GPS.lat", "!=", "")
- .get().then(gpsPosit => {
-  console.log(gpsPosit); 
-  displayMarker(gpsPosit)});
-       // Do something with these reviews!
-
-//   db.collection("users")
-//   .get().then(snap => {
-//     snap.forEach(thing => {
-//       thing.collection("animal").where("GPS.lat", "!=", "")
-//       .get().then(gpsPosit => {
-//         console.log(gpsPosit);
-//         console.log({gpsPosit});
-//         // displayMarker(gpsPosit)});
-//     });
-//   });
-// });
-  // doc(user.uid).collection("animals").where("GPS.lat", "!=", "")
-  // .get().then(gpsPosit => {displayMarker(gpsPosit)});
+  .get().then(gpsPosit => displayMarker(gpsPosit));
 }
-
 
 function displayMarker(gpsPosit) {
   gpsPosit.forEach((t) => {
@@ -108,7 +94,6 @@ function displayMarker(gpsPosit) {
     name = JSON.stringify(t.data().type);
     name = name.substring(1, name.length -1);
     var marker, markerOverview, infow;
-    // var infoContentName = '<div class="infoContent">' + '<h5 class="firstHeading">' + name + '</h5>' + "</div>";
     //{"lng":"string","lat":"string"}
     console.log("gps: " + JSON.stringify(t.data().GPS));
     //"string"
@@ -126,8 +111,7 @@ function displayMarker(gpsPosit) {
     if (map !== null && overview !== null) {
       imageSizeConst = 250;
       infow = new google.maps.InfoWindow({
-        content: "<b>" + name + "</b><br/><img src="+ t.data().url +" style='width: 200px; height: 200px;'><br/>",
-        // maxWidth: 250,
+        content: "<h5 class='firstHeading'>" + name + "</h5><br/><img src="+ t.data().url +" style='width: 200px; height: 200px;'><br/>",
       });
       marker = new google.maps.Marker({
         position: gpsCoord,
@@ -145,47 +129,11 @@ function displayMarker(gpsPosit) {
     marker.addListener("click", () => {
       infow.open(map, marker);
     });
+    //infow listener
+      //when picture or name is clicked,
+      //console.log("result", r);
+      //localStorage.setItem('animalinfo', r.type);
+      //localStorage.setItem('url', r.url);
+      //window.location.href = "/html/info.html";
   });
 }
-
-
-
-// $(document).ready(function () {
-//   firebase.auth().onAuthStateChanged(function (users) {
-//       if (users) {
-//           let u = {
-//               id: users.uid
-//           };
-//           console.log(u);
-//           $.ajax({
-//               url: "/get-gps",
-//               type: "POST",
-//               data: u,
-//               processData: false,
-//               contentType: false,
-//               success: function (pos) {
-
-//                 for(let i = 0; i < pos.size; i++){
-//                   console.log({pos});
-//                   console.log("gps: " + pos[i].data());
-//                   console.log("lat: " + pos[i].data().lat +", lng: " + pos[i].data().lng);
-//                 };
-
-//                 console.log("data: " + pos);
-
-//                 for(let i = 0; i < pos.size; i++){
-//                   // console.log({pos});
-//                   console.log("Xlat: " + pos[i].lat + ", Xlng: " + pos[i].lng);
-//                 };
-//               },
-//               error: function (jqXHR, textStatus, errorThrown) {
-//                   console.log("ERROR:", jqXHR, textStatus, errorThrown);
-//               }
-//           });
-//       } else {
-//           window.location.href = "/html/login.html";
-//       }
-
-//   });
-// });
-

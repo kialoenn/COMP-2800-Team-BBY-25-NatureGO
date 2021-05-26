@@ -79,7 +79,7 @@ function uploadUserProfilePic() {
             storageRef.put(file)
                 .then(function () {
                     console.log('Uploaded to Cloud Storage.');
-                })
+                });
 
             //get the URL of stored file
             storageRef.getDownloadURL()

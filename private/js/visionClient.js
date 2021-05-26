@@ -1,6 +1,4 @@
-import {
-  pos
-} from "./imageData.js";
+import { pos } from "./imageData.js";
 
 $(document).ready(function () {
   $('#imageForm').submit(function (e) {
@@ -9,17 +7,17 @@ $(document).ready(function () {
     let fd = new FormData(this);
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        console.log(user.uid);
-        console.log(pos);
-        for (var [key, value] of fd.entries()) {
-          console.log(key, value);
-        }
+        // console.log(user.uid);
+        // console.log(pos);
+        // for (var [key, value] of fd.entries()) {
+        //   console.log(key, value);
+        // }
         $.each(pos, function (key, value) {
           fd.append(key, value);
         });
-        for (var [key, value] of fd.entries()) {
-          console.log(key, value);
-        }
+        // for (var [key, value] of fd.entries()) {
+        //   console.log(key, value);
+        // }
         fd.append('id', user.uid);
 
         $.ajax({
@@ -64,15 +62,12 @@ $(document).ready(function () {
               text: 'We cannot identify animal in the picture, please upload another one',
             }).then(function () {
               window.location.href = "/html/index.html";
-            })
+            });
           }
         });
       }
-    })
-
-
+    });
   });
-
 });
 
 /**
@@ -84,7 +79,6 @@ async function calcpoints(user, animaltype) {
   let userpoints = await getpoints();
   let rarity = await getrarity(animaltype);
  
-
   switch (rarity) {
     case "epic":
       points = 1000;

@@ -38,14 +38,16 @@
 
     <form id="imageForm" enctype="multipart/form-data">
         <div class="text-center">
-            <img id="previewImag" class="card-img-top rounded" src="https://dummyimage.com/200x200/000/fff" alt="">
+            <label for="file-input">
+                <img id="previewImag" class="card-img-top rounded" src="https://dummyimage.com/200x200/000/fff" alt="">
+            </label>
+            <input type="file" id ="file-input" accept="image/*" name="photo"><br/>
+            <input id="uploadImgBtn" type="submit" value="upload">
         </div>
-        <input type="file" id ="file-input" accept="image/*" name="photo">
-        <input type="submit" value="upload">
     </form>
-        <div class="imageDataTest">
+        <!-- <div class="imageDataTest">
             <pre>GPS: <span id="GPScoor">No GPS from Image!</span></pre>
-        </div>
+        </div> -->
         <div id="selectImgLocation"></div>
 
         <!-- Navigation Bar-->

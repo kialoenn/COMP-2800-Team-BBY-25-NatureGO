@@ -1,5 +1,3 @@
-//author: Michael W
-document.getElementById("selectImgLocation").style.visibility = "hidden";
 document.getElementById("file-input").setAttribute("onchange", "previewFile()");
 window.initMap = initMap;
 let pos, map, infoWindow;
@@ -20,14 +18,9 @@ window.previewFile = function previewFile() {
 
     //exif-js API
     EXIF.getData(file, function () {
-      let latLongCoord = getGPSLatitudeLongitude(this);
-      if (pos !== null) {
-        document.getElementById("GPScoor").textContent = JSON.stringify(latLongCoord);
-      } else {
-        document.getElementById("GPScoor").textContent = "No GPS from Image!";
-
-        //from google map API sample
-        //check for device geolocation
+      getGPSLatitudeLongitude(this);
+      if (pos === null) {
+        //https://developers.google.com/maps/documentation/javascript/examples/map-geolocation#maps_map_geolocation-javascript
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -41,13 +34,12 @@ window.previewFile = function previewFile() {
                 infoWindow = new google.maps.InfoWindow({
                   position: pos,
                 });
-                infoWindow.setContent(
-                  JSON.stringify(pos)
-                );
+                infoWindow.setContent(JSON.stringify(pos));
                 map.setCenter(pos);
                 infoWindow.open(map);
               }
-              document.getElementById("GPScoor").textContent = JSON.stringify(pos);
+              showUploadBtn();
+              // document.getElementById("GPScoor").textContent = JSON.stringify(pos);
             },
             //user has geolocation but unable to get GPS
             initMap()
@@ -70,6 +62,7 @@ function getGPSLatitudeLongitude(imgABC) {
       lat: convertDMStoLatLong(EXIF.getTag(imgABC, "GPSLatitude")[0], EXIF.getTag(imgABC, "GPSLatitude")[1], EXIF.getTag(imgABC, "GPSLatitude")[2], EXIF.getTag(imgABC, "GPSLatitudeRef")),
       lng: convertDMStoLatLong(EXIF.getTag(imgABC, "GPSLongitude")[0], EXIF.getTag(imgABC, "GPSLongitude")[1], EXIF.getTag(imgABC, "GPSLongitude")[2], EXIF.getTag(imgABC, "GPSLongitudeRef")),
     }
+    showUploadBtn();
   }
   return pos;
 }
@@ -87,23 +80,25 @@ function convertDMStoLatLong(hour, minute, second, position) {
 
 //from google map API examples
 //https://developers.google.com/maps/documentation/javascript/examples/event-click-latlng
-//https://developers.google.com/maps/documentation/javascript/examples/map-geolocation#maps_map_geolocation-javascript
 function initMap() {
+  document.getElementById("uploadImgBtn").style.visibility = "hidden";
   document.getElementById("selectImgLocation").style.visibility = "visible";
 
   console.log("inside initMap");
+  //BCIT BBY campus
   let posTemp = {
     lat: 49.25076313248947,
-    lng: -123.0017895306895
+    lng: -123.0017895306895,
   };
 
   map = new google.maps.Map(document.getElementById("selectImgLocation"), {
-    zoom: 11,
+    zoom: 12,
     center: posTemp,
+    mapTypeId: "terrain",
   });
   // Create the initial InfoWindow.
   infoWindow = new google.maps.InfoWindow({
-    content: "Click the map to get Lat/Lng!",
+    content: "Click the map to select location",
     position: posTemp,
   });
   infoWindow.open(map);
@@ -116,15 +111,18 @@ function initMap() {
     infoWindow = new google.maps.InfoWindow({
       position: posTemp,
     });
-    infoWindow.setContent(
-      JSON.stringify(posTemp.toJSON(), null, 2)
-    );
+    infoWindow.setContent(JSON.stringify(posTemp.toJSON(), null, 2));
     infoWindow.open(map);
     console.log(JSON.stringify(posTemp));
 
     pos = posTemp.toJSON();
-    document.getElementById("GPScoor").textContent = JSON.stringify(pos);
+    showUploadBtn(); 
+    // document.getElementById("GPScoor").textContent = JSON.stringify(pos);
   });
+}
+
+function showUploadBtn() {
+  document.getElementById("uploadImgBtn").style.visibility = "visible";
 }
 
 export { pos };
