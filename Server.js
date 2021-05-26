@@ -18,7 +18,7 @@ var bucket = admin.storage().bucket();
 const db = admin.firestore();
 // GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
-var animalDB = [];
+var animalDB = ['Black Swift','Cougar,Raccoon','Wolf','Black bear','Canada goose','Coyote','Sockeye salmon'];
 const multer = require('multer');
 const {
     BlockList
@@ -105,7 +105,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             });
             console.log(labels);
             let animalType;
-            animalDB = await getanimalnames();
+            //animalDB = await getanimalnames();
             console.log('db: ' + animalDB);
             animalDB.forEach(animal => {
                 if (labels.find(function (a) {
