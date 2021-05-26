@@ -85,7 +85,6 @@ function initMap() {
   document.getElementById("uploadImgBtn").style.visibility = "hidden";
   document.getElementById("selectImgLocation").style.visibility = "visible";
 
-  console.log("inside initMap");
   //BCIT BBY campus
   let posTemp = {
     lat: 49.25076313248947,
@@ -120,7 +119,6 @@ function initMap() {
       showMarkers();
     }else{
       console.log("ERROR! marker Error!");
-      console.log("E1: "+{markers});
     }
     
     // // Create a new InfoWindow.
@@ -129,7 +127,7 @@ function initMap() {
     // });
     // infoWindow.setContent(JSON.stringify(posTemp.toJSON(), null, 2));
     // infoWindow.open(map);
-    console.log(JSON.stringify(posTemp));
+    // console.log(JSON.stringify(posTemp));
 
     pos = posTemp.toJSON();
     showUploadBtn();
