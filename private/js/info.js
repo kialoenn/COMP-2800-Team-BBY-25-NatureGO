@@ -10,7 +10,6 @@ $(document).ready(function () {
 
     console.log(points);
 
-
     $("#image").attr("src", imageURL);
 
     /**

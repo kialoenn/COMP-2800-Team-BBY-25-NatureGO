@@ -12,7 +12,7 @@ let animal_info = [
 
     {name: "Black bear",
 	family:"Ursus americanus", 
-	population : "Steady numbers.There are more than 120,000 Black Bears in British Columbia", 
+	population : "Steady numbers. There are more than 120,000 Black Bears in British Columbia.", 
 	habitat: "forested areas", 
 	endangered: "No",
 	funfact: "Bear skulls have unique adaptations to help eat a wide range of food.",
@@ -79,9 +79,7 @@ function loaddata() {
             endangered: animal.endangered,
 			funfact:animal.funfact,
 			rarity: animal.rarity
-            
         });
-
     });
     console.log("added records to db");
 }

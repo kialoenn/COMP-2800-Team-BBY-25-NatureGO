@@ -6,7 +6,6 @@ const app = express();
 const path = require('path');
 const PORT = process.env.PORT || 8000
 
-
 var admin = require("firebase-admin");
 var serviceAccount = require("./firebase_auth.json");
 
@@ -14,6 +13,7 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     storageBucket: "naturego-e74d6.appspot.com"
 });
+
 var bucket = admin.storage().bucket();
 const db = admin.firestore();
 // GENERAL CONSTANTS
@@ -26,7 +26,6 @@ const {
 const upload = multer({
     storage: multer.memoryStorage()
 });
-
 
 // STATIC DIRECTORIES
 app.use('/css', express.static('private/css'));
@@ -41,7 +40,7 @@ app.get('/', function (req, res) {
     res.set('Server', 'NatureGO');
     res.set('Server', 'BBY');
 
-    fs.readFile("./private/html/index.html", function (error, pgRes) {
+    fs.readFile("./private/html/login.html", function (error, pgRes) {
         if (error) {
             res.writeHead(404);
             res.write(msg404);
@@ -53,7 +52,6 @@ app.get('/', function (req, res) {
         }
         res.end();
     });
-
 });
 
 app.post('/upload', upload.single('photo'), async (req, res) => {
@@ -68,7 +66,6 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
         const blob = bucket.file(req.file.originalname);
         blob.name = req.body.id + '|' + new Date().valueOf() + '.jpeg';
         const blobStream = blob.createWriteStream();
-
 
         blobStream.on('finish', async () => {
             // The public URL can be used to directly access the file via HTTP.
@@ -92,8 +89,8 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                         }
                         console.log(url);
                         resolve(url);
-                    })
-                })
+                    });
+                });
             }
 
             async function assignURL() {
@@ -105,7 +102,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             let labels = [];
             result.forEach(label => {
                 labels.push(label.description);
-            })
+            });
             console.log(labels);
             let animalType;
             animalDB = await getanimalnames();
@@ -113,15 +110,14 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             animalDB.forEach(animal => {
                 if (labels.find(function (a) {
                         if (a.length >= animal.length) {
-                            return a.toUpperCase().includes(animal.toUpperCase())
+                            return a.toUpperCase().includes(animal.toUpperCase());
                         } else {
-                            return animal.toUpperCase().includes(a.toUpperCase())
+                            return animal.toUpperCase().includes(a.toUpperCase());
                         }
                     })) {
                     animalType = animal;
                 }
-
-            })
+            });
 
             // console.log(animalType);
             if (animalType == undefined) {
@@ -132,7 +128,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                 deleteFile().catch(console.error);
                 res.send({
                     status: 'error',
-                })
+                });
             } else {
                 assignURL().then(function (url) {
                     imageURL = url;
@@ -170,12 +166,10 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                                 deleteFile().catch(console.error);
                                 res.send({
                                     status: 'existed',
-                                })
+                                });
                             }
-                        })
-
+                        });
                 });
-
             }
         });
 
@@ -206,8 +200,7 @@ app.post('/get-name', function (req, res) {
             var user = doc.data().name;
             res.setHeader('Content-Type', 'application/HTML');
             res.send(user);
-        })
-
+        });
 });
 
 app.post('/get-email', function (req, res) {
@@ -219,8 +212,7 @@ app.post('/get-email', function (req, res) {
             var user = doc.data().email;
             res.setHeader('Content-Type', 'application/HTML');
             res.send(user);
-        })
-
+        });
 });
 
 // app.post('/get-gps', function (req, res) {
@@ -266,8 +258,8 @@ function getanimalnames() {
                     data.push(doc.data().name);
                 });
                 res(data);
-            })
-    })
+            });
+    });
 }
 
 async function storeanimalDB() {

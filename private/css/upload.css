@@ -32,10 +32,21 @@ input[type="submit"] {
     cursor: pointer;
     position: relative;
 }
+#selectImgLocation {
+    width: 100%;
+    height: 50vh;
+}
+
+#file-input {
+    display: none;
+}
+
+
 #previewImag {
     width: 200px;
     height: 200px;
-    margin-top:20px;
+    /* margin-top:5px; */
+    cursor: pointer;
 }
 
 #selectImgLocation {

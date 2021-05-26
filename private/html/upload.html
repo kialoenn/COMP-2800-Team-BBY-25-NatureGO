@@ -39,7 +39,11 @@
 
     <form id="imageForm" enctype="multipart/form-data">
         <div class="text-center">
-            <img id="previewImag" class="card-img-top rounded" src="https://dummyimage.com/200x200/000/fff" alt="">
+            <label for="file-input">
+                <img id="previewImag" class="card-img-top rounded" src="https://dummyimage.com/200x200/000/fff" alt="">
+            </label>
+            <input type="file" id ="file-input" accept="image/*" name="photo"><br/>
+            <input id="uploadImgBtn" type="submit" value="upload">
         </div>
         <button id = "add-photo">Add a Photo</button>
         <label id = "fileinput"><input type="file" id ="file-input" accept="image/*" name="photo"></label>
@@ -47,9 +51,9 @@
         <label id="upload-input"><input type="submit" value="upload"></label>
         <button id = "upload-photo">Upload</button>
     </form>
-        <div class="imageDataTest">
+        <!-- <div class="imageDataTest">
             <pre>GPS: <span id="GPScoor">No GPS from Image!</span></pre>
-        </div>
+        </div> -->
         <div id="selectImgLocation"></div>
 
   <!-- Navigation Bar-->

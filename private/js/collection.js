@@ -19,7 +19,7 @@ $(document).ready(function () {
                     //      + animal.url + '" alt=""></a></div>';
                     // })
                     // $('#pictureContent').html(info);
-                })
+                });
 
             let animalDB = [
                 'Black Swift',
@@ -49,15 +49,14 @@ $(document).ready(function () {
             animalDB.forEach(animal => {
                 if (label.find(function(a) {
                     if (a.length >= animal.length) {
-                        return a.toUpperCase().includes(animal.toUpperCase())
+                        return a.toUpperCase().includes(animal.toUpperCase());
                     } else {
-                        return animal.toUpperCase().includes(a.toUpperCase())
+                        return animal.toUpperCase().includes(a.toUpperCase());
                     }
                 })){
                     console.log('find ' + animal);
                 }
-
-            })
+            });
         }
-    })
-})
+    });
+});
