@@ -79,11 +79,8 @@ async function calcpoints(user, animaltype) {
   let userpoints = await getpoints();
   let rarity = await getrarity(animaltype);
  
-<<<<<<< HEAD
-=======
   console.log(userpoints);
 
->>>>>>> af51078006ffa5d9fa45c8584a194a06ab667ab6
   switch (rarity) {
     case "epic":
       points = 1000;
