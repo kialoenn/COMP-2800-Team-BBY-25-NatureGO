@@ -7,6 +7,10 @@
   font-family: natureFont2;
   src: url('/fonts/Amadeus.ttf');
 }
+@font-face {
+  font-family: button-font;
+  src: url('/fonts/SquadaOne-Regular');
+}
 body {
   font-family: natureFont;
 }
@@ -52,32 +56,6 @@ h3 {
   text-align: center;
 }
 
-#searchbt {
-  font-size: 25px;
-  color: #04443c
-}
-
-#circle {
-  margin-left: 25%;
-  margin-top: 10%;
-}
-
-#notif {
-  margin-top: 10%;
-}
-
-.btn-circle {
-  width: 200px;
-  height: 200px;
-  padding: 6px 0px;
-  border-radius: 100px;
-  text-align: center;
-  font-size: 12px;
-  line-height: 190px;
-  background-color: #04443c;
-  color: white;
-}
-
 #snap:hover {
   color: #76c893;
 }
@@ -104,7 +82,7 @@ h1,h3 {
     background-image: linear-gradient(#04443c,#76c893);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
     text-shadow: 1px 1px 1px rgba(39, 87, 39, 0.65);
-
+    font-family: button-font;
   }
 
   #snap:hover{
@@ -121,6 +99,5 @@ h1,h3 {
   }
 
   #snap p{
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 35px;
   }
