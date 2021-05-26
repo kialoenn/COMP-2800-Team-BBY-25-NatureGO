@@ -35,7 +35,7 @@ $(document).ready(function () {
                 console.log("result", r);
                 localStorage.setItem('animalinfo', r.type);
                 localStorage.setItem('url', r.url);
-                window.location.href = "/html/info.html";
+                // window.location.href = "/html/info.html";
               });
 
             } else if (r.status == 'error') {
@@ -84,6 +84,7 @@ async function calcpoints(user, animaltype) {
   let userpoints = await getpoints();
   let rarity = await getrarity(animaltype);
  
+  console.log(userpoints);
 
   switch (rarity) {
     case "epic":
@@ -99,6 +100,11 @@ async function calcpoints(user, animaltype) {
 
   console.log(points);
   localStorage.setItem('points', points);
+  if(userpoints == undefined){
+    userpoints = 0;
+  }
+
+  console.log(userpoints);
 
   let total_points = userpoints + points;
   await updatepoints(user,total_points);
@@ -131,7 +137,6 @@ function getrarity(animaltype) {
     db.collection("animals_info").where("name", "==", animaltype)
       .get()
       .then((querySnapshot) => {
-
         querySnapshot.forEach((doc) => {
           res(doc.data().rarity)
         });
@@ -151,6 +156,7 @@ function getrarity(animaltype) {
     dbref.update({
       totalpoints:points
     }).then(function (){
+      console.log("update db points");
       res("Success");
     })
 

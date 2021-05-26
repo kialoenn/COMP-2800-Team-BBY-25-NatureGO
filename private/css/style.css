@@ -21,36 +21,6 @@ a {
 
 }
 
-/*index layout*/
-h1 {
-  text-align: center;
-}
-
-#searchbt {
-  font-size: 25px;
-  color: #04443c
-}
-
-#circle {
-  margin-left: 20%;
-  margin-top: 10%;
-}
-
-#notif {
-  margin-top: 10%;
-}
-
-.btn-circle {
-  width: 200px;
-  height: 200px;
-  padding: 6px 0px;
-  border-radius: 100px;
-  text-align: center;
-  font-size: 12px;
-  line-height: 1.42857;
-  background-color: #04443c;
-}
-
 .swal2-modal {
   min-height: 600px;
 }
@@ -68,32 +38,40 @@ h1,h3 {
     text-align: center;
   }
 
-  #searchbt {
-    font-size: 25px;
-    color: #04443c
-  }
-
   #circle {
     margin-left: 25%;
     margin-top: 10%;
   }
 
-  #notif {
-    margin-top: 10%;
-  }
 
   .btn-circle {
     width: 200px;
     height: 200px;
-    padding: 6px 0px;
+    padding: 6px 2px;
     border-radius: 100px;
     text-align: center;
     font-size: 12px;
     line-height:190px;
-    background-color: #04443c;
     color: white;
+    background-image: -webkit-linear-gradient( #04443c 10%,#76c893  100%);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+    text-shadow: 1px 1px 1px rgba(39, 87, 39, 0.65);
+
   }
 
   #snap:hover{
-    color: #76c893;
+    color: #04443c;
+  }
+
+  body{
+    background-image: url("/img/background.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: rgba(0, 0, 0, 0.979);
+  }
+
+  #snap p{
+    font-size: 30px;
+    font-weight: bold;
   }
