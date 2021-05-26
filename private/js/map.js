@@ -90,20 +90,20 @@ function getGPSallUserPhotLoc(user){
 function displayMarker(gpsPosit) {
   gpsPosit.forEach((t) => {
     //animal type: "animal"
-    console.log(t.data().url);
-    console.log("animal: " + JSON.stringify(t.data().type));
+    // console.log(t.data().url);
+    // console.log("animal: " + JSON.stringify(t.data().type));
     name = JSON.stringify(t.data().type);
     name = name.substring(1, name.length - 1);
     var marker, markerOverview, infow;
     //{"lng":"string","lat":"string"}
-    console.log("gps: " + JSON.stringify(t.data().GPS));
+    // console.log("gps: " + JSON.stringify(t.data().GPS));
     //"string"
     let lat = strGeoCoorToFloatPt(JSON.stringify(t.data().GPS.lat));
     let lng = strGeoCoorToFloatPt(JSON.stringify(t.data().GPS.lng));
 
     //floating point number
-    console.log(lat + ", " + typeof lat);
-    console.log(lng + ", " + typeof lng);
+    // console.log(lat + ", " + typeof lat);
+    // console.log(lng + ", " + typeof lng);
 
     gpsCoord = {
       lat: lat,
@@ -138,11 +138,5 @@ function displayMarker(gpsPosit) {
     marker.addListener("click", () => {
       infow.open(map, marker);
     });
-    //infow listener
-      //when picture or name is clicked,
-      //console.log("result", r);
-      //localStorage.setItem('animalinfo', r.type);
-      //localStorage.setItem('url', r.url);
-      //window.location.href = "/html/info.html";
   });
 }
