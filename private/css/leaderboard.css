@@ -46,6 +46,8 @@
 	flex-grow: 1;
 	color: snow;
 	background-color: transparent;
+	text-align: center;
+	line-height: 10px;
 }
 
 .leaderboard li:before {
@@ -54,35 +56,16 @@
 	margin-right: 4px;
 }
 .leaderboard li:nth-child(1) {
-	background: #04443c;
+	background:gold;
 }
 .leaderboard li:nth-child(2) {
-	background: #04443c;
+	background:silver;
 }
 .leaderboard li:nth-child(3) {
-	background: #04443c;
+	background:brown;
 }
-.leaderboard li:nth-child(4) {
-	background: #04443c;
-}
-.leaderboard li:nth-child(5) {
-	background: #04443c;
-}
-.leaderboard li:nth-child(6) {
-	background: #04443c;
-}
-.leaderboard li:nth-child(7) {
-	background: #04443c;
-}
-.leaderboard li:nth-child(8) {
-	background: #04443c;
-}
-.leaderboard li:nth-child(9) {
-	background: #04443c;
-}
-.leaderboard li:nth-child(10) {
-	background: #04443c;
-}
-#list{
+ol{
 	margin-left:0px ;
+	padding-left: 0px;
+	margin-bottom: 0px;
 }
