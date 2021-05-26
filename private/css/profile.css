@@ -136,8 +136,12 @@ button{
     color: white;
     background-color: #04443c;
     font-size: 30px;
-    position: relative;
-    left: 200px;
+    margin: 0;
+    position: absolute;
+    left: 40%;
+   
+    
+  
     
 }
 
