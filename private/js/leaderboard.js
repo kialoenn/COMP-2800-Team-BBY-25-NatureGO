@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+ 
     db.collection("users").where("totalpoints", ">", 0)
     .orderBy("totalpoints","desc")
     .limit(10)
@@ -10,7 +10,8 @@ $(document).ready(function () {
               list += "<li><mark>"+doc.data().name+"</mark>";
               list += "<small>"+doc.data().totalpoints+"</small></li>";
         })
-               list += "<ol/>";
-               $("#ldrbrd").append(list);
+        list += "</ol>";
+        $("#ldrbrd").append(list);
     })
+
 })

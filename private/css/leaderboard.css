@@ -1,15 +1,4 @@
 
-body {
-	height: 100%;
-}
-body {
-	font: 15px;
-}
-a {
-	display: inline-block;
-	color: #333;
-	text-decoration: none;
-}
 
 .contain {
 	width: 300px;
@@ -21,12 +10,11 @@ a {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	z-index: 1;
 	overflow: hidden;
 }
 
 /* leaderboard */
-.leaderboard {
+.leaderboard .head {
 	background: linear-gradient(to bottom, #3a404d, #181c26);
 }
 
@@ -94,4 +82,7 @@ a {
 }
 .leaderboard li:nth-child(10) {
 	background: #04443c;
+}
+#list{
+	margin-left:0px ;
 }
