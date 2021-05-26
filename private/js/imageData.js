@@ -1,6 +1,7 @@
 document.getElementById("file-input").setAttribute("onchange", "previewFile()");
 window.initMap = initMap;
 let pos, map, infoWindow;
+let markers = [];
 
 //preview replace image
 window.previewFile = function previewFile() {
@@ -92,9 +93,11 @@ function initMap() {
   };
 
   map = new google.maps.Map(document.getElementById("selectImgLocation"), {
-    zoom: 12,
+    zoom: 13,
     center: posTemp,
     mapTypeId: "terrain",
+    mapTypeControl: false,
+    streetViewControl: false,
   });
   // Create the initial InfoWindow.
   infoWindow = new google.maps.InfoWindow({
@@ -107,18 +110,66 @@ function initMap() {
     posTemp = mapsMouseEvent.latLng;
     // Close the current InfoWindow.
     infoWindow.close();
-    // Create a new InfoWindow.
-    infoWindow = new google.maps.InfoWindow({
-      position: posTemp,
-    });
-    infoWindow.setContent(JSON.stringify(posTemp.toJSON(), null, 2));
-    infoWindow.open(map);
+
+    if(markers.length > 0){
+      deleteMarkers();
+      addMarker(posTemp);
+      showMarkers();
+    }else if(markers.length == 0){
+      addMarker(posTemp);
+      showMarkers();
+    }else{
+      console.log("ERROR! marker Error!");
+      console.log("E1: "+{markers});
+    }
+    
+    // // Create a new InfoWindow.
+    // infoWindow = new google.maps.InfoWindow({
+    //   position: posTemp,
+    // });
+    // infoWindow.setContent(JSON.stringify(posTemp.toJSON(), null, 2));
+    // infoWindow.open(map);
     console.log(JSON.stringify(posTemp));
 
     pos = posTemp.toJSON();
-    showUploadBtn(); 
+    showUploadBtn();
     // document.getElementById("GPScoor").textContent = JSON.stringify(pos);
   });
+}
+
+//https://developers.google.com/maps/documentation/javascript/examples/marker-remove
+// Sets the map on all markers in the array.
+function setMapOnAll(map) {
+  for (let i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setMapOnAll(null);
+}
+
+// Adds a marker to the map and push to the array.
+function addMarker(location) {
+  const marker = new google.maps.Marker({
+    position: location,
+    map: map,
+    icon: {
+      url: "/img/redIcon.png",
+      scaledSize: new google.maps.Size(30, 50),
+    },
+  });
+  markers.push(marker);
+}
+// Shows any markers currently in the array.
+function showMarkers() {
+  setMapOnAll(map);
 }
 
 function showUploadBtn() {

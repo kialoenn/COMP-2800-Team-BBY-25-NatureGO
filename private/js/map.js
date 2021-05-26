@@ -118,12 +118,20 @@ function displayMarker(gpsPosit) {
         position: gpsCoord,
         map: map,
         // icon: greenIcon,
+        icon: {
+          url: "/img/redIcon.png",
+          scaledSize: new google.maps.Size(30, 50),
+        },
         title: name,
       });
       markerOverview = new google.maps.Marker({
         position: gpsCoord,
         map: overview,
         // icon: greenIcon,
+        icon: {
+          url: "/img/redIcon.png",
+          scaledSize: new google.maps.Size(10, 17),
+        },
         title: name,
       });
     }
