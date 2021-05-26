@@ -112,8 +112,8 @@ function getpoints() {
   return new Promise(function (res, rej) {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        db.collection("users").
-        doc(user.uid).get()
+        db.collection("users")
+        .doc(user.uid).get()
           .then(function (doc) {
             res(doc.data().totalpoints);
           });
