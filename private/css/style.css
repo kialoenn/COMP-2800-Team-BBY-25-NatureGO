@@ -1,3 +1,15 @@
+@font-face {
+  font-family: natureFont;
+  src: url('/fonts/berkshireswash-regular.ttf');
+}
+
+@font-face {
+  font-family: natureFont2;
+  src: url('/fonts/Amadeus.ttf');
+}
+body {
+  font-family: natureFont;
+}
 /*Navbar--- */
 .nav {
   background-color: #04443c;
@@ -26,13 +38,48 @@ a {
 }
 
 .swal2-popup {
-  justify-content:flex-end;
+  justify-content: flex-end;
 }
 
 .swal2-content {
   font-weight: bolder;
   font-size: 40px;
   color: rgb(197, 81, 81);
+}
+
+h1,
+h3 {
+  text-align: center;
+}
+
+#searchbt {
+  font-size: 25px;
+  color: #04443c
+}
+
+#circle {
+  margin-left: 25%;
+  margin-top: 10%;
+}
+
+#notif {
+  margin-top: 10%;
+}
+
+.btn-circle {
+  width: 200px;
+  height: 200px;
+  padding: 6px 0px;
+  border-radius: 100px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 190px;
+  background-color: #04443c;
+  color: white;
+}
+
+#snap:hover {
+  color: #76c893;
 }
 h1,h3 {
     text-align: center;
@@ -45,6 +92,7 @@ h1,h3 {
 
 
   .btn-circle {
+    border: none;
     width: 200px;
     height: 200px;
     padding: 6px 2px;
@@ -53,7 +101,7 @@ h1,h3 {
     font-size: 12px;
     line-height:190px;
     color: white;
-    background-image: -webkit-linear-gradient( #04443c 10%,#76c893  100%);
+    background-image: linear-gradient(#04443c,#76c893);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
     text-shadow: 1px 1px 1px rgba(39, 87, 39, 0.65);
 
@@ -68,6 +116,7 @@ h1,h3 {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     color: rgba(0, 0, 0, 0.979);
   }
 
