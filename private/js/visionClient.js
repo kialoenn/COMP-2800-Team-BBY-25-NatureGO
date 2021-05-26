@@ -33,7 +33,7 @@ $(document).ready(function () {
                 console.log("result", r);
                 localStorage.setItem('animalinfo', r.type);
                 localStorage.setItem('url', r.url);
-                // window.location.href = "/html/info.html";
+                window.location.href = "/html/info.html";
               });
 
             } else if (r.status == 'error') {
