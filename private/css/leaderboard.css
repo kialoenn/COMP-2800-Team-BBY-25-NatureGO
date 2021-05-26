@@ -1,0 +1,71 @@
+
+
+.contain {
+	width: 300px;
+	height: auto;
+	border-radius: 10px;
+	background-color: white;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	overflow: hidden;
+}
+
+/* leaderboard */
+.leaderboard .head {
+	background: linear-gradient(to bottom, #3a404d, #181c26);
+}
+
+/* head */
+.leaderboard .head {
+	padding: 20px 16px;
+	color: snow;
+	font-size: 20px;
+	text-align: center;
+}
+.leaderboard .head h1 {
+	display: inline-block;
+	margin-left: 4px;
+}
+
+/* body */
+.leaderboard .body {
+	color: snow;
+	font-size: 16px;
+}
+.leaderboard ol {
+	counter-reset: number;
+}
+.leaderboard li {
+	padding: 16px;
+	display: flex;
+}
+.leaderboard li mark {
+	flex-grow: 1;
+	color: snow;
+	background-color: transparent;
+	text-align: center;
+	line-height: 10px;
+}
+
+.leaderboard li:before {
+	counter-increment: number; 
+	content: counter(number) ".";
+	margin-right: 4px;
+}
+.leaderboard li:nth-child(1) {
+	background:gold;
+}
+.leaderboard li:nth-child(2) {
+	background:silver;
+}
+.leaderboard li:nth-child(3) {
+	background:brown;
+}
+ol{
+	margin-left:0px ;
+	padding-left: 0px;
+	margin-bottom: 0px;
+}

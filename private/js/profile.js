@@ -150,3 +150,10 @@ function getUserInfo() {
 }
 getUserInfo();
 
+var leaderboard = document.getElementById("leaderboard");
+
+leaderboard.addEventListener('click', function () {
+
+    window.location.href = "/html/leaderboard.html";
+
+})
