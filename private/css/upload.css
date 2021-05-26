@@ -6,8 +6,32 @@
 input {
     border: #04443c;
     border-radius: 4px;
+   
 }
 
+input[type="file"] {
+    display:none;
+}
+input[type="submit"] {
+    display:none;
+}
+#fileinput{
+    border: solid black;
+    width: 100px;
+    height: 50px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+#upload-input{
+    border: solid black;
+    width: 100px;
+    height: 50px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
 #previewImag {
     width: 200px;
     height: 200px;
@@ -17,4 +41,25 @@ input {
 #selectImgLocation {
     width: 100%;
     height: 50vh;
+}
+
+#add-photo{
+    position:relative;
+    left:104px;
+    bottom: 30px;
+    width: 100px;
+    height: 50px;
+    color: white;
+    background-color: #04443c;
+
+}
+#upload-photo{
+    position:relative;
+    right:103px;
+    bottom: 19px;
+    width: 100px;
+    height: 50px;
+    color: white;
+    background-color: #04443c;
+
 }
