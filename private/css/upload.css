@@ -6,19 +6,15 @@
 input {
     border: #04443c;
     border-radius: 4px;
-   
+
 }
 
 input[type="file"] {
-    display:none;
-}
-input[type="submit"] {
-    display:none;
+    display: none;
 }
 
-#selectImgLocation {
-    width: 100%;
-    height: 50vh;
+input[type="submit"] {
+    display: none;
 }
 
 #file-input {
@@ -38,12 +34,12 @@ input[type="submit"] {
     height: 50vh;
 }
 
-#upload-photo{
-    position:relative;
+#upload-photo {
+    position: relative;
     width: 100px;
     height: 50px;
     color: white;
     background-color: #04443c;
-    
+
 
 }

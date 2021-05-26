@@ -68,8 +68,9 @@ h3 {
 }
 
 #circle {
-  margin-left: 25%;
-  margin-top: 10%;
+  margin: 0 auto;
+  margin-top: 30%;
+  width: 60%;
 }
 
 

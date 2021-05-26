@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>COMP2800 Team 25 Project - NatureGo</title>
@@ -27,64 +28,66 @@
         NatureGo</a>
     </li>
     <li class="nav-item" id="authentication">
-      <a id ="nav-login" class="nav-link right-s-nav" title="camera" href="/html/login.html">Login</a>
+      <a id="nav-login" class="nav-link right-s-nav" title="camera" href="/html/login.html">Login</a>
     </li>
     <li class="nav-item">
-      <a id ="nav-aboutus" class="nav-link right-s-nav" title="photoCollection" href="/html/AboutUs.html">About us</a>
+      <a id="nav-aboutus" class="nav-link right-s-nav" title="photoCollection" href="/html/AboutUs.html">About us</a>
     </li>
   </ul>
   <br>
   <br>
   <br>
-  <div class="container">
-    <div class="container row d-flex justify-content-center ">
+  <div >
+    <div >
       <h1>Welcome to NatureGo<br></h1>
 
       <h3>Let's find some animal info</h3>
-    <div id="circle" class="row">
-        <a id="snap" class="btn btn-circle" href="/html/upload.html"><p>SNAP</p></a></button>
+      <div id="circle">
+        <a id="snap" class="btn btn-circle" href="/html/upload.html">
+          <p>SNAP</p>
+        </a></button>
+      </div>
     </div>
 
+    <!-- Navigation Bar-->
+    <ul class="navbar nav fixed-bottom  justify-content-around nav-expand-lg">
+      <li class="nav-item">
+        <a id="nav-camera" class="nav-link right-s-nav" title="camera" href="/html/upload.html"><i
+            data-feather="camera"></i></a>
+      </li>
+      <li class="nav-item">
+        <a id="nav-collection" class="nav-link right-s-nav" title="photoCollection" href="/html/collection.html"><i
+            data-feather="image"></i></a>
+      </li>
+      <li class="nav-item">
+        <a id="nav-map" class="nav-link right-s-nav" title="map" href="/html/map.html"><i
+            data-feather="map-pin"></i></a>
+      </li>
+      <li class="nav-item">
+        <a id="nav-profile" class="nav-link right-s-nav" title="profile" href="/html/profile.html"><i
+            data-feather="user"></i></a>
+      </li>
+    </ul>
+    <!-- Navigation Bar -->
 
+    <!----------------------------------------------->
+    <!-- JS: Boostrap, JQuery, Firebase, API related-->
+    <!----------------------------------------------->
 
-  </div>
-
-  <!-- Navigation Bar-->
-  <ul class="navbar nav fixed-bottom  justify-content-around nav-expand-lg">
-    <li class="nav-item">
-      <a  id ="nav-camera" class="nav-link right-s-nav" title="camera" href="/html/upload.html"><i data-feather="camera"></i></a>
-    </li>
-    <li class="nav-item">
-      <a id ="nav-collection" class="nav-link right-s-nav" title="photoCollection" href="/html/collection.html"><i
-          data-feather="image"></i></a>
-    </li>
-    <li class="nav-item">
-      <a id ="nav-map" class="nav-link right-s-nav" title="map" href="/html/map.html"><i data-feather="map-pin"></i></a>
-    </li>
-    <li class="nav-item">
-      <a id ="nav-profile" class="nav-link right-s-nav" title="profile" href="/html/profile.html"><i data-feather="user"></i></a>
-    </li>
-  </ul>
-  <!-- Navigation Bar -->
-
-  <!----------------------------------------------->
-  <!-- JS: Boostrap, JQuery, Firebase, API related-->
-  <!----------------------------------------------->
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
-  <script src="/js/firebaseAPI.js"></script>
-  <script src="/js/authentication.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-    crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-    $.noConflict(true);
-  </script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+    <script src="/js/firebaseAPI.js"></script>
+    <script src="/js/authentication.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      $.noConflict(true);
+    </script>
     <script src="/js/easterEgg.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script>
