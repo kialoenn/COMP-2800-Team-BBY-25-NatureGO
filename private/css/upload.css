@@ -8,7 +8,6 @@ input {
     border-radius: 4px;
 }
 
-<<<<<<< HEAD
 #fileinput{
     border: solid black;
     width: 100px;
@@ -25,15 +24,6 @@ input {
     cursor: pointer;
     position: relative;
 }
-=======
-input[type="file"] {
-    display:none;
-}
-input[type="submit"] {
-    display:none;
-}
-
->>>>>>> 0fb502a993a4b4db66a9459e470b74a7d6404e75
 #selectImgLocation {
     width: 100%;
     height: 50vh;
@@ -55,7 +45,6 @@ input[type="submit"] {
     height: 50vh;
 }
 
-<<<<<<< HEAD
 #add-photo{
     position:relative;
     left:104px;
@@ -66,18 +55,13 @@ input[type="submit"] {
     background-color: #04443c;
 
 }
-/* #upload-photo{
-=======
-#upload-photo{
->>>>>>> 0fb502a993a4b4db66a9459e470b74a7d6404e75
+#uploadImgBtn{
     position:relative;
     width: 100px;
-    height: 50px;
+    height: 40px;
     color: white;
     background-color: #04443c;
-    
-
-} */
+}
 
 #uploadImgBtn, #selectImgLocation {
     visibility: hidden;
