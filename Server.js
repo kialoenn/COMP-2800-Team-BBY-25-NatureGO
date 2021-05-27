@@ -104,8 +104,6 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                 labels.push(label.description);
             });
             console.log(labels);
-            let animalType;
-            //animalDB = await getanimalnames();
             console.log('db: ' + animalDB);
             animalDB.forEach(animal => {
                 if (labels.find(function (a) {
@@ -180,12 +178,6 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
     } else throw 'error';
 });
 
-// // RUN SERVER
-// let port = 8000;
-// app.listen(port, function () {
-//     console.log('listening on port ' + port + '!');
-// });
-
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
@@ -214,18 +206,6 @@ app.post('/get-email', function (req, res) {
             res.send(user);
         });
 });
-
-// app.post('/get-gps', function (req, res) {
-//     console.log(req.body.id);
-//     // db.collection("users").doc(req.body.id).collection("animals").where("lat", "!=", "")
-//         db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43").collection("animals").where("GPS.lat", "!=", "")
-//     .get()
-//     .then((photos) => {
-
-//         res.send(photos);  
-//     });
-// });
-
 
 
 async function quickstart(fileName) {
