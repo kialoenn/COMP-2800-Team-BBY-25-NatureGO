@@ -1,3 +1,6 @@
+/** Java Script File for animalinformation page
+ * @author Neeraj Kumar
+ * */
 $(document).ready(function () {
     var rarity;
 
@@ -36,6 +39,7 @@ $(document).ready(function () {
     }
 
     getanimalinfo();
-    $("#info_tab").prepend("<h2>Congrats!! You got <b>" + points + " </b>Points</h2>");
+    // diaplay the points scored by user
+    $("#info_tab").prepend("<h2> Congrats!! You got <b>" + points + " </b>Points</h2>");
 
 });

@@ -106,3 +106,7 @@ body {
 #snap p {
   font-size: 35px;
 }
+
+.active {
+  background-color: #4d8561;
+}
