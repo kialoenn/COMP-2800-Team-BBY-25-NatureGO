@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>NatureGO-Collection</title>
-  <meta property="og:url" content="https://nature-go.herokuapp.com/" />
+  <meta property="og:url" content="https://nature-go.herokuapp.com/html/collection.html" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="NatureGo" />
   <meta property="og:description" content="Learn more about animals by taking pictures of them!" />
@@ -26,6 +26,9 @@
 
 
 <body>
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0"
+    nonce="57bJe22W"></script>
   <!-------------------------------------->
   <!-- The following is HTML for layout -->
   <!-------------------------------------->
@@ -56,10 +59,11 @@
   <!-------------------------------------->
   <div class="container">
 
-    <h1 class="font-weight-light text-left text-lg-left mt-4 mb-0 text-white">Animal Collections      
-      <div class="fb-share-button" data-href="https://nature-go.herokuapp.com/html/collection.html"
-      data-layout="button_count" data-size="large">
-    </div>
+    <h1 class="font-weight-light text-left text-lg-left mt-4 mb-0 text-white">Animal Collections
+      <div class="fb-share-button" data-href="https://nature-go.herokuapp.com/html/collection.html" data-layout="button"
+        data-size="large"><a target="_blank"
+          href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnature-go.herokuapp.com%2Fhtml%2Fcollection.html&amp;src=sdkpreparse"
+          class="fb-xfbml-parse-ignore">Share</a></div>
     </h1>
 
     <hr class="mt-2 mb-5">
@@ -67,14 +71,7 @@
     <div class="row text-center text-lg-left" id="pictureContent">
     </div>
     <!--End-->
-    <div id="fb-root"></div>
-    <script>(function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));</script>
+
 
     <!-- nav-light
             Author: Michael -->
