@@ -8,6 +8,9 @@
     margin-top: 10px;
 }
 
+#info_table {
+    color: aliceblue;
+}
 #donate {
     background-color: #04443c;
     text-align: center;

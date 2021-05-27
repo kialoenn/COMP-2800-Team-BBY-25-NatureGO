@@ -68,8 +68,9 @@ h3 {
 }
 
 #circle {
-  margin-left: 25%;
-  margin-top: 10%;
+  margin: 0 auto;
+  margin-top: 100px;
+  text-align: center;
 }
 
 
@@ -94,7 +95,7 @@ h3 {
 }
 
 body {
-  background-image: url("/img/background.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("/img/background.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

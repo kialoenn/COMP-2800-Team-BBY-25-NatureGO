@@ -1,5 +1,6 @@
 body{
     background-color: white;
+    margin: 8px;
 }
 
 nav{
@@ -9,10 +10,15 @@ nav{
 .row {
     --bs-gutter-x: 0;
 }
+<<<<<<< HEAD
 
 .row1{
     height:200px;
     background-color: #04443c;
+=======
+.row1{
+    height:200px;
+>>>>>>> 9c4b7bb536c4bca07c2a2728f675d51b87ce76a9
 }
 
 .row2{
@@ -27,6 +33,8 @@ nav{
     height:300px;
 }
 .row5{
+    margin: 0 auto;
+    width: 50%;
     height:150px;
 }
 
@@ -105,8 +113,12 @@ nav{
     height:80%;
     background-color: lightgray;
     border: solid #04443c;
+<<<<<<< HEAD
     position: relative;
     left: 100px;
+=======
+    margin: 0 auto;
+>>>>>>> 9c4b7bb536c4bca07c2a2728f675d51b87ce76a9
 }
 
 input[type="file"] {
@@ -129,9 +141,12 @@ button{
     color: white;
     background-color: #04443c;
     font-size: 30px;
+<<<<<<< HEAD
     margin: 0;
     position: absolute;
     left: 40%;
+=======
+>>>>>>> 9c4b7bb536c4bca07c2a2728f675d51b87ce76a9
 }
 
 .in-col{
