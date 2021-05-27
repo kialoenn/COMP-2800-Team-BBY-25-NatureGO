@@ -19,7 +19,15 @@ $(document).ready(function () {
         //   console.log(key, value);
         // }
         fd.append('id', user.uid);
-
+        swal.fire(
+          {
+            title: "Checking...",
+            text: "Please wait",
+            imageUrl: "/img/loading.gif",
+            showConfirmButton: false,
+            allowOutsideClick: false
+          }
+        )
         $.ajax({
           type: "POST",
           url: "/upload",
@@ -30,10 +38,18 @@ $(document).ready(function () {
             console.log(r);
             if (r.status == 'success') {
               calcpoints(user.uid, r.type).then(function (s) {
-                console.log("result", r);
-                localStorage.setItem('animalinfo', r.type);
-                localStorage.setItem('url', r.url);
-                window.location.href = "/html/info.html";
+                Swal.fire({
+                  title: "New Finding!",
+                  text: "Congratulations, You earned " + s + " points!",
+                  icon: "success",
+                  allowOutsideClick: false,
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    localStorage.setItem('animalinfo', r.type);
+                    localStorage.setItem('url', r.url);
+                    window.location.href = "/html/info.html";
+                  }
+                })
               });
 
             } else if (r.status == 'error') {
@@ -103,6 +119,7 @@ async function calcpoints(user, animaltype) {
 
   let total_points = userpoints + points;
   await updatepoints(user,total_points);
+  return points;
 }
 
 /**
