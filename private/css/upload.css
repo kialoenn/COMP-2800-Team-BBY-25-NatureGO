@@ -6,15 +6,27 @@
 input {
     border: #04443c;
     border-radius: 4px;
-
 }
 
-input[type="file"] {
-    display: none;
+#fileinput{
+    border: solid black;
+    width: 100px;
+    height: 50px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
 }
 
-input[type="submit"] {
-    display: none;
+#upload-input{
+    width: 100px;
+    height: 50px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+#selectImgLocation {
+    width: 100%;
+    height: 50vh;
 }
 
 #file-input {
@@ -33,8 +45,10 @@ input[type="submit"] {
     height: 50vh;
 }
 
-#upload-photo {
-    position: relative;
+#add-photo{
+    position:relative;
+    left:104px;
+    bottom: 30px;
     width: 100px;
     height: 50px;
     color: white;
