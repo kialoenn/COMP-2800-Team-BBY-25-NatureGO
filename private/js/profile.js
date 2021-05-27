@@ -22,7 +22,7 @@ $(document).ready(function () {
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     $("#p1").text(jqXHR.statusText);
-                    console.log("ERROR:", jqXHR, textStatus, errorThrown);
+                    // console.log("ERROR:", jqXHR, textStatus, errorThrown);
                 }
             });
         } else {
@@ -48,7 +48,7 @@ $(document).ready(function () {
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     $("#p1").text(jqXHR.statusText);
-                    console.log("ERROR:", jqXHR, textStatus, errorThrown);
+                    // console.log("ERROR:", jqXHR, textStatus, errorThrown);
                 }
             });
         } else {
@@ -78,18 +78,18 @@ function uploadUserProfilePic() {
             //upload the picked file
             storageRef.put(file)
                 .then(function () {
-                    console.log('Uploaded to Cloud Storage.');
+                    // console.log('Uploaded to Cloud Storage.');
                 });
 
             //get the URL of stored file
             storageRef.getDownloadURL()
                 .then(function (url) { // Get URL of the uploaded file
-                    console.log(url); // Save the URL into users collection
+                    // console.log(url); // Save the URL into users collection
                     db.collection("users").doc(user.uid).update({
                             "profilePic": url
                         })
                         .then(function () {
-                            console.log('Added Profile Pic URL to Firestore.');
+                            // console.log('Added Profile Pic URL to Firestore.');
                         })
                 })
         })

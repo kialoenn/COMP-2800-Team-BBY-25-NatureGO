@@ -73,9 +73,7 @@ app.get('/', function (req, res) {
 
 // Post the uploaded photo to cloud storage 
 app.post('/upload', upload.single('photo'), async (req, res) => {
-    console.log(req.body);
-    console.log('id ' + req.body.id);
-    console.log("request path: " + req.file.path);
+
     if (req.file) {
         // let result = await quickstart(req.file.path)
         //let result = await quickstart(req)
@@ -101,7 +99,6 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                             console.error(err);
                             reject(err);
                         }
-                        console.log(url);
                         resolve(url);
                     });
                 });
@@ -117,10 +114,10 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             result.forEach(label => {
                 labels.push(label.description);
             });
-            console.log(labels);
+            // console.log(labels);
             let animalType;
             // Compare the labels to animaltypes in database
-            console.log('db: ' + animalDB);
+            // console.log('db: ' + animalDB);
             animalDB.forEach(animal => {
                 if (labels.find(function (a) {
                         if (a.length >= animal.length) {
@@ -136,7 +133,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
             if (animalType == undefined) {
                 async function deleteFile() {
                     await bucket.file(blob.name).delete();
-                    console.log('deleted');
+                    // console.log('deleted');
                 }
                 deleteFile().catch(console.error);
                 res.send({
@@ -146,7 +143,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                 // Store the animal details in animal collection under user
                 assignURL().then(function (url) {
                     imageURL = url;
-                    console.log("type" + animalType)
+                    // console.log("type" + animalType)
                     var dbref = db.collection("users").doc(req.body.id).collection("animals");
 
                     dbref.where('type', '==', animalType)
@@ -161,9 +158,9 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                                         lng: req.body.lng,
                                     }
                                 }).catch(e => {
-                                    console.log(e)
+                                    // console.log(e)
                                 });
-                                console.log("success");
+                                // console.log("success");
                                 res.send({
                                     status: 'success',
                                     type: animalType,
@@ -176,7 +173,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                             } else {
                                 async function deleteFile() {
                                     await bucket.file(blob.name).delete();
-                                    console.log('deleted');
+                                    // console.log('deleted');
                                 }
                                 deleteFile().catch(console.error);
                                 res.send({
@@ -190,7 +187,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
 
         blobStream.end(req.file.buffer);
 
-        console.log("my url is " + imageURL);
+        // console.log("my url is " + imageURL);
 
     } else throw 'error';
 });
@@ -203,7 +200,7 @@ app.use(express.urlencoded({
 // get the user name from database
 
 app.post('/get-name', function (req, res) {
-    console.log(req.body.id);
+    // console.log(req.body.id);
     db.collection("users").doc(req.body.id)
         .get()
         .then(function (doc) {
@@ -217,7 +214,7 @@ app.post('/get-name', function (req, res) {
 // get the user email from database
 
 app.post('/get-email', function (req, res) {
-    console.log(req.body.id);
+    // console.log(req.body.id);
     db.collection("users").doc(req.body.id)
         .get()
         .then(function (doc) {
@@ -259,8 +256,8 @@ function getanimalnames() {
 // function to store animal names 
 async function storeanimalDB() {
     animalDB = await getanimalnames();
-    console.log("results-------------");
-    console.log(animalDB);
+    // console.log("results-------------");
+    // console.log(animalDB);
 }
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

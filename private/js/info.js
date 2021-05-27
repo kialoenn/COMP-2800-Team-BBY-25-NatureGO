@@ -11,7 +11,7 @@ $(document).ready(function () {
 
     var points = localStorage.getItem("points");
 
-    console.log(points);
+    // console.log(points);
 
     $("#image").attr("src", imageURL);
 

@@ -109,20 +109,10 @@ function initMap() {
     posTemp = mapsMouseEvent.latLng;
     // Close the current InfoWindow.
     infoWindow.close();
-
     pickLocationMarker(posTemp);
-    
-    // // Create a new InfoWindow.
-    // infoWindow = new google.maps.InfoWindow({
-    //   position: posTemp,
-    // });
-    // infoWindow.setContent(JSON.stringify(posTemp.toJSON(), null, 2));
-    // infoWindow.open(map);
-    // console.log(JSON.stringify(posTemp));
 
     pos = posTemp.toJSON();
     showUploadBtn();
-    // document.getElementById("GPScoor").textContent = JSON.stringify(pos);
   });
 }
 
@@ -136,10 +126,9 @@ function pickLocationMarker(posTemp){
     addMarker(posTemp);
     showMarkers();
   }else{
-    console.log("ERROR! marker Error!");
+    // console.log("ERROR! marker Error!");
   }
 }
-
 
 //https://developers.google.com/maps/documentation/javascript/examples/marker-remove
 // Sets the map on all markers in the array.
@@ -148,6 +137,7 @@ function setMapOnAll(map) {
     markers[i].setMap(map);
   }
 }
+
 // Deletes all markers in the array by removing references to them.
 function deleteMarkers() {
   clearMarkers();
