@@ -2,107 +2,110 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Customization</title>
+  <meta charset="utf-8">
+  <title>Customization</title>
 
 
-    <!-- Bootstrap for Mobile-first, and JQuery -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
-    <link rel="icon" type="image/jpg" href="/private/img/NaturegoFavicon.png" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Bootstrap for Mobile-first, and JQuery -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
+  <link rel="icon" type="image/jpg" href="/private/img/NaturegoFavicon.png" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 
-    <!-- Optional styles and scripts of your own-->
+  <!-- Optional styles and scripts of your own-->
 
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/Customization.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/Customization.css">
 
 
 </head>
 
 <body>
-    <ul class="nav fixed-top nav-expand-lg">
-        <li class="me-auto nav-item">
-          <a  id ="nav-index"class="nav-link active" id="easterEgg" aria-current="page" href="/html/index.html"><i data-feather="feather"></i>
-            NatureGo</a>
-        </li>
-        <li class="nav-item" id="authentication">
-          <a id ="nav-login" class="nav-link right-s-nav" title="camera" href="/html/login.html">Login</a>
-        </li>
-        <li class="nav-item">
-          <a id ="nav-aboutus" class="nav-link right-s-nav" title="photoCollection" href="/html/AboutUs.html">About us</a>
-        </li>
-      </ul>
-    <br>
-    <br>
-    <br>
+  <ul class="nav fixed-top nav-expand-lg">
+    <li class="me-auto nav-item">
+      <a id="nav-index" class="nav-link active" id="easterEgg" aria-current="page" href="/html/index.html"><i
+          data-feather="feather"></i>
+        NatureGo</a>
+    </li>
+    <li class="nav-item" id="authentication">
+      <a id="nav-login" class="nav-link right-s-nav" title="camera" href="/html/login.html">Login</a>
+    </li>
+    <li class="nav-item">
+      <a id="nav-aboutus" class="nav-link right-s-nav" title="photoCollection" href="/html/AboutUs.html">About us</a>
+    </li>
+  </ul>
+  <br>
+  <br>
+  <br>
 
-    <div class="container">
+  <div class="container">
+    <br />
+    <form class="wrapper" id="profileForm">
+      <h4 class="header">Edit Profile Information</h4>
+      <div>
+        <input class="inputtext" type="text" id="username" pattern="{3,20}" name="username" placeholder="username"
+          required autofocus="autofocus">
         <br />
-        <div class="wrapper">
-            <h4 class="header">Edit Profile Information</h4>
-            <div>
-                <input class="inputtext" type="text" id="username" name="username" placeholder="username" required
-                    autofocus="autofocus">
-                <br />
-                <input class="inputtext" type="text" id="nickname" name="nickname" placeholder="nickname" required
-                    autofocus="autofocus">
-                <br />
-                <input class="inputtext" type="text" id="description" name="description" placeholder="description"
-                    required>
-                <br />
-                <input class="inputtext" type="text" id="number" name="number" placeholder="number" required>
-                <br />
-                <input class="inputtext" type="text" id="address" name="address" placeholder="address" required>
-                <br />
-            </div>
-
-
-            <div id="buttondiv">
-                <button id="submit">UPDATE</button>
-            </div>
-
+        <input class="inputtext" type="text" id="nickname" pattern="[A-Za-z0-9]{8,20}" name="nickname"
+          placeholder="nickname" required autofocus="autofocus">
+        <br />
+        <input class="inputtext" type="text" id="description" name="description" placeholder="description">
+        <br />
+        <input class="inputtext" type="tel" id="number" name="number" pattern="[0-9]{10}" placeholder="number">
+        <br />
+        <input class="inputtext" type="text" id="address" name="address" placeholder="address">
+        <br />
+        <div id="buttondiv">
+          <button id="submit">UPDATE</button>
         </div>
-    </div>
+    </form>
+
+
+
+
+  </div>
+  </div>
 
   <!-- Navigation Bar-->
   <ul class="navbar nav fixed-bottom  justify-content-around nav-expand-lg">
     <li class="nav-item">
-      <a  id ="nav-camera" class="nav-link right-s-nav" title="camera" href="/html/upload.html"><i data-feather="camera"></i></a>
+      <a id="nav-camera" class="nav-link right-s-nav" title="camera" href="/html/upload.html"><i
+          data-feather="camera"></i></a>
     </li>
     <li class="nav-item">
-      <a id ="nav-collection" class="nav-link right-s-nav" title="photoCollection" href="/html/collection.html"><i
+      <a id="nav-collection" class="nav-link right-s-nav" title="photoCollection" href="/html/collection.html"><i
           data-feather="image"></i></a>
     </li>
     <li class="nav-item">
-      <a id ="nav-map" class="nav-link right-s-nav" title="map" href="/html/map.html"><i data-feather="map-pin"></i></a>
+      <a id="nav-map" class="nav-link right-s-nav" title="map" href="/html/map.html"><i data-feather="map-pin"></i></a>
     </li>
     <li class="nav-item">
-      <a id ="nav-profile" class="nav-link right-s-nav" title="profile" href="/html/profile.html"><i data-feather="user"></i></a>
+      <a id="nav-profile" class="nav-link right-s-nav" title="profile" href="/html/profile.html"><i
+          data-feather="user"></i></a>
     </li>
   </ul>
   <!-- Navigation Bar -->
 
-    <!----------------------------------------------->
-    <!-- JS: Boostrap, JQuery, Firebase, API related    -->
-    <!----------------------------------------------->
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-storage.js"></script>
-    <script src="/js/firebaseAPI.js"></script>
-    <script src="/js/Customization.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <script src="/js/authentication.js"></script>
-    <script src="/js/Customization.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
+  <!----------------------------------------------->
+  <!-- JS: Boostrap, JQuery, Firebase, API related    -->
+  <!----------------------------------------------->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-storage.js"></script>
+  <script src="/js/firebaseAPI.js"></script>
+  <script src="/js/Customization.js"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="/js/authentication.js"></script>
+  <script src="/js/Customization.js"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
 </body>
 
 </html>
