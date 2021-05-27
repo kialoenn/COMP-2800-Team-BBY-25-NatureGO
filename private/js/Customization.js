@@ -10,8 +10,9 @@ function submitProfileInfo() {
     firebase.auth().onAuthStateChanged(function (user) {
         var newEntry = userRef.doc(user.uid);
 
-        submitButton.addEventListener('submit', function () {
-
+        $('#profileForm').on('submit', function (e) {
+            e.preventDefault();
+            //console.log("updata")
             // grabs the user's input values
             var xusername = document.getElementById('username').value;
             var xnickname = document.getElementById('nickname').value;
@@ -19,6 +20,7 @@ function submitProfileInfo() {
             var xdescription = document.getElementById('description').value;
             var xaddress = document.getElementById('address').value;
 
+            console.log(xnickname)
             // updates the user document with more information
             newEntry.update({
                 name: xusername,

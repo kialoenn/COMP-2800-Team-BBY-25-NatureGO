@@ -46,22 +46,23 @@
     <br />
     <form class="wrapper" id="profileForm">
       <h4 class="header">Edit Profile Information</h4>
-      <div>
-        <input class="inputtext" type="text" id="username" pattern="{3,20}" name="username" placeholder="username"
-          required autofocus="autofocus">
-        <br />
-        <input class="inputtext" type="text" id="nickname" pattern="[A-Za-z0-9]{3,20}" name="nickname"
-          placeholder="nickname" required autofocus="autofocus">
-        <br />
-        <input class="inputtext" type="text" id="description" name="description" placeholder="description">
-        <br />
-        <input class="inputtext" type="tel" id="number" name="number" pattern="[0-9]{10}" placeholder="number">
-        <br />
-        <input class="inputtext" type="text" id="address" name="address" placeholder="address">
-        <br />
-        <div id="buttondiv">
+
+      <input class="inputtext" type="text" id="username" name="username" placeholder="username"
+        required autofocus="autofocus">
+      <br />
+      <input class="inputtext" type="text" id="nickname" pattern="[A-Za-z0-9]{3,20}" name="nickname"
+        placeholder="nickname" required autofocus="autofocus">
+      <br />
+      <input class="inputtext" type="text" id="description" name="description" placeholder="description">
+      <br />
+      <input class="inputtext" type="tel" id="number" name="number" pattern="[0-9]{10}" placeholder="number">
+      <br />
+      <input class="inputtext" type="text" id="address" name="address" placeholder="address">
+      <br />
+      <input type="submit" id="submit" name="submit" value="Submit" />
+      <!-- <div id="buttondiv">
           <button id="submit">UPDATE</button>
-        </div>
+        </div> -->
     </form>
   </div>
   </div>
