@@ -1,10 +1,13 @@
-//author: Michael W
-document.getElementById("selectImgLocation").style.visibility = "hidden";
+/** Java Script File for animalinformation page
+ * @author Michael Wang
+ * */
+
 document.getElementById("file-input").setAttribute("onchange", "previewFile()");
 window.initMap = initMap;
 let pos, map, infoWindow;
+let markers = [];
 
-//preview replace image
+//preview image
 window.previewFile = function previewFile() {
   let fileImg = document.getElementById("previewImag");
   let file = document.querySelector("input[type=file]").files[0];
@@ -20,14 +23,10 @@ window.previewFile = function previewFile() {
 
     //exif-js API
     EXIF.getData(file, function () {
-      let latLongCoord = getGPSLatitudeLongitude(this);
-      if (pos !== null) {
-        document.getElementById("GPScoor").textContent = JSON.stringify(latLongCoord);
-      } else {
-        document.getElementById("GPScoor").textContent = "No GPS from Image!";
-
-        //from google map API sample
-        //check for device geolocation
+      getGPSLatitudeLongitude(this);
+      if (pos === null) {
+        //get device location
+        //https://developers.google.com/maps/documentation/javascript/examples/map-geolocation#maps_map_geolocation-javascript
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -38,16 +37,11 @@ window.previewFile = function previewFile() {
 
               if (map !== null && infoWindow !== null) {
                 infoWindow.close();
-                infoWindow = new google.maps.InfoWindow({
-                  position: pos,
-                });
-                infoWindow.setContent(
-                  JSON.stringify(pos)
-                );
+                pickLocationMarker(pos);
                 map.setCenter(pos);
-                infoWindow.open(map);
               }
-              document.getElementById("GPScoor").textContent = JSON.stringify(pos);
+              showUploadBtn();
+              // document.getElementById("GPScoor").textContent = JSON.stringify(pos);
             },
             //user has geolocation but unable to get GPS
             initMap()
@@ -70,6 +64,7 @@ function getGPSLatitudeLongitude(imgABC) {
       lat: convertDMStoLatLong(EXIF.getTag(imgABC, "GPSLatitude")[0], EXIF.getTag(imgABC, "GPSLatitude")[1], EXIF.getTag(imgABC, "GPSLatitude")[2], EXIF.getTag(imgABC, "GPSLatitudeRef")),
       lng: convertDMStoLatLong(EXIF.getTag(imgABC, "GPSLongitude")[0], EXIF.getTag(imgABC, "GPSLongitude")[1], EXIF.getTag(imgABC, "GPSLongitude")[2], EXIF.getTag(imgABC, "GPSLongitudeRef")),
     }
+    showUploadBtn();
   }
   return pos;
 }
@@ -87,23 +82,25 @@ function convertDMStoLatLong(hour, minute, second, position) {
 
 //from google map API examples
 //https://developers.google.com/maps/documentation/javascript/examples/event-click-latlng
-//https://developers.google.com/maps/documentation/javascript/examples/map-geolocation#maps_map_geolocation-javascript
 function initMap() {
+  document.getElementById("uploadImgBtn").style.visibility = "hidden";
   document.getElementById("selectImgLocation").style.visibility = "visible";
 
-  console.log("inside initMap");
+  //BCIT BBY campus
   let posTemp = {
     lat: 49.25076313248947,
-    lng: -123.0017895306895
+    lng: -123.0017895306895,
   };
 
   map = new google.maps.Map(document.getElementById("selectImgLocation"), {
-    zoom: 11,
+    zoom: 13,
     center: posTemp,
+    mapTypeControl: false,
+    streetViewControl: false,
   });
   // Create the initial InfoWindow.
   infoWindow = new google.maps.InfoWindow({
-    content: "Click the map to get Lat/Lng!",
+    content: "Click the map to select location",
     position: posTemp,
   });
   infoWindow.open(map);
@@ -112,19 +109,66 @@ function initMap() {
     posTemp = mapsMouseEvent.latLng;
     // Close the current InfoWindow.
     infoWindow.close();
-    // Create a new InfoWindow.
-    infoWindow = new google.maps.InfoWindow({
-      position: posTemp,
-    });
-    infoWindow.setContent(
-      JSON.stringify(posTemp.toJSON(), null, 2)
-    );
-    infoWindow.open(map);
-    console.log(JSON.stringify(posTemp));
+    pickLocationMarker(posTemp);
 
     pos = posTemp.toJSON();
-    document.getElementById("GPScoor").textContent = JSON.stringify(pos);
+    showUploadBtn();
   });
+}
+
+//select gps location, enable 1 marker at all times
+function pickLocationMarker(posTemp){
+  if(markers.length > 0){
+    deleteMarkers();
+    addMarker(posTemp);
+    showMarkers();
+  }else if(markers.length == 0){
+    addMarker(posTemp);
+    showMarkers();
+  }else{
+    // console.log("ERROR! marker Error!");
+  }
+}
+
+//https://developers.google.com/maps/documentation/javascript/examples/marker-remove
+// Sets the map on all markers in the array.
+function setMapOnAll(map) {
+  for (let i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setMapOnAll(null);
+}
+
+// Adds a marker to the map and push to the array.
+function addMarker(location) {
+  const marker = new google.maps.Marker({
+    position: location,
+    map: map,
+    icon: {
+      url: "/img/redIcon.png",
+      scaledSize: new google.maps.Size(30, 50),
+    },
+  });
+  markers.push(marker);
+}
+// Shows any markers currently in the array.
+function showMarkers() {
+  setMapOnAll(map);
+}
+
+//display uploadImgBtn
+function showUploadBtn() {
+  document.getElementById("uploadImgBtn").style.visibility = "visible";
 }
 
 export { pos };

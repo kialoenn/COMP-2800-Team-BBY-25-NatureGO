@@ -8,13 +8,63 @@ input {
     border-radius: 4px;
 }
 
+#fileinput{
+    border: solid black;
+    width: 100px;
+    height: 50px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+#upload-input{
+    width: 100px;
+    height: 50px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+#selectImgLocation {
+    width: 100%;
+    height: 50vh;
+}
+
+#file-input {
+    display: none;
+}
+
 #previewImag {
     width: 200px;
     height: 200px;
-    margin-top:20px;
+    /* margin-top:5px; */
+    cursor: pointer;
 }
 
 #selectImgLocation {
     width: 100%;
     height: 50vh;
+}
+
+#add-photo{
+    position:relative;
+    left:104px;
+    bottom: 30px;
+    width: 100px;
+    height: 50px;
+    color: white;
+    background-color: #04443c;
+
+}
+#uploadImgBtn{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    position:relative;
+    width: 100px;
+    height: 30px;
+    color: white;
+    background-color: #04443c;
+}
+
+#uploadImgBtn, #selectImgLocation {
+    visibility: hidden;
 }

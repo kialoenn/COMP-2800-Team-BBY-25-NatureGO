@@ -1,6 +1,8 @@
-import {
-  pos
-} from "./imageData.js";
+/**
+ * This is the server file that commuicates between client and firesbase database
+ * @author Man Sun, Michael Wang, Neeraj Kumar
+ * */
+import { pos } from "./imageData.js";
 
 $(document).ready(function () {
   $('#imageForm').submit(function (e) {
@@ -9,19 +11,21 @@ $(document).ready(function () {
     let fd = new FormData(this);
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        console.log(user.uid);
-        console.log(pos);
-        for (var [key, value] of fd.entries()) {
-          console.log(key, value);
-        }
+  
         $.each(pos, function (key, value) {
           fd.append(key, value);
         });
-        for (var [key, value] of fd.entries()) {
-          console.log(key, value);
-        }
+        
         fd.append('id', user.uid);
-
+        swal.fire(
+          {
+            title: "Checking...",
+            text: "Please wait",
+            imageUrl: "/img/loading.gif",
+            showConfirmButton: false,
+            allowOutsideClick: false
+          }
+        )
         $.ajax({
           type: "POST",
           url: "/upload",
@@ -29,30 +33,38 @@ $(document).ready(function () {
           processData: false,
           contentType: false,
           success: function (r) {
-            console.log(r);
+            // console.log(r);
             if (r.status == 'success') {
               calcpoints(user.uid, r.type).then(function (s) {
-                console.log("result", r);
-                localStorage.setItem('animalinfo', r.type);
-                localStorage.setItem('url', r.url);
-                window.location.href = "/html/info.html";
+                Swal.fire({
+                  title: "New Finding!",
+                  text: "Congratulations, You earned " + s + " points!",
+                  icon: "success",
+                  allowOutsideClick: false,
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    localStorage.setItem('animalinfo', r.type);
+                    localStorage.setItem('url', r.url);
+                    window.location.href = "/html/info.html";
+                  }
+                })
               });
 
             } else if (r.status == 'error') {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'We cannot identify animal in the picture, please upload another one',
+                text: "It's either in your collectoin, or we cannot identify it",
               }).then(function () {
-                window.location.href = "/html/index.html";
+                window.location.href = "/html/upload.html";
               })
             } else {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'This animal is already in your collection.',
+                text: "It's either in your collectoin, or we cannot identify it",
               }).then(function () {
-                window.location.href = "/html/index.html";
+                window.location.href = "/html/upload.html";
               })
             }
 
@@ -61,18 +73,15 @@ $(document).ready(function () {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: 'We cannot identify animal in the picture, please upload another one',
+              text: "It's either in your collectoin, or we cannot identify it",
             }).then(function () {
-              window.location.href = "/html/index.html";
-            })
+              window.location.href = "/html/upload.html";
+            });
           }
         });
       }
-    })
-
-
+    });
   });
-
 });
 
 /**
@@ -84,6 +93,7 @@ async function calcpoints(user, animaltype) {
   let userpoints = await getpoints();
   let rarity = await getrarity(animaltype);
  
+  // console.log(userpoints);
 
   switch (rarity) {
     case "epic":
@@ -97,11 +107,15 @@ async function calcpoints(user, animaltype) {
       break;
   }
 
-  console.log(points);
   localStorage.setItem('points', points);
+  if(userpoints == undefined){
+    userpoints = 0;
+  }
+
 
   let total_points = userpoints + points;
   await updatepoints(user,total_points);
+  return points;
 }
 
 /**
@@ -111,8 +125,8 @@ function getpoints() {
   return new Promise(function (res, rej) {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        db.collection("users").
-        doc(user.uid).get()
+        db.collection("users")
+        .doc(user.uid).get()
           .then(function (doc) {
             res(doc.data().totalpoints);
           });
@@ -131,7 +145,6 @@ function getrarity(animaltype) {
     db.collection("animals_info").where("name", "==", animaltype)
       .get()
       .then((querySnapshot) => {
-
         querySnapshot.forEach((doc) => {
           res(doc.data().rarity)
         });
@@ -151,6 +164,7 @@ function getrarity(animaltype) {
     dbref.update({
       totalpoints:points
     }).then(function (){
+      // console.log("update db points");
       res("Success");
     })
 

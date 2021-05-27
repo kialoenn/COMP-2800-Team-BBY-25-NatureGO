@@ -1,11 +1,18 @@
-// REQUIRES
+/**
+ * This is the server file that commuicates between client and firesbase database
+ * @author Neeraj Kumar,Man Sun,Richard Mac,Michael Wang
+ * */
+
+// REQUIRED npm packages
 const express = require('express');
 const vision = require('@google-cloud/vision');
 const fs = require("fs");
 const app = express();
 const path = require('path');
 const PORT = process.env.PORT || 8000
+const multer = require('multer');
 
+//Intialize firabse
 
 var admin = require("firebase-admin");
 var serviceAccount = require("./firebase_auth.json");
@@ -14,12 +21,15 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     storageBucket: "naturego-e74d6.appspot.com"
 });
+
+//Intialize firabse storage
+
 var bucket = admin.storage().bucket();
 const db = admin.firestore();
+
 // GENERAL CONSTANTS
 const msg404 = 'These are not the codes that you are looking for.';
-var animalDB = [];
-const multer = require('multer');
+var animalDB = ['Black Swift', 'Cougar,Raccoon', 'Wolf', 'Black bear', 'Canada goose', 'Coyote', 'Sockeye salmon'];
 const {
     BlockList
 } = require('net');
@@ -27,20 +37,22 @@ const upload = multer({
     storage: multer.memoryStorage()
 });
 
-
 // STATIC DIRECTORIES
 app.use('/css', express.static('private/css'));
 app.use('/img', express.static('private/img'));
 app.use('/js', express.static('private/js'));
 app.use('/html', express.static('private/html'));
+app.use('/fonts', express.static('private/fonts'));
+
 
 // APP GETS
+// Servers up the login.html on root directory
 app.get('/', function (req, res) {
 
     res.set('Server', 'NatureGO');
     res.set('Server', 'BBY');
 
-    fs.readFile("./private/html/index.html", function (error, pgRes) {
+    fs.readFile("./private/html/login.html", function (error, pgRes) {
         if (error) {
             res.writeHead(404);
             res.write(msg404);
@@ -52,13 +64,11 @@ app.get('/', function (req, res) {
         }
         res.end();
     });
-
 });
 
+// Post the uploaded photo to cloud storage 
 app.post('/upload', upload.single('photo'), async (req, res) => {
-    console.log(req.body);
-    console.log('id ' + req.body.id);
-    console.log("request path: " + req.file.path);
+
     if (req.file) {
         // let result = await quickstart(req.file.path)
         //let result = await quickstart(req)
@@ -68,13 +78,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
         blob.name = req.body.id + '|' + new Date().valueOf() + '.jpeg';
         const blobStream = blob.createWriteStream();
 
-
         blobStream.on('finish', async () => {
-            // The public URL can be used to directly access the file via HTTP.
-            // console.log(blob);
-            // const publicUrl = format(
-            //     `https://storage.googleapis.com/${bucket.name}/${blob.name}`
-            // );
             const config = {
                 action: 'read',
 
@@ -82,6 +86,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                 expires: '01-01-2026',
             };
 
+            // function to get URL from storage
             function getURL(blob) {
                 return new Promise((resolve, reject) => {
                     blob.getSignedUrl(config, function (err, url) {
@@ -89,52 +94,51 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                             console.error(err);
                             reject(err);
                         }
-                        console.log(url);
                         resolve(url);
-                    })
-                })
+                    });
+                });
             }
 
             async function assignURL() {
                 let temp = await getURL(blob);
                 return temp;
             }
-
+            //get the labels of the image using Vision API
             let result = await quickstart(`gs://naturego-e74d6.appspot.com/${blob.name}`);
             let labels = [];
             result.forEach(label => {
                 labels.push(label.description);
-            })
-            console.log(labels);
+            });
+            // console.log(labels);
             let animalType;
-            animalDB = await getanimalnames();
-            console.log('db: ' + animalDB);
+            // Compare the labels to animaltypes in database
+            // console.log('db: ' + animalDB);
             animalDB.forEach(animal => {
                 if (labels.find(function (a) {
                         if (a.length >= animal.length) {
-                            return a.toUpperCase().includes(animal.toUpperCase())
+                            return a.toUpperCase().includes(animal.toUpperCase());
                         } else {
-                            return animal.toUpperCase().includes(a.toUpperCase())
+                            return animal.toUpperCase().includes(a.toUpperCase());
                         }
                     })) {
                     animalType = animal;
                 }
-
-            })
-
-            // console.log(animalType);
+            });     
+            //delete the image from storage if its inavlid 
             if (animalType == undefined) {
                 async function deleteFile() {
                     await bucket.file(blob.name).delete();
-                    console.log('deleted');
+                    // console.log('deleted');
                 }
                 deleteFile().catch(console.error);
                 res.send({
                     status: 'error',
-                })
+                });
             } else {
+                // Store the animal details in animal collection under user
                 assignURL().then(function (url) {
                     imageURL = url;
+                    // console.log("type" + animalType)
                     var dbref = db.collection("users").doc(req.body.id).collection("animals");
 
                     dbref.where('type', '==', animalType)
@@ -149,9 +153,9 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                                         lng: req.body.lng,
                                     }
                                 }).catch(e => {
-                                    console.log(e)
+                                    // console.log(e)
                                 });
-                                console.log("success");
+                                // console.log("success");
                                 res.send({
                                     status: 'success',
                                     type: animalType,
@@ -164,40 +168,34 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                             } else {
                                 async function deleteFile() {
                                     await bucket.file(blob.name).delete();
-                                    console.log('deleted');
+                                    // console.log('deleted');
                                 }
                                 deleteFile().catch(console.error);
                                 res.send({
                                     status: 'existed',
-                                })
+                                });
                             }
-                        })
-
+                        });
                 });
-
             }
         });
 
         blobStream.end(req.file.buffer);
 
-        console.log("my url is " + imageURL);
+        // console.log("my url is " + imageURL);
 
     } else throw 'error';
 });
-
-// // RUN SERVER
-// let port = 8000;
-// app.listen(port, function () {
-//     console.log('listening on port ' + port + '!');
-// });
 
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
 
+// get the user name from database
+
 app.post('/get-name', function (req, res) {
-    console.log(req.body.id);
+    // console.log(req.body.id);
     db.collection("users").doc(req.body.id)
         .get()
         .then(function (doc) {
@@ -205,12 +203,13 @@ app.post('/get-name', function (req, res) {
             var user = doc.data().name;
             res.setHeader('Content-Type', 'application/HTML');
             res.send(user);
-        })
-
+        });
 });
 
+// get the user email from database
+
 app.post('/get-email', function (req, res) {
-    console.log(req.body.id);
+    // console.log(req.body.id);
     db.collection("users").doc(req.body.id)
         .get()
         .then(function (doc) {
@@ -218,22 +217,8 @@ app.post('/get-email', function (req, res) {
             var user = doc.data().email;
             res.setHeader('Content-Type', 'application/HTML');
             res.send(user);
-        })
-
+        });
 });
-
-// app.post('/get-gps', function (req, res) {
-//     console.log(req.body.id);
-//     // db.collection("users").doc(req.body.id).collection("animals").where("lat", "!=", "")
-//         db.collection("users").doc("2B02XrEUFLglZfThUas1fsPQ6R43").collection("animals").where("GPS.lat", "!=", "")
-//     .get()
-//     .then((photos) => {
-
-//         res.send(photos);  
-//     });
-// });
-
-
 
 async function quickstart(fileName) {
     // Imports the Google Cloud client library
@@ -244,17 +229,12 @@ async function quickstart(fileName) {
 
     // Performs label detection on the image file
     const [result] = await client.labelDetection(fileName);
-    // const [result] = await client.labelDetection({
-    //     image: {
-    //         content: req.file.buffer
-    //     }
-    // });
+
     const labels = result.labelAnnotations;
-    // console.log('Labels:');
-    // labels.forEach(label => console.log(label.description));
     return labels;
 }
 
+// function to get the animal names from database
 function getanimalnames() {
     return new Promise(function (res, rej) {
         db.collection("animals_info")
@@ -265,14 +245,19 @@ function getanimalnames() {
                     data.push(doc.data().name);
                 });
                 res(data);
-            })
-    })
+            });
+    });
 }
-
+// function to store animal names 
 async function storeanimalDB() {
     animalDB = await getanimalnames();
-    console.log("results-------------");
-    console.log(animalDB);
+    // console.log("results-------------");
+    // console.log(animalDB);
 }
+
+app.use(function (req, res, next) {
+    let file = fs.readFileSync('./private/html/404.html', 'utf8');
+    res.status(404).send(file);
+});
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

@@ -1,8 +1,15 @@
+/**
+ * This js file provides functions that allow user to edit and update their 
+ * personal information.
+ * 
+ * @author Richard
+ */
+
 // users collection in database
 const userRef = db.collection('users');
 
 // the submit button in the html
-const submitButton = document.getElementById('submit');
+const submitButton = document.getElementById('profileForm');
 
 
 // edits the user's profile information in the database
@@ -10,8 +17,9 @@ function submitProfileInfo() {
     firebase.auth().onAuthStateChanged(function (user) {
         var newEntry = userRef.doc(user.uid);
 
-        submitButton.addEventListener('click', function () {
-
+        $('#profileForm').on('submit', function (e) {
+            e.preventDefault();
+            //console.log("updata")
             // grabs the user's input values
             var xusername = document.getElementById('username').value;
             var xnickname = document.getElementById('nickname').value;
@@ -19,6 +27,7 @@ function submitProfileInfo() {
             var xdescription = document.getElementById('description').value;
             var xaddress = document.getElementById('address').value;
 
+            // console.log(xnickname)
             // updates the user document with more information
             newEntry.update({
                 name: xusername,
@@ -28,10 +37,10 @@ function submitProfileInfo() {
                 address: xaddress
             })
 
-            //console.log("Data was uploaded!")
+            // console.log("Data was uploaded!")
             // short delay after submitting to show the 'weight' of the action
             setTimeout(function () {
-               window.location.assign("profile.html?location"); 
+                window.location.assign("profile.html?location");
             }, 500);
         })
     })
@@ -54,7 +63,7 @@ function getUserInfo() {
                     var numb = doc.data().number;
                     var add = doc.data().address;
                     var nick = doc.data().nickname;
-                    
+
                     // displays grabbed data onto page
                     $("#username").val(name).text(name);
                     $("#description").val(desc).text(desc);
@@ -64,7 +73,7 @@ function getUserInfo() {
                     $("#nickname").val(nick).text(nick);
                 })
         } else {
-            
+
             // No user is signed in.
         }
     });

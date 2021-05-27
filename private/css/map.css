@@ -13,7 +13,8 @@ body {
 }
 
 #container {
-    height: 85%;
+  margin-top: -5px;
+    height: calc(100% - 85px);
     width: 100%;
 }
 #map {
@@ -30,6 +31,11 @@ body {
   left: 5px;
   height: 175px;
   width: 175px;
-  bottom: 60px;
+  bottom: 50px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.gm-style-iw {
+  height: 250px;
+  width: 225px;
 }
