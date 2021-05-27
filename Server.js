@@ -189,7 +189,6 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
     } else throw 'error';
 });
 
-
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true

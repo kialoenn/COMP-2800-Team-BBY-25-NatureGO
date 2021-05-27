@@ -10,9 +10,22 @@ nav{
 .row {
     --bs-gutter-x: 0;
 }
+<<<<<<< HEAD
+<<<<<<< HEAD
+
 .row1{
     height:200px;
+    background-color: #04443c;
+=======
+.row1{
+    height:200px;
+>>>>>>> 9c4b7bb536c4bca07c2a2728f675d51b87ce76a9
+=======
+.row1{
+    height:200px;
+>>>>>>> 3feb2c34e12b85bfc3c996eacf1e74e7edcfc16a
 }
+
 .row2{
     height:50px;
    
@@ -29,7 +42,6 @@ nav{
     width: 50%;
     height:150px;
 }
-
 
 #profilepic{
     border-radius: 25px;
@@ -53,8 +65,8 @@ nav{
     width: 90%;
     height:50%;
     margin: 10px;
-   
 }
+
 #userinfo p {
     font-size: 40px;
     color:white;
@@ -67,8 +79,6 @@ nav{
     color:black;
     float:right;
     margin: 15px;
-
-
 }
 
 .information{
@@ -79,8 +89,6 @@ nav{
     font-weight: bold;
 }
 
-
-
 #edit{
     border-radius:25px;
     width: 150px;
@@ -88,7 +96,6 @@ nav{
     position: relative;
     left: 5px;
     top: 15px;
-
 }
 
 #customize{
@@ -111,19 +118,26 @@ nav{
     height:80%;
     background-color: lightgray;
     border: solid #04443c;
+<<<<<<< HEAD
+<<<<<<< HEAD
+    position: relative;
+    left: 100px;
+=======
     margin: 0 auto;
+>>>>>>> 9c4b7bb536c4bca07c2a2728f675d51b87ce76a9
+=======
+    margin: 0 auto;
+>>>>>>> 3feb2c34e12b85bfc3c996eacf1e74e7edcfc16a
 }
 
 input[type="file"] {
     display:none;
 }
 
-
 #customizeinfo p{
     font-size: 40px;
     text-align: center;
-    color:#04443c;
-    
+    color:#04443c; 
 }
 
 button{
@@ -136,8 +150,16 @@ button{
     color: white;
     background-color: #04443c;
     font-size: 30px;
+<<<<<<< HEAD
+<<<<<<< HEAD
+    margin: 0;
+    position: absolute;
+    left: 40%;
+=======
+>>>>>>> 9c4b7bb536c4bca07c2a2728f675d51b87ce76a9
+=======
+>>>>>>> 3feb2c34e12b85bfc3c996eacf1e74e7edcfc16a
 }
-
 
 .in-col{
     height:50%;

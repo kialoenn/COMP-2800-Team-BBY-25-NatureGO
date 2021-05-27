@@ -1,5 +1,7 @@
 //https://developers.google.com/maps/documentation/javascript/examples/inset-map#maps_inset_map-javascript
 let map, overview;
+//change to false to see only user profile
+//didn't have enough time to implement
 let showAllUserPic = true;
 const OVERVIEW_DIFFERENCE = 5;
 const OVERVIEW_MIN_ZOOM = 3;
@@ -54,19 +56,19 @@ function initMap() {
           OVERVIEW_MIN_ZOOM,
           OVERVIEW_MAX_ZOOM
         )
-        );
-      });
+      );
+    });
 
-      //button || tab is clicked
-      if(showAllUserPic){
-        getGPSallUserPhotLoc(user);
-        showAllUserPic = false;
-        //reload google map API
-      }else{
-        getGPScurrentUserPhotoLoc(user);
-        showAllUserPic = true;
-        //reload google map API
-      }
+    //button || tab is clicked
+    if (showAllUserPic) {
+      getGPSallUserPhotLoc(user);
+      showAllUserPic = false;
+      //reload google map API
+    } else {
+      getGPScurrentUserPhotoLoc(user);
+      showAllUserPic = true;
+      //reload google map API
+    }
   });
 }
 
@@ -77,19 +79,19 @@ function strGeoCoorToFloatPt(geoStr) {
 
 //get current user's photos in DB with GPS coordinates
 function getGPScurrentUserPhotoLoc(user) {
-    db.collection("users").doc(user.uid).collection("animals").where("GPS.lat", "!=", "")
-      .get().then(gpsPosit => displayMarker(gpsPosit));
+  db.collection("users").doc(user.uid).collection("animals").where("GPS.lat", "!=", "")
+    .get().then(gpsPosit => displayMarker(gpsPosit));
 }
 
 //get all users' photo in DB with GPS coordinates
-function getGPSallUserPhotLoc(user){
- db.collectionGroup("animals").where("GPS.lat", "!=", "")
-  .get().then(gpsPosit => displayMarker(gpsPosit));
+function getGPSallUserPhotLoc(user) {
+  db.collectionGroup("animals").where("GPS.lat", "!=", "")
+    .get().then(gpsPosit => displayMarker(gpsPosit));
 }
 
 function displayMarker(gpsPosit) {
   gpsPosit.forEach((t) => {
-    
+
     //animal type: "animal"
     name = JSON.stringify(t.data().type);
     name = name.substring(1, name.length - 1);
@@ -103,10 +105,11 @@ function displayMarker(gpsPosit) {
       lat: lat,
       lng: lng,
     }
+    
     if (map !== null && overview !== null) {
       imageSizeConst = 250;
       infow = new google.maps.InfoWindow({
-        content: "<b>" + name + "</b><br/><img src="+ t.data().url +" style='width: 200px; height: 200px;'><br/>",
+        content: "<b>" + name + "</b><br/><img src=" + t.data().url + " style='width: 200px; height: 200px;'><br/>",
       });
       marker = new google.maps.Marker({
         position: gpsCoord,
@@ -132,6 +135,5 @@ function displayMarker(gpsPosit) {
     marker.addListener("click", () => {
       infow.open(map, marker);
     });
-
   });
 }
