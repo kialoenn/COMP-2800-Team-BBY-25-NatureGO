@@ -7,17 +7,11 @@ $(document).ready(function () {
     let fd = new FormData(this);
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        // console.log(user.uid);
-        // console.log(pos);
-        // for (var [key, value] of fd.entries()) {
-        //   console.log(key, value);
-        // }
+  
         $.each(pos, function (key, value) {
           fd.append(key, value);
         });
-        // for (var [key, value] of fd.entries()) {
-        //   console.log(key, value);
-        // }
+        
         fd.append('id', user.uid);
         swal.fire(
           {

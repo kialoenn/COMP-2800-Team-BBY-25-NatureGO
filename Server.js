@@ -1,5 +1,9 @@
-// REQUIRED npm packages
+/**
+ * This is the server file that commuicates between client and firesbase database
+ * @author Neeraj Kumar,Man Sun,Richard Mac,Miaozhe Wong
+ * */
 
+// REQUIRED npm packages
 const express = require('express');
 const vision = require('@google-cloud/vision');
 const fs = require("fs");
