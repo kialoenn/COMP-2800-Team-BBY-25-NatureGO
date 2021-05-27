@@ -1,3 +1,7 @@
+/**
+ * This is the server file that commuicates between client and firesbase database
+ * @author Richard Mac
+ * */
 $(document).ready(function () {
     firebase.auth().onAuthStateChanged(function (users) {
         if (users) {

@@ -1,9 +1,12 @@
+/** Java Script File for animalinformation page
+ * @author Michael Wang
+ * */
 document.getElementById("file-input").setAttribute("onchange", "previewFile()");
 window.initMap = initMap;
 let pos, map, infoWindow;
 let markers = [];
 
-//preview replace image
+//preview image
 window.previewFile = function previewFile() {
   let fileImg = document.getElementById("previewImag");
   let file = document.querySelector("input[type=file]").files[0];
@@ -21,6 +24,7 @@ window.previewFile = function previewFile() {
     EXIF.getData(file, function () {
       getGPSLatitudeLongitude(this);
       if (pos === null) {
+        //get device location
         //https://developers.google.com/maps/documentation/javascript/examples/map-geolocation#maps_map_geolocation-javascript
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
@@ -121,6 +125,7 @@ function initMap() {
   });
 }
 
+//select gps location, enable 1 marker at all times
 function pickLocationMarker(posTemp){
   if(markers.length > 0){
     deleteMarkers();
@@ -170,6 +175,7 @@ function showMarkers() {
   setMapOnAll(map);
 }
 
+//display uploadImgBtn
 function showUploadBtn() {
   document.getElementById("uploadImgBtn").style.visibility = "visible";
 }

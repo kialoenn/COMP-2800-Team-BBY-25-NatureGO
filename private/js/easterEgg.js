@@ -1,3 +1,8 @@
+/**
+ * This is the server file that commuicates between client and firesbase database
+ * @author Man Sun
+ * */
+
 // This function is cited from Ben Nadel, https://gist.github.com/bennadel/9760671
 // Create a constructor for the fixed-length queue. This is
 // really more of a FACTORY than a construtor since an

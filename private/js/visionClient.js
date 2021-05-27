@@ -1,3 +1,7 @@
+/**
+ * This is the server file that commuicates between client and firesbase database
+ * @author Man Sun, Michael Wang, Neeraj Kumar
+ * */
 import { pos } from "./imageData.js";
 
 $(document).ready(function () {

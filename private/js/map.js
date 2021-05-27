@@ -1,3 +1,7 @@
+/** Java Script File for animalinformation page
+ * @author Michael Wang
+ * */
+
 //https://developers.google.com/maps/documentation/javascript/examples/inset-map#maps_inset_map-javascript
 let map, overview;
 //change to false to see only user profile
@@ -7,6 +11,7 @@ const OVERVIEW_DIFFERENCE = 5;
 const OVERVIEW_MIN_ZOOM = 3;
 const OVERVIEW_MAX_ZOOM = 10;
 
+//initialize google map
 function initMap() {
   firebase.auth().onAuthStateChanged(function (user) {
     let defaultGPS = {
@@ -20,6 +25,7 @@ function initMap() {
       mapTypeControl: false,
       streetViewControl: false,
     }
+    //get curent device location
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -45,6 +51,7 @@ function initMap() {
       zoomControl: false,
     });
 
+    //link overview window with main window
     function clamp(num, min, max) {
       return Math.min(Math.max(num, min), max);
     }
@@ -72,6 +79,7 @@ function initMap() {
   });
 }
 
+//string to float
 function strGeoCoorToFloatPt(geoStr) {
   let geoFloatPoint = parseFloat(geoStr.substring(1, geoStr.length - 1));
   return geoFloatPoint;
@@ -89,6 +97,7 @@ function getGPSallUserPhotLoc(user) {
     .get().then(gpsPosit => displayMarker(gpsPosit));
 }
 
+//display marker
 function displayMarker(gpsPosit) {
   gpsPosit.forEach((t) => {
 
@@ -106,11 +115,14 @@ function displayMarker(gpsPosit) {
       lng: lng,
     }
     
+    //check if map & overview already loaded
     if (map !== null && overview !== null) {
       imageSizeConst = 250;
       infow = new google.maps.InfoWindow({
         content: "<b>" + name + "</b><br/><img src=" + t.data().url + " style='width: 200px; height: 200px;'><br/>",
       });
+
+      //main map
       marker = new google.maps.Marker({
         position: gpsCoord,
         map: map,
@@ -121,6 +133,8 @@ function displayMarker(gpsPosit) {
         },
         title: name,
       });
+
+      //overview map
       markerOverview = new google.maps.Marker({
         position: gpsCoord,
         map: overview,
@@ -132,6 +146,7 @@ function displayMarker(gpsPosit) {
         title: name,
       });
     }
+
     marker.addListener("click", () => {
       infow.open(map, marker);
     });
