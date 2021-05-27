@@ -42,7 +42,7 @@ $(document).ready(function () {
                 title: 'Oops...',
                 text: 'We cannot identify animal in the picture, please upload another one',
               }).then(function () {
-                window.location.href = "/html/index.html";
+                window.location.href = "/html/upload.html";
               })
             } else {
               Swal.fire({
@@ -50,7 +50,7 @@ $(document).ready(function () {
                 title: 'Oops...',
                 text: 'This animal is already in your collection.',
               }).then(function () {
-                window.location.href = "/html/index.html";
+                window.location.href = "/html/upload.html";
               })
             }
 
@@ -61,7 +61,7 @@ $(document).ready(function () {
               title: 'Oops...',
               text: 'We cannot identify animal in the picture, please upload another one',
             }).then(function () {
-              window.location.href = "/html/index.html";
+              window.location.href = "/html/upload.html";
             });
           }
         });
