@@ -141,6 +141,7 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
                 // Store the animal details in animal collection under user
                 assignURL().then(function (url) {
                     imageURL = url;
+                    console.log("type" + animalType)
                     var dbref = db.collection("users").doc(req.body.id).collection("animals");
 
                     dbref.where('type', '==', animalType)

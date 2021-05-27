@@ -50,7 +50,7 @@ $(document).ready(function () {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'We cannot identify animal in the picture, please upload another one',
+                text: "It's either in your collectoin, or we cannot identify it",
               }).then(function () {
                 window.location.href = "/html/upload.html";
               })
@@ -58,7 +58,7 @@ $(document).ready(function () {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'This animal is already in your collection.',
+                text: "It's either in your collectoin, or we cannot identify it",
               }).then(function () {
                 window.location.href = "/html/upload.html";
               })
@@ -69,7 +69,7 @@ $(document).ready(function () {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: 'We cannot identify animal in the picture, please upload another one',
+              text: "It's either in your collectoin, or we cannot identify it",
             }).then(function () {
               window.location.href = "/html/upload.html";
             });
