@@ -130,10 +130,10 @@ $(document).ready(function() {
         e.preventDefault();
         if (e.detail === 1) {
             trigger.push(1);
-            console.log(trigger);
+            // console.log(trigger);
         } else if (e.detail === 2) {
             trigger.push(2);
-            console.log(trigger);
+            // console.log(trigger);
         }
 
         // The Artist of this gif is Petter Pentilä

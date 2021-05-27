@@ -20,7 +20,7 @@ function submitProfileInfo() {
             var xdescription = document.getElementById('description').value;
             var xaddress = document.getElementById('address').value;
 
-            console.log(xnickname)
+            // console.log(xnickname)
             // updates the user document with more information
             newEntry.update({
                 name: xusername,
@@ -30,7 +30,7 @@ function submitProfileInfo() {
                 address: xaddress
             })
 
-            console.log("Data was uploaded!")
+            // console.log("Data was uploaded!")
             // short delay after submitting to show the 'weight' of the action
             setTimeout(function () {
                window.location.assign("profile.html?location"); 

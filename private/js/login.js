@@ -22,11 +22,11 @@
                                 email: user.email,      //with authenticated user's ID (user.uid)
                                 totalpoints:0                  //points intilization
                             }).then(function () {
-                                console.log("New user added to firestore");
+                                // console.log("New user added to firestore");
                                 window.location.assign("/html/index.html");       //re-direct to main.html after signup
                             })
                             .catch(function (error) {
-                                console.log("Error adding new user: " + error);
+                                // console.log("Error adding new user: " + error);
                             });
                     } else {
                         return true;

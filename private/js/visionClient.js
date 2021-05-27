@@ -33,7 +33,7 @@ $(document).ready(function () {
           processData: false,
           contentType: false,
           success: function (r) {
-            console.log(r);
+            // console.log(r);
             if (r.status == 'success') {
               calcpoints(user.uid, r.type).then(function (s) {
                 Swal.fire({
@@ -93,7 +93,7 @@ async function calcpoints(user, animaltype) {
   let userpoints = await getpoints();
   let rarity = await getrarity(animaltype);
  
-  console.log(userpoints);
+  // console.log(userpoints);
 
   switch (rarity) {
     case "epic":
@@ -107,13 +107,13 @@ async function calcpoints(user, animaltype) {
       break;
   }
 
-  console.log(points);
+  // console.log(points);
   localStorage.setItem('points', points);
   if(userpoints == undefined){
     userpoints = 0;
   }
 
-  console.log(userpoints);
+  // console.log(userpoints);
 
   let total_points = userpoints + points;
   await updatepoints(user,total_points);
@@ -166,7 +166,7 @@ function getrarity(animaltype) {
     dbref.update({
       totalpoints:points
     }).then(function (){
-      console.log("update db points");
+      // console.log("update db points");
       res("Success");
     })
 

@@ -4,8 +4,7 @@
 
 //https://developers.google.com/maps/documentation/javascript/examples/inset-map#maps_inset_map-javascript
 let map, overview;
-//change to false to see only user profile
-//didn't have enough time to implement
+//change to false to see only user profile (didn't have enough time to implement)
 let showAllUserPic = true;
 const OVERVIEW_DIFFERENCE = 5;
 const OVERVIEW_MIN_ZOOM = 3;
@@ -35,8 +34,7 @@ function initMap() {
           };
           defaultGPS = pos;
           map.setCenter(defaultGPS);
-        }
-      );
+        });
     }
 
     map = new google.maps.Map(document.getElementById('mapAPI'), {
@@ -62,8 +60,7 @@ function initMap() {
           map.getZoom() - OVERVIEW_DIFFERENCE,
           OVERVIEW_MIN_ZOOM,
           OVERVIEW_MAX_ZOOM
-        )
-      );
+        ));
     });
 
     //button || tab is clicked

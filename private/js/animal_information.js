@@ -102,5 +102,5 @@ function loaddata() {
 			rarity: animal.rarity
 		});
 	});
-	console.log("added records to db");
+	// console.log("added records to db");
 }

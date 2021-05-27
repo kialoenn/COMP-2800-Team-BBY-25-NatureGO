@@ -6,7 +6,7 @@ $(document).ready(function () {
     .get().then(function (snap){
         var list ="<ol id='list'>";
         snap.forEach((doc) => {
-                console.log(doc.data());
+                // console.log(doc.data());
               list += "<li><mark>"+doc.data().name+"</mark>";
               list += "<small>"+doc.data().totalpoints+"</small></li>";
         })
