@@ -185,10 +185,6 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
     } else throw 'error';
 });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 3feb2c34e12b85bfc3c996eacf1e74e7edcfc16a
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
@@ -222,10 +218,6 @@ app.post('/get-email', function (req, res) {
         });
 });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 3feb2c34e12b85bfc3c996eacf1e74e7edcfc16a
 async function quickstart(fileName) {
     // Imports the Google Cloud client library
     // Creates a client
