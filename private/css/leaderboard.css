@@ -41,6 +41,7 @@
 .leaderboard li {
 	padding: 16px;
 	display: flex;
+	border :1px solid white
 }
 .leaderboard li mark {
 	flex-grow: 1;
@@ -63,6 +64,27 @@
 }
 .leaderboard li:nth-child(3) {
 	background:brown;
+}
+.leaderboard li:nth-child(4) {
+	background:rgba(12, 9, 9, 0.774);
+}
+.leaderboard li:nth-child(5) {
+	background:rgba(12, 9, 9, 0.774);
+}
+.leaderboard li:nth-child(6) {
+	background:rgba(12, 9, 9, 0.774);
+}
+.leaderboard li:nth-child(7) {
+	background:rgba(12, 9, 9, 0.774);
+}
+.leaderboard li:nth-child(8) {
+	background:rgba(12, 9, 9, 0.774);
+}
+.leaderboard li:nth-child(9) {
+	background:rgba(12, 9, 9, 0.774);
+}
+.leaderboard li:nth-child(10) {
+	background:rgba(12, 9, 9, 0.774);
 }
 ol{
 	margin-left:0px ;
