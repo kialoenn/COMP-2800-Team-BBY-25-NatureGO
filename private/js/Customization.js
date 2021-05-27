@@ -2,7 +2,7 @@
 const userRef = db.collection('users');
 
 // the submit button in the html
-const submitButton = document.getElementById('submit');
+const submitButton = document.getElementById('profileForm');
 
 
 // edits the user's profile information in the database
@@ -10,7 +10,7 @@ function submitProfileInfo() {
     firebase.auth().onAuthStateChanged(function (user) {
         var newEntry = userRef.doc(user.uid);
 
-        submitButton.addEventListener('click', function () {
+        submitButton.addEventListener('submit', function () {
 
             // grabs the user's input values
             var xusername = document.getElementById('username').value;

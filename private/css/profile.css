@@ -11,6 +11,7 @@ nav{
     --bs-gutter-x: 0;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 .row1{
     height:200px;
@@ -19,6 +20,10 @@ nav{
 .row1{
     height:200px;
 >>>>>>> 9c4b7bb536c4bca07c2a2728f675d51b87ce76a9
+=======
+.row1{
+    height:200px;
+>>>>>>> 3feb2c34e12b85bfc3c996eacf1e74e7edcfc16a
 }
 
 .row2{
@@ -114,11 +119,15 @@ nav{
     background-color: lightgray;
     border: solid #04443c;
 <<<<<<< HEAD
+<<<<<<< HEAD
     position: relative;
     left: 100px;
 =======
     margin: 0 auto;
 >>>>>>> 9c4b7bb536c4bca07c2a2728f675d51b87ce76a9
+=======
+    margin: 0 auto;
+>>>>>>> 3feb2c34e12b85bfc3c996eacf1e74e7edcfc16a
 }
 
 input[type="file"] {
@@ -142,11 +151,14 @@ button{
     background-color: #04443c;
     font-size: 30px;
 <<<<<<< HEAD
+<<<<<<< HEAD
     margin: 0;
     position: absolute;
     left: 40%;
 =======
 >>>>>>> 9c4b7bb536c4bca07c2a2728f675d51b87ce76a9
+=======
+>>>>>>> 3feb2c34e12b85bfc3c996eacf1e74e7edcfc16a
 }
 
 .in-col{
