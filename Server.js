@@ -44,8 +44,13 @@ app.use('/js', express.static('private/js'));
 app.use('/html', express.static('private/html'));
 app.use('/fonts', express.static('private/fonts'));
 
-// APP GETS
+app.use(function (req, res, next) {
+    let file = fs.readFileSync('./private/html/404.html', 'utf8');
+    res.status(404).send(file);
+});
 
+
+// APP GETS
 // Servers up the login.html on root directory
 app.get('/', function (req, res) {
 

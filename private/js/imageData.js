@@ -1,6 +1,7 @@
 /** Java Script File for animalinformation page
  * @author Michael Wang
  * */
+
 document.getElementById("file-input").setAttribute("onchange", "previewFile()");
 window.initMap = initMap;
 let pos, map, infoWindow;

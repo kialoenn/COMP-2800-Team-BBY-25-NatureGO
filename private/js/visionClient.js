@@ -107,13 +107,11 @@ async function calcpoints(user, animaltype) {
       break;
   }
 
-  console.log(points);
   localStorage.setItem('points', points);
   if(userpoints == undefined){
     userpoints = 0;
   }
 
-  console.log(userpoints);
 
   let total_points = userpoints + points;
   await updatepoints(user,total_points);

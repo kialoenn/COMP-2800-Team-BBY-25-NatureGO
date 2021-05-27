@@ -1,3 +1,9 @@
+/**
+ * This js file is for write animal information to firebase.
+ * @author Neeraj
+ */
+
+
 // pointer for anima_info collectio
 var dbbref = db.collection('animals_info');
 

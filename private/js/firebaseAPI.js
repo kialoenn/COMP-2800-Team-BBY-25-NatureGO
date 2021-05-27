@@ -1,3 +1,6 @@
+/**
+ * This is our firebase API
+ */
 var firebaseConfig = {
     apiKey: "AIzaSyAI2XYfwipMKzMn7accv1VmborqKBg9j_E",
     authDomain: "naturego-e74d6.firebaseapp.com",

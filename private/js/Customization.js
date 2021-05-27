@@ -1,3 +1,10 @@
+/**
+ * This js file provides functions that allow user to edit and update their 
+ * personal information.
+ * 
+ * @author Richard
+ */
+
 // users collection in database
 const userRef = db.collection('users');
 
@@ -33,7 +40,7 @@ function submitProfileInfo() {
             console.log("Data was uploaded!")
             // short delay after submitting to show the 'weight' of the action
             setTimeout(function () {
-               window.location.assign("profile.html?location"); 
+                window.location.assign("profile.html?location");
             }, 500);
         })
     })
@@ -56,7 +63,7 @@ function getUserInfo() {
                     var numb = doc.data().number;
                     var add = doc.data().address;
                     var nick = doc.data().nickname;
-                    
+
                     // displays grabbed data onto page
                     $("#username").val(name).text(name);
                     $("#description").val(desc).text(desc);
@@ -66,7 +73,7 @@ function getUserInfo() {
                     $("#nickname").val(nick).text(nick);
                 })
         } else {
-            
+
             // No user is signed in.
         }
     });
