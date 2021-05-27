@@ -47,15 +47,17 @@
     <form class="wrapper" id="profileForm">
       <h4 class="header">Edit Profile Information</h4>
 
-      <input class="inputtext" type="text" id="username" name="username" placeholder="username"
-        required autofocus="autofocus">
+      <input class="inputtext" type="text" id="username" name="username" placeholder="username" required
+        autofocus="autofocus">
       <br />
       <input class="inputtext" type="text" id="nickname" pattern="[A-Za-z0-9]{3,20}" name="nickname"
-        placeholder="nickname" required autofocus="autofocus">
+        placeholder="nickname" required autofocus="autofocus"
+        oninvalid="this.setCustomValidity('Must have at least 3 characters, and maximum 20 characters')" oninput="this.setCustomValidity('')">
       <br />
       <input class="inputtext" type="text" id="description" name="description" placeholder="description">
       <br />
-      <input class="inputtext" type="tel" id="number" name="number" pattern="[0-9]{10}" placeholder="number">
+      <input class="inputtext" type="tel" id="number" name="number" pattern="[0-9]{10}" placeholder="number"
+        oninvalid="this.setCustomValidity('Must be in 10 digits, without space.')" oninput="this.setCustomValidity('')">
       <br />
       <input class="inputtext" type="text" id="address" name="address" placeholder="address">
       <br />
