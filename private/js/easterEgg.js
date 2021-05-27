@@ -126,14 +126,14 @@ $(document).ready(function() {
         if (e.detail === 1) {
             trigger.push(1);
             console.log(trigger);
-        } else if (e.detail === 3) {
-            trigger.push(3);
+        } else if (e.detail === 2) {
+            trigger.push(2);
             console.log(trigger);
         }
 
         // The Artist of this gif is Petter Pentilä
         // This image is downloaded from https://dribbble.com/shots/5771570-Bird/attachments/5771570-Bird?mode=media
-        if (trigger[0] === 1 && trigger[1] === 3) {
+        if (trigger[0] === 1 && trigger[1] === 2) {
             Swal.fire({
                 html:"<p>You find our Easter Egg!!!</p>",
                 background: 'url(/img/bird-dribbble.gif)',
