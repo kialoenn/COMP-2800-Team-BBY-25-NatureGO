@@ -32,12 +32,8 @@ window.previewFile = function previewFile() {
 
               if (map !== null && infoWindow !== null) {
                 infoWindow.close();
-                infoWindow = new google.maps.InfoWindow({
-                  position: pos,
-                });
-                infoWindow.setContent(JSON.stringify(pos));
+                pickLocationMarker(pos);
                 map.setCenter(pos);
-                infoWindow.open(map);
               }
               showUploadBtn();
               // document.getElementById("GPScoor").textContent = JSON.stringify(pos);
@@ -109,16 +105,7 @@ function initMap() {
     // Close the current InfoWindow.
     infoWindow.close();
 
-    if(markers.length > 0){
-      deleteMarkers();
-      addMarker(posTemp);
-      showMarkers();
-    }else if(markers.length == 0){
-      addMarker(posTemp);
-      showMarkers();
-    }else{
-      console.log("ERROR! marker Error!");
-    }
+    pickLocationMarker(posTemp);
     
     // // Create a new InfoWindow.
     // infoWindow = new google.maps.InfoWindow({
@@ -133,6 +120,20 @@ function initMap() {
     // document.getElementById("GPScoor").textContent = JSON.stringify(pos);
   });
 }
+
+function pickLocationMarker(posTemp){
+  if(markers.length > 0){
+    deleteMarkers();
+    addMarker(posTemp);
+    showMarkers();
+  }else if(markers.length == 0){
+    addMarker(posTemp);
+    showMarkers();
+  }else{
+    console.log("ERROR! marker Error!");
+  }
+}
+
 
 //https://developers.google.com/maps/documentation/javascript/examples/marker-remove
 // Sets the map on all markers in the array.
