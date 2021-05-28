@@ -10,10 +10,11 @@ https://nature-go.herokuapp.com/
 
 ## team-info
 | Firse Name        | Last Name           | Student number  |
-| ----------------- |:-------------------:| ---------------:|
+| ----------------- |-------------------| ---------------|
 | Man               | Sun                 |    A01074365    |
 | Richard           | Mac                 |    A00990553    |
-| zebra stripes | are neat      |    $1 |
+| Neeraj Kumar | Bodi      |    A01260109 |
+| Miaozhe(Michael) | Wang      |    A00741736 |
 ## General Info
 We want to bring people’s attention to biodiversity in an interactive way so they can
 help to protect and enhance the ecological system of Vancouver. Our App helps users identify animals via photo, display relevant information and their effect on biodiversity. They also get points based on the rarity of species they take pictures
@@ -36,19 +37,16 @@ Technologies used for this project:
 ## Content
 Content of the project folder:
 
-```
- Top level of project folder: 
-├── .gitignore                         # Git ignore file
-├── Server.js                          # The node js server that run our App
-├── visionAPI.json                     # The Google Vision API key used for node.js
-├── firebase_auth.json                 # The firebase authentication API key used for node.js
-├── package.json                       # This file contains node library dependency
-├── node_modules                       # The node library folder
-├── private                            # The folder contains our assets and resources
-└── README.md
 
-private has the following subfolders and files:
-├── img                                # Folder for images
+ Top level of project folder: 
+* .gitignore                         # Git ignore file
+* Server.js                          # The node js server that run our App
+* visionAPI.json                     # The Google Vision API key used for node.js
+* firebase_auth.json                 # The firebase authentication API key used for node.js
+* package.json                       # This file contains node library dependency
+* node_modules                       # The node library folder
+* private                            # The folder contains our assets and resources
+..* img                                # Folder for images
     /ManSunAvatar.jpeg                 # Avatar for Man on about us page
     /MichaelAvatar.png                 # Avatar for Michael on about us page
     /NaturegoFavicon.png               # App favicon
@@ -60,7 +58,7 @@ private has the following subfolders and files:
     /greenIcon.png                     # Green map marker icon
     /redIcon.png                       # Red map marker icon
     /loading.gif                       # Gif for loading window
-├── js                                 # Folder for scripts
+..* js                                 # Folder for scripts
     /Customization.js                  # Functions used to edit and update user info
     /animal_information.js             # Functions used to display animal information from firebase
     /authentication.js                 # Functions used to check user login status
@@ -74,7 +72,7 @@ private has the following subfolders and files:
     /map.js                            # Functions used to display Google Map 
     /profile.js                        # Functions used to display user profile 
     /visionClient.js                   # Functions used to send ajax call to server side and use vision API to identify animals
-├── css                                # Folder for styles
+..* css                                # Folder for styles
     /404.css                           # The style for our 404 error page
     /AboutUs.css                       # The style used for About us page
     /Collections.css                   # The style used for Collections page
@@ -86,7 +84,7 @@ private has the following subfolders and files:
     /profile.css                       # The style used for profile page
     /style.css                         # The style used for nav bar
     /upload.css                        # The style used for upload page
-├── html                               # Folder for html pages
+..* html                               # Folder for html pages
     /404.html                          # The html used for 404 error page
     /AboutUs.html                      # The html used for About Us page
     /collections.html                  # The html used for Collections page
@@ -99,11 +97,12 @@ private has the following subfolders and files:
     /map.html                          # The html used for map page
     /profile.html                      # The html used for profile page
     /upload.html                       # The html used for upload page
-├── fonts                              # Folder for fonts
+..* fonts                              # Folder for fonts
     /Amadeus.ttf                       # The Amadeus font ttf file
     /SquadaOne-Regular.ttf             # The SquadaOne-Regular font
     /berkshireswash-regular.ttf        # The berkshireswash font
-```
+* README.md
+
 
 ## instruction
 1. Install editor such as [VS Code](https://code.visualstudio.com/download), Sublime, etc.
