@@ -1,10 +1,10 @@
 # My Web Application (EatMan)
-* [Instructions](#instruction)
+* [Instructions](#Instructions)
 * [General information](#general-info)
 * [Technologies](#technologies)
 * [Contents](#content)
 * [Team information](#team-info)
-* [Repo Organization](#repo)
+* [Repo Organization](#Repo-Organization)
 
 
 # Live Link
