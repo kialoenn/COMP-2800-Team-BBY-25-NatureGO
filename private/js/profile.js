@@ -1,5 +1,5 @@
 /**
- * This is the server file that commuicates between client and firesbase database
+ * This is the JavaScript for profile page
  * @author Richard Mac
  * */
 $(document).ready(function () {

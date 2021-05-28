@@ -1,6 +1,8 @@
 /**
- * This is the server file that commuicates between client and firesbase database
- * @author Man Sun, Michael Wang, Neeraj Kumar
+ * This is sends Picture & GPS data from client to server
+ * @author Man Sun
+ * @author Michael Wang
+ * @author Neeraj Kumar
  * */
 import { pos } from "./imageData.js";
 

@@ -1,4 +1,5 @@
-/** Java Script File for animalinformation page
+/**  
+ * Preview & upload picture & GPS data
  * @author Michael Wang
  * */
 

@@ -1,6 +1,6 @@
 /**
- * This js file is for displaying user's animal collection by querying from firebase.
- * Author: Man
+ * This js file is for collections
+ * @author Man
  */
 
 $(document).ready(function () {

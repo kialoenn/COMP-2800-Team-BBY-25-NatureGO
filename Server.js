@@ -1,6 +1,9 @@
 /**
  * This is the server file that commuicates between client and firesbase database
- * @author Neeraj Kumar,Man Sun,Richard Mac,Michael Wang
+ * @author Neeraj Kumar
+ * @author Man Sun
+ * @author Richard Mac
+ * @author Michael Wang
  * */
 
 // REQUIRED npm packages
