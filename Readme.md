@@ -1,5 +1,5 @@
 # My Web Application (EatMan)
-* [Instruction](#instruction)
+* [Instructions](#instruction)
 * [General information](#general-info)
 * [Technologies](#technologies)
 * [Contents](#content)
@@ -17,7 +17,7 @@ https://nature-go.herokuapp.com/
   To Check that you have node and npm, open your command terminal and type:
   ```node -v``` and ```npm -v```
 3. Install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), so you can clone our repo
-4. Contact [Github owner](mailto:msun45@my.bcit.ca) to be added as collaborator to gain access of cloning our Repo
+4. Contact Github owner at msun45@my.bcit.ca to be added as collaborator to gain access of cloning our Repo
 5. Create an empty folder on your local computer
   Open Command Terminal and ```cd /yourFolder```
   Then ```git clone https://github.com/kialoenn/COMP-2800-Team-BBY-25-NatureGO```
@@ -26,7 +26,7 @@ https://nature-go.herokuapp.com/
 7. We do not have any 3rd party APIs that you need to download by yourself, we
    have already set those up for you, you will automitically download the API keys
    when you clone our repo.
-8. In order to get access to our database and server passwords, please contact [Github owner](mailto:msun45@my.bcit.ca),
+8. In order to get access to our database and server passwords, please contact Github owner at msun45@my.bcit.ca,
    we will add you to our firebase project team so you have all the access.
 
 ## General Info
@@ -127,7 +127,7 @@ private has the following subfolders and files:
 | Neeraj Kumar | Bodi      |    A01260109 |
 | Miaozhe(Michael) | Wang      |    A00741736 |
 
-## Repo Organication
+## Repo Organization
 ...Since we built our App with node js, the top level of project folder includes files ..
 ...that are used for server.js including firebase API key and Google Vision API key..
 ...Inside of private folder, there will be assets and resources including html, css, javascripts, images and fonts..
