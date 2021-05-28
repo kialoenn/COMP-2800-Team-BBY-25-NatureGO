@@ -69,17 +69,30 @@ private has the following subfolders and files:
     /reviews.js                        # Functions used for display restaurant detail
     /searchFunction.js                 # Functions used for search 
 ├── css                                # Folder for styles
-    /editProfileStyle.css              # The style used for editing profile
-    /mainStyle.css                     # The style used for main page
-    /ownerStyle.css                    # The style used for owner page
+    /404.css                           # The style for our 404 error page
+    /AboutUs.css                       # The style used for About us page
+    /Collections.css                   # The style used for Collections page
+    /Customization.css                 # The style used for Customizations page
+    /info.css                          # The style used for info page
+    /leaderboard.css                   # The style for our leaderboard page
+    /login.css                         # The style used for login page
+    /map.css                           # The style used for map page
     /profile.css                       # The style used for profile page
-    /searchStyle.css                   # The style used for search bar
+    /style.css                         # The style used for nav bar
+    /upload.css                        # The style used for upload page
 ├── html                               # Folder for html pages
-    /editProfileStyle.css              # The style used for editing profile
-    /mainStyle.css                     # The style used for main page
-    /ownerStyle.css                    # The style used for owner page
-    /profile.css                       # The style used for profile page
-    /searchStyle.css                   # The style used for search bar
+    /404.html                          # The html used for 404 error page
+    /AboutUs.html                      # The html used for About Us page
+    /collections.html                  # The html used for Collections page
+    /Customization.html                # The html used for Customizations page
+    /imageTest.html                    # The html used for image test page
+    /index.html                        # The html used for index page
+    /info.html                         # The html used for info page
+    /leaderboard.html                  # The html used for leaderboard page
+    /login.html                        # The html used for login page
+    /map.html                          # The html used for map page
+    /profile.html                      # The html used for profile page
+    /upload.html                       # The html used for upload page
 ├── fonts                              # Folder for fonts
     /editProfileStyle.css              # The style used for editing profile
     /mainStyle.css                     # The style used for main page
