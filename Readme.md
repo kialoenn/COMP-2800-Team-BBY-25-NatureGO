@@ -31,6 +31,8 @@ https://nature-go.herokuapp.com/
 9. In order to run our App, go to your local repo and open commend terminal, and type ```node Server.js```.
    If there are some errors such as "Cannot find module 'ModuleName'", just type ```npm install ModuleName```
    for example: ```npm install express``` or ```npm install firebase```
+10. After you run server.js, open your browser and type the url ```http://localhost:8000```, you will see
+    the locally hosted App
 
 ## General Info
 We want to bring people’s attention to biodiversity in an interactive way so they can
