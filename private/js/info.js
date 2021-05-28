@@ -1,6 +1,7 @@
 /** Java Script File for animalinformation page
  * @author Neeraj Kumar
  * */
+
 $(document).ready(function () {
     var rarity;
 

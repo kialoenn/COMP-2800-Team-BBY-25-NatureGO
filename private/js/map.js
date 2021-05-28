@@ -1,4 +1,5 @@
-/** Java Script File for animalinformation page
+/**
+ * Displaying location via GPS and basic animal information
  * @author Michael Wang
  * */
 

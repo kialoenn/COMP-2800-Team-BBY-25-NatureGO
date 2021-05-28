@@ -2,6 +2,7 @@
  * Check if user is login or not, direct to login page if not.
  * @author Man
  */
+
 function checkUserStatus() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (!user) {

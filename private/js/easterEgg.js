@@ -1,5 +1,5 @@
 /**
- * This is the server file that commuicates between client and firesbase database
+ * This is for easter egg
  * @author Man Sun
  * */
 
