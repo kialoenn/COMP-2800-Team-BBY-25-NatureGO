@@ -44,30 +44,31 @@ Content of the project folder:
 
 private has the following subfolders and files:
 ├── img                                # Folder for images
-    /45-donald-trump.jpg               # User profile image
-    /bacchus.jpg                       # Restaurant image
-    /earls.jpg                         # Restaurant image
-    /gotham.jpg                        # Restaurant image
-    /japadog.jpg                       # Restaurant image
-    /noodlebox.jpg                     # Restaurant image
-    /searchBg.jpg                      # The index background
-    /backgroundProfile.jpeg            # Profile background image
+    /ManSunAvatar.jpeg                 # Avatar for Man on about us page
+    /MichaelAvatar.png                 # Avatar for Michael on about us page
+    /NaturegoFavicon.png               # App favicon
+    /NeerajAvatar.jpeg                 # Avatar for Neeraj on about us page
+    /RichardAvatar.png                 # Avatar for Richard on about us page
+    /background.jpg                    # App background image
+    /bird-dribbble.gif                 # Gif for easter egg
+    /giphy.gif                         # Gif for 404 page
     /greenIcon.png                     # Green map marker icon
     /redIcon.png                       # Red map marker icon
-    /logoEatMan.png                    # Website logo
-    /radat.png                         # User location icon  
+    /loading.gif                       # Gif for loading window
 ├── js                                 # Folder for scripts
-    /detailFunction.js                 # Functions used for display restaurant detail
-    /firebaseAPI.js                    # Store the firebase API key
-    /function.js                       # The general function used for every page
-    /jquery.simplePagination.js        # The library js file used for pagination
-    /mainFunction.js                   # Functions used for main page
-    /ownerFunction.js                  # Functions used for owner to display queue list
-    /profileFunction.js                # Functions used for display user profile
-    /queueDetailFunction.js            # Functions used for display restaurant queue detail
-    /resultFunction.js                 # Functions used for display search result
-    /reviews.js                        # Functions used for display restaurant detail
-    /searchFunction.js                 # Functions used for search 
+    /Customization.js                  # Functions used to edit and update user info
+    /animal_information.js             # Functions used to display animal information from firebase
+    /authentication.js                 # Functions used to check user login status
+    /collection.js                     # Functions used to display user's collection as image from firebase
+    /easterEgg.js                      # Functions used to display easter egg on index.html
+    /firebaseAPI.js                    # The firebase API key for Web2.0
+    /imageData.js                      # Functions used to check meta data from image
+    /info.js                           # Functions used to retrive animal information and display them
+    /leaderboard.js                    # Functions used to retrive the top ten users who has highest score
+    /login.js                          # Functions used to allow firebase login
+    /map.js                            # Functions used to display Google Map 
+    /profile.js                        # Functions used to display user profile 
+    /visionClient.js                   # Functions used to send ajax call to server side and use vision API to identify animals
 ├── css                                # Folder for styles
     /editProfileStyle.css              # The style used for editing profile
     /mainStyle.css                     # The style used for main page
