@@ -4,7 +4,7 @@
 * [Technologies](#technologies)
 * [Contents](#content)
 * [Team information](#team-info)
-* [Repo Organization](#Repo-Organization)
+* [Overview](#Overview)
 
 
 # Live Link
@@ -132,7 +132,7 @@ private has the following subfolders and files:
 | Neeraj Kumar | Bodi      |    A01260109 |
 | Miaozhe(Michael) | Wang      |    A00741736 |
 
-## Repo Organization
+## Overview
 ...Since we built our App with node js, the top level of project folder includes files ..
 ...that are used for server.js including firebase API key and Google Vision API key..
 ...Inside of private folder, there will be assets and resources including html, css, javascripts, images and fonts..
