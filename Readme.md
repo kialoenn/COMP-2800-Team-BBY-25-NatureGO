@@ -22,12 +22,15 @@ https://nature-go.herokuapp.com/
   Open Command Terminal and ```cd /yourFolder```
   Then ```git clone https://github.com/kialoenn/COMP-2800-Team-BBY-25-NatureGO```
 6. Once you cloned our repo, open command Terminal and cd to your repo folder
-  Type ```npm install```, this will install all the node packages you need
+  Type ```npm install```, this will install all the node packages you need,
 7. We do not have any 3rd party APIs that you need to download by yourself, we
    have already set those up for you, you will automitically download the API keys
    when you clone our repo.
 8. In order to get access to our database and server passwords, please contact Github owner at msun45@my.bcit.ca,
    we will add you to our firebase project team so you have all the access.
+9. In order to run our App, go to your local repo and open commend terminal, and type ```node Server.js```.
+   If there are some errors such as "Cannot find module 'ModuleName'", just type ```npm install ModuleName```
+   for example: ```npm install express``` or ```npm install firebase```
 
 ## General Info
 We want to bring people’s attention to biodiversity in an interactive way so they can
