@@ -1,14 +1,19 @@
-## My Web Application (EatMan)
-
-
-* [General info](#general-info)
+# My Web Application (EatMan)
+* [Team information](#team-info)
+* [General information](#general-info)
 * [Technologies](#technologies)
 * [Contents](#content)
 * [Instruction](#instruction)
 
-## Live Link
+# Live Link
 https://nature-go.herokuapp.com/
 
+## team-info
+| Firse Name        | Last Name           | Student number  |
+| ----------------- |:-------------------:| ---------------:|
+| Man               | Sun                 |    A01074365    |
+| Richard           | Mac                 |    A00990553    |
+| zebra stripes | are neat      |    $1 |
 ## General Info
 We want to bring people’s attention to biodiversity in an interactive way so they can
 help to protect and enhance the ecological system of Vancouver. Our App helps users identify animals via photo, display relevant information and their effect on biodiversity. They also get points based on the rarity of species they take pictures
@@ -100,10 +105,15 @@ private has the following subfolders and files:
     /berkshireswash-regular.ttf        # The berkshireswash font
 ```
 
-# instruction
-
-## Set Up
-* Install editor such as VS Code, Sublime, etc.
-* Install Node.js and NPM. You can follow the link [here](https://nodejs.org/en/download/)
+## instruction
+1. Install editor such as [VS Code](https://code.visualstudio.com/download), Sublime, etc.
+2. Install Node.js and NPM. You can follow the link [here](https://nodejs.org/en/download/)
   To Check that you have node and npm, open your command terminal and type:
   ```node -v``` and ```npm -v```
+3. Install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+4. Contact Github Owner to be added as collaborator so you can clone our Repo
+5. Create an empty folder on your local computer
+  Open Command Terminal and ```cd /yourFolder```
+  Then ```git clone https://github.com/kialoenn/COMP-2800-Team-BBY-25-NatureGO```
+6. Once you cloned our repo, open command Terminal and cd to your repo folder
+  Type ```npm install```, this will install all the node packages you need
