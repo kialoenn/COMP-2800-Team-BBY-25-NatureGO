@@ -3,6 +3,7 @@
  * @author Neeraj
  * @author Richard
  */
+
 $(document).ready(function () {
 
     db.collection("users").where("totalpoints", ">", 0)

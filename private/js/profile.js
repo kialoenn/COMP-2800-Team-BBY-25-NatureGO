@@ -2,6 +2,7 @@
  * This is the JavaScript for profile page
  * @author Richard Mac
  * */
+
 $(document).ready(function () {
     firebase.auth().onAuthStateChanged(function (users) {
         if (users) {

@@ -4,6 +4,7 @@
  * @author Michael Wang
  * @author Neeraj Kumar
  * */
+
 import { pos } from "./imageData.js";
 
 $(document).ready(function () {
