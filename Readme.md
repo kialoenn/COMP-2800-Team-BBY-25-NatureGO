@@ -133,7 +133,7 @@ private has the following subfolders and files:
 | Miaozhe(Michael) | Wang      |    A00741736 |
 
 ## Overview
-...Since we built our App with node js, the top level of project folder includes files ..
-...that are used for server.js including firebase API key and Google Vision API key..
-...Inside of private folder, there will be assets and resources including html, css, javascripts, images and fonts..
-...For detailed information of files origanization, please see [Contents](#content)..
+Since we built our App with node js, the top level of project folder includes files
+that are used for server.js including firebase API key and Google Vision API key.
+Inside of private folder, there will be assets and resources including html, css, javascripts, images and fonts
+For detailed information of files origanization, please see [Contents](#content).
