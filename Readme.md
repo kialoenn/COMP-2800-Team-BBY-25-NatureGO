@@ -95,10 +95,15 @@ private has the following subfolders and files:
     /profile.html                      # The html used for profile page
     /upload.html                       # The html used for upload page
 ├── fonts                              # Folder for fonts
-    /editProfileStyle.css              # The style used for editing profile
-    /mainStyle.css                     # The style used for main page
-    /ownerStyle.css                    # The style used for owner page
-    /profile.css                       # The style used for profile page
-    /searchStyle.css                   # The style used for search bar
-
+    /Amadeus.ttf                       # The Amadeus font ttf file
+    /SquadaOne-Regular.ttf             # The SquadaOne-Regular font
+    /berkshireswash-regular.ttf        # The berkshireswash font
 ```
+
+# instruction
+
+## Set Up
+* Install editor such as VS Code, Sublime, etc.
+* Install Node.js and NPM. You can follow the link [here](https://nodejs.org/en/download/)
+  To Check that you have node and npm, open your command terminal and type:
+  ```node -v``` and ```npm -v```
