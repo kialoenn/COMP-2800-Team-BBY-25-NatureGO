@@ -1,13 +1,19 @@
-/** Java Script File for animalinformation page
+/**  
+ * Preview & upload picture & GPS data
  * @author Michael Wang
  * */
 
 document.getElementById("file-input").setAttribute("onchange", "previewFile()");
 window.initMap = initMap;
-let pos, map, infoWindow;
+
+//declare variables
+let pos;
+let map;
+let infoWindow;
 let markers = [];
 
 //preview image
+//from Michael's Term 1 1800 project, Healthy Reminder - profile.js
 window.previewFile = function previewFile() {
   let fileImg = document.getElementById("previewImag");
   let file = document.querySelector("input[type=file]").files[0];
@@ -34,7 +40,7 @@ window.previewFile = function previewFile() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
               };
-
+              //set marker to device location if map
               if (map !== null && infoWindow !== null) {
                 infoWindow.close();
                 pickLocationMarker(pos);
@@ -43,11 +49,11 @@ window.previewFile = function previewFile() {
               showUploadBtn();
               // document.getElementById("GPScoor").textContent = JSON.stringify(pos);
             },
-            //user has geolocation but unable to get GPS
+            //user's device has geolocation but unable to get GPS
             initMap()
           );
         } else {
-          //user don't have geolocation
+          //user's device don't have geolocation
           initMap();
         }
       }
@@ -86,7 +92,7 @@ function initMap() {
   document.getElementById("uploadImgBtn").style.visibility = "hidden";
   document.getElementById("selectImgLocation").style.visibility = "visible";
 
-  //BCIT BBY campus
+  //default location - BCIT BBY campus
   let posTemp = {
     lat: 49.25076313248947,
     lng: -123.0017895306895,
@@ -116,7 +122,7 @@ function initMap() {
   });
 }
 
-//select gps location, enable 1 marker at all times
+//select gps location
 function pickLocationMarker(posTemp){
   if(markers.length > 0){
     deleteMarkers();
