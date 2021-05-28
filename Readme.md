@@ -1,5 +1,6 @@
 # My Web Application (EatMan)
 * [Instructions](#Instructions)
+* [Testing](#Testing)
 * [General information](#general-info)
 * [Technologies](#technologies)
 * [Contents](#content)
@@ -34,6 +35,14 @@ https://nature-go.herokuapp.com/
 10. After you run server.js, open your browser and type the url ```http://localhost:8000```, you will see
     the locally hosted App
 
+## Testing
+1. For testing our App, install Selenium browser extension.
+2. Open Selenium IDE on browser, and download the files inside of tests.
+3. Run each tests one at a time, if there's image file name after tests title, such as "U6-001 upload blackBear.jpg",
+    you will need to upload "blackBear.jpg" when the upload window is opened. There would be 10 seconds for you to select
+    and upload the test.
+4. Please check our [TEST PLAN](https://docs.google.com/spreadsheets/d/1KOIiqS4Jz4wQw0rV_M0HOTw71RL3KnG210cu5bkqAtg/edit?usp=sharing) for detailed information of tests plan.
+
 ## General Info
 We want to bring people’s attention to biodiversity in an interactive way so they can
 help to protect and enhance the ecological system of Vancouver. Our App helps users identify animals via photo, display relevant information and their effect on biodiversity. They also get points based on the rarity of species they take pictures
@@ -65,6 +74,9 @@ Content of the project folder:
 ├── package.json                       # This file contains node library dependency
 ├── node_modules                       # The node library folder
 ├── private                            # The folder contains our assets and resources
+├── tests                              # The folder contains Selenuim tests
+    ├── naturefoTeam25.side            # The Selenuim tests
+    ├── NatureGoTestPhoeo              # The folder contains images used for tests
 └── README.md
 
 private has the following subfolders and files:
@@ -134,6 +146,7 @@ private has the following subfolders and files:
 
 ## Overview
 Since we built our App with node js, the top level of project folder includes files
-that are used for server.js including firebase API key and Google Vision API key.
+that are used for server.js including firebase API key and Google Vision API key. We also have test folder
+on top level that contains Selenium tests.
 Inside of private folder, there will be assets and resources including html, css, javascripts, images and fonts
 For detailed information of files origanization, please see [Contents](#content).
